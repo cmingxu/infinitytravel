@@ -1,0 +1,25 @@
+<h1>Listing brochure_travels</h1>
+
+<table>
+  <tr>
+    <th>Brochure</th>
+    <th>Travel</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @brochure_travels.each do |brochure_travel| %>
+  <tr>
+    <td><%= brochure_travel.brochure_id %></td>
+    <td><%= brochure_travel.travel_id %></td>
+    <td><%= link_to 'Show', brochure_travel %></td>
+    <td><%= link_to 'Edit', edit_brochure_travel_path(brochure_travel) %></td>
+    <td><%= link_to 'Destroy', brochure_travel, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Brochure travel', new_brochure_travel_path %>

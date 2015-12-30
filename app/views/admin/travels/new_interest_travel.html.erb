@@ -1,0 +1,32 @@
+<div class="row">
+<h3>后台管理 > 绑定相关兴趣点 <div class="pull-right"><%= link_to '返回列表', admin_travels_path %></div></h3>
+<hr>
+
+<h5>已绑定兴趣点</h5>
+<% @travel.interests.each do |interest| %>
+	<%= interest.title %> <br>
+<% end %>
+
+<h5>绑定新兴趣点</h5>
+<%= form_tag(create_interest_travel_admin_travel_path(@travel)) do |f| %>
+  <div class="control-group">
+    <label class="control-label">兴趣点</label>
+    <div class="controls">
+    	<select name="interest_id">
+				<% Interest.find(:all, :order => 'id').each do |interest| %>
+					<option value="<%= interest.id %>" selected="selected"><%= interest.title %></option>  
+				<% end %>
+			</select>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= submit_tag %>
+    </div>
+  </div>
+<% end %>
+
+
+</div>
+
+

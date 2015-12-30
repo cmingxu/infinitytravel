@@ -1,0 +1,543 @@
+    <ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+      <li>
+        <a href="/">首页</a>
+      </li>
+      <li>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <a href="/search">旅行线路</a>
+      </li>
+      <li>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <a href="/travels/<%= @travel.id %>"><%= @travel.name %></a>
+      </li>
+    </ul>
+    <div class="self_clear">
+      <%= render :partial => "travels/travel_sidebar", :locals => { :travel => @travel } %>
+
+      <div id="primary_content" class="align_edges">
+        <iframe style="position:absolute; left:-9999px;" id="print-frame" src="/images/transparent.gif"></iframe>
+        <!-- PRIMARY HEADING -->
+        <h1><%= @travel.name %></h1>
+        <h4 class="clear_margins icon luxury amp" style="padding-top:2px;">
+          <%= @travel.interests.first.title %>
+        </h4>
+        <!-- LIVEPERSON -->
+        <!-- LINK LIST -->
+        <ul class="attribute_list">
+          <li>
+            <a class="icon download" href="<%= @travel.brochures.first.doc.url %>">下载旅行手册</a>
+          </li>
+          <li>
+            <a rel="nofollow" class="icon print" title="Print This Trip" href="#" onclick="javascript:window.print(); return false" target="_blank">打印该线路</a>
+          </li>
+        </ul>
+        <!-- TRIP NAVIGATION -->
+        <div id="trip_navigation_top" class="self_clear padding_6_tabs">
+          <ul>
+            <li>
+              <a href="/travels/<%= @travel.id %>/#tab1" title="Overview">线路介绍</a>
+            </li>
+            <li>
+              <a href="/travels/<%= @travel.id %>/#tab2" title="Itinerary">行程</a>
+            </li>
+            <li class="current">
+              <a href="/travels/<%= @travel.id %>/#tab3" title="Dates &amp; Prices">团期和价格</a>
+            </li>
+            <li>
+              <a href="/travels/<%= @travel.id %>/#tab4" title="Extensions">扩展线路</a>
+            </li>
+            <li>
+              <a href="/travels/<%= @travel.id %>/#tab5" title="Ask a Question">提问</a>
+            </li>
+            <li>
+              <a href="/travels/<%= @travel.id %>/#tab6" title="Ask a Question">用户点评</a>
+            </li>
+          </ul>
+        </div>
+
+        <div id="tab3" class="tab_item">
+
+          <h2>填写并提交订单</h2>
+          <p>
+            <p>
+              <% if user_signed_in? %>
+                欢迎参加我们的旅行，<%= current_user.identity %>
+              <% else %>
+                如果您已有账号,请<a href="/login">登录</a>。
+              <% end %>
+            </p>
+          <p>您同时也可以未注册用户身份提交订单。</p>
+          <table class="format_table">
+            <thead>
+              <tr>
+                <th>
+                  是否可预订:
+                  可预订
+                </th>
+                <th>单价</th>
+                <th>人数</th>
+                <th>合计</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> <strong>日期:</strong>
+                  <%= @datesprice.start_date.strftime("%d %b %Y") %> to <%= @datesprice.end_date.strftime("%d %b %Y") %>
+                </td>
+                <td>$<%= @datesprice.prices %></td>
+                <td><%= @people_count %></td>
+                <td align="right">$<%= @datesprice.prices*@people_count %></td>
+              </tr>
+              <!-- IS INTERNAL AIRFARE INCLUDED IN THIS TRIP -->
+              <tr>
+                <td> <strong>机票:</strong>
+                </td>
+                <td>$<%= @datesprice.internal_airfare %></td>
+                <td><%= @people_count %></td>
+                <td align="right">$<%= @datesprice.internal_airfare*@people_count %></td>
+              </tr>
+              <!-- IS A SUPPLEMENT INCLUDED IN THIS TRIP -->
+              <!-- ADD PRICE -->
+              <tr>
+                <td>
+                  <strong>金额 (人民币):</strong>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td align="right">
+                  <strong>$<%= (@datesprice.prices+@datesprice.internal_airfare)*@people_count %></strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="clear_list_style"></ul>
+          <p>
+            请提供此段文本之翻译：Availability shown does not reflect real time status and is subject to change. In the case of Sold Out availability, recommends requesting a booking and adding your name to our waitlist. We will contact you if the departure becomes available.
+            Sub-Totals do not include international airfare, upgrades, taxes, seasonal surcharges and optional services not specified in the Inclusions section of the program description or Terms and Conditions.
+          </p>
+          <div style="width:80%">
+            <div class="self-clear">
+              <p id="requiredText">
+                必填项 <em>*</em>
+              </p>
+            </div>
+            <form action="/bookings" id="booking_request" method="post" name="booking_request" class="uniForm">
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+              <fieldset class="inlineLabels">
+                <h3>您的信息</h3>
+                <input name="booking[travel_id]" value="<%= @travel.id %>" type="hidden">
+                <input name="booking[datesprice_id]" value="<%= @datesprice.id %>" type="hidden">
+                <input name="booking[people_count]" value="<%= @people_count %>" type="hidden">
+                
+                <div id="ctrlHolder_title" class="ctrlHolder borderTop">
+                  <label for="title" class="required"> <em>*</em>
+                    性别
+                  </label>
+                  <select name="booking[mrs_title]" id="title" class="required" tabindex="1" style="">
+                    <option value="0">请选择</option>
+                    <option value="男士">男士</option>
+                    <option value="女士">女士</option>
+                  </select>
+                </div>
+                <div id="ctrlHolder_firstName" class="ctrlHolder">
+                  <label for="firstName" class="required">
+                    <em>*</em>
+                    名字
+                  </label>
+                  <input name="booking[first_name]" id="firstName" value="" size="30" type="text" class="required" tabindex="2"></div>
+              </fieldset>
+              <fieldset class="inlineLabels">
+                <h3>联络信息</h3>
+                <div id="ctrlHolder_contact_preference" class="ctrlHolder borderTop">
+                  <p class="errorFieldHide" id="contact_preference_err"></p>
+                  <p class="label ">最佳联络方式</p>
+                  <label for="contact_preference-1" class="inlineLabel">
+                    <input name="booking[preferred_contact_method]" id="contact_preference-1" type="radio" value="1" checked="checked" class="" tabindex="5">Email</label>
+                  <label for="contact_preference-2" class="inlineLabel">
+                    <input name="booking[preferred_contact_method]" id="contact_preference-2" type="radio" value="2" class="" tabindex="5">电话</label>
+                </div>
+                <div id="ctrlHolder_email" class="ctrlHolder">
+                  <label for="email" class="required">
+                    <em>*</em>
+                    邮箱
+                  </label>
+                  <input name="booking[email]" id="email" value="" size="30" type="text" class="required email" tabindex="6"></div>
+                <div id="ctrlHolder_address1" class="ctrlHolder borderTop">
+                  <label for="address1" class="required">
+                    <em>*</em>
+                    住址
+                  </label>
+                  <input name="booking[address]" id="address1" value="" size="30" type="text" class="noemail required" tabindex="7"></div>
+                <div id="ctrlHolder_city" class="ctrlHolder">
+                  <label for="city" class="required">
+                    <em>*</em>
+                    所在城市
+                  </label>
+                  <input name="booking[city]" id="city" value="" size="30" type="text" class="required" tabindex="9"></div>
+                <div id="ctrlHolder_postal_code" class="ctrlHolder">
+                  <p class="errorFieldHide" id="postal_code_err">Enter your postal code</p>
+                  <label for="postal_code" class="required">
+                    <em>*</em>
+                    邮编
+                  </label>
+                  <input name="booking[postal_code]" id="postal_code" value="" size="30" type="text" class="required" tabindex="11"></div>
+                <div id="ctrlHolder_country" class="ctrlHolder">
+                  <p class="errorFieldHide" id="country_err"></p>
+                  <label for="country">国家</label>
+                  <select name="booking[country]" id="country" tabindex="12" style="">
+                    <option value="USA" selected="selected">United States</option>
+                    <option value="AFG">Afghanistan</option>
+                    <option value="ALB">Albania</option>
+                    <option value="DZA">Algeria</option>
+                    <option value="ASM">American Samoa</option>
+                    <option value="AND">Andorra</option>
+                    <option value="AGO">Angola</option>
+                    <option value="AIA">Anguilla</option>
+                    <option value="ATA">Antarctica</option>
+                    <option value="ATG">Antigua and Barbuda</option>
+                    <option value="AAA">Arctic</option>
+                    <option value="ARG">Argentina</option>
+                    <option value="ARM">Armenia</option>
+                    <option value="ABW">Aruba</option>
+                    <option value="AUS">Australia</option>
+                    <option value="AUT">Austria</option>
+                    <option value="AZE">Azerbaijan</option>
+                    <option value="BHS">Bahamas</option>
+                    <option value="BHR">Bahrain</option>
+                    <option value="BGD">Bangladesh</option>
+                    <option value="BRB">Barbados</option>
+                    <option value="BLR">Belarus</option>
+                    <option value="BEL">Belgium</option>
+                    <option value="BLZ">Belize</option>
+                    <option value="BEN">Benin</option>
+                    <option value="BMU">Bermuda</option>
+                    <option value="BTN">Bhutan</option>
+                    <option value="BOL">Bolivia</option>
+                    <option value="BIH">Bosnia and Herzegovina</option>
+                    <option value="BWA">Botswana</option>
+                    <option value="BVT">Bouvet Island</option>
+                    <option value="BRA">Brazil</option>
+                    <option value="IOT">British Indian Ocean Territory</option>
+                    <option value="BRN">Brunei Darussalam</option>
+                    <option value="BGR">Bulgaria</option>
+                    <option value="BFA">Burkina Faso</option>
+                    <option value="BDI">Burundi</option>
+                    <option value="KHM">Cambodia</option>
+                    <option value="CMR">Cameroon</option>
+                    <option value="CAN">Canada</option>
+                    <option value="CPV">Cape Verde</option>
+                    <option value="CYM">Cayman Islands</option>
+                    <option value="CAF">Central African Republic</option>
+                    <option value="TCD">Chad</option>
+                    <option value="CHL">Chile</option>
+                    <option value="CHN" selected="selected">中国</option>
+                    <option value="CXR">Christmas Island</option>
+                    <option value="CCK">Cocos (Keeling) Islands</option>
+                    <option value="COL">Colombia</option>
+                    <option value="COM">Comoros</option>
+                    <option value="COG">Congo</option>
+                    <option value="COD">Congo, the Democratic Republic of the</option>
+                    <option value="COK">Cook Islands</option>
+                    <option value="CRI">Costa Rica</option>
+                    <option value="CIV">Cote D'Ivoire</option>
+                    <option value="HRV">Croatia</option>
+                    <option value="CUB">Cuba</option>
+                    <option value="CYP">Cyprus</option>
+                    <option value="CZE">Czech Republic</option>
+                    <option value="DNK">Denmark</option>
+                    <option value="DJI">Djibouti</option>
+                    <option value="DMA">Dominica</option>
+                    <option value="DOM">Dominican Republic</option>
+                    <option value="ECU">Ecuador &amp; Galápagos</option>
+                    <option value="EGY">Egypt</option>
+                    <option value="SLV">El Salvador</option>
+                    <option value="GNQ">Equatorial Guinea</option>
+                    <option value="ERI">Eritrea</option>
+                    <option value="EST">Estonia</option>
+                    <option value="ETH">Ethiopia</option>
+                    <option value="FLK">Falkland Islands (Malvinas)</option>
+                    <option value="FRO">Faroe Islands</option>
+                    <option value="FJI">Fiji</option>
+                    <option value="FIN">Finland</option>
+                    <option value="FRA">France</option>
+                    <option value="GUF">French Guiana</option>
+                    <option value="PYF">French Polynesia</option>
+                    <option value="ATF">French Southern Territories</option>
+                    <option value="GAB">Gabon</option>
+                    <option value="GMB">Gambia</option>
+                    <option value="GEO">Georgia</option>
+                    <option value="DEU">Germany</option>
+                    <option value="GHA">Ghana</option>
+                    <option value="GIB">Gibraltar</option>
+                    <option value="GRC">Greece</option>
+                    <option value="GRL">Greenland</option>
+                    <option value="GRD">Grenada</option>
+                    <option value="GLP">Guadeloupe</option>
+                    <option value="GUM">Guam</option>
+                    <option value="GTM">Guatemala</option>
+                    <option value="GIN">Guinea</option>
+                    <option value="GNB">Guinea-Bissau</option>
+                    <option value="GUY">Guyana</option>
+                    <option value="HTI">Haiti</option>
+                    <option value="HMD">Heard Island and McDonald Islands</option>
+                    <option value="VAT">Holy See (Vatican City State)</option>
+                    <option value="HND">Honduras</option>
+                    <option value="HKG">Hong Kong</option>
+                    <option value="HUN">Hungary</option>
+                    <option value="ISL">Iceland</option>
+                    <option value="IND">India</option>
+                    <option value="IDN">Indonesia</option>
+                    <option value="IRN">Iran</option>
+                    <option value="IRQ">Iraq</option>
+                    <option value="IRL">Ireland</option>
+                    <option value="ISR">Israel</option>
+                    <option value="ITA">Italy</option>
+                    <option value="JAM">Jamaica</option>
+                    <option value="JPN">Japan</option>
+                    <option value="JOR">Jordan</option>
+                    <option value="KAZ">Kazakhstan</option>
+                    <option value="KEN">Kenya</option>
+                    <option value="KIR">Kiribati</option>
+                    <option value="KWT">Kuwait</option>
+                    <option value="KGZ">Kyrgyzstan</option>
+                    <option value="LAO">Laos</option>
+                    <option value="LVA">Latvia</option>
+                    <option value="LBN">Lebanon</option>
+                    <option value="LSO">Lesotho</option>
+                    <option value="LBR">Liberia</option>
+                    <option value="LBY">Libya</option>
+                    <option value="LIE">Liechtenstein</option>
+                    <option value="LTU">Lithuania</option>
+                    <option value="LUX">Luxembourg</option>
+                    <option value="MAC">Macau</option>
+                    <option value="MKD">Macedonia</option>
+                    <option value="MDG">Madagascar</option>
+                    <option value="MWI">Malawi</option>
+                    <option value="MYS">Malaysia</option>
+                    <option value="MDV">Maldives</option>
+                    <option value="MLI">Mali</option>
+                    <option value="MLT">Malta</option>
+                    <option value="MHL">Marshall Islands</option>
+                    <option value="MTQ">Martinique</option>
+                    <option value="MRT">Mauritania</option>
+                    <option value="MUS">Mauritius</option>
+                    <option value="MYT">Mayotte</option>
+                    <option value="MEX">Mexico</option>
+                    <option value="FSM">Micronesia, Federated States of</option>
+                    <option value="MDA">Moldova</option>
+                    <option value="MCO">Monaco</option>
+                    <option value="MNG">Mongolia</option>
+                    <option value="MSR">Montserrat</option>
+                    <option value="MAR">Morocco</option>
+                    <option value="MOZ">Mozambique</option>
+                    <option value="MMR">Myanmar (Burma)</option>
+                    <option value="NAM">Namibia</option>
+                    <option value="NRU">Nauru</option>
+                    <option value="NPL">Nepal</option>
+                    <option value="NLD">Netherlands</option>
+                    <option value="ANT">Netherlands Antilles</option>
+                    <option value="NCL">New Caledonia</option>
+                    <option value="NZL">New Zealand</option>
+                    <option value="NIC">Nicaragua</option>
+                    <option value="NER">Niger</option>
+                    <option value="NGA">Nigeria</option>
+                    <option value="NIU">Niue</option>
+                    <option value="NFK">Norfolk Island</option>
+                    <option value="PRK">North Korea</option>
+                    <option value="MNP">Northern Mariana Islands</option>
+                    <option value="NOR">Norway</option>
+                    <option value="OMN">Oman</option>
+                    <option value="PAK">Pakistan</option>
+                    <option value="PLW">Palau</option>
+                    <option value="PAN">Panama</option>
+                    <option value="PNG">Papua New Guinea</option>
+                    <option value="PRY">Paraguay</option>
+                    <option value="PER">Peru</option>
+                    <option value="PHL">Philippines</option>
+                    <option value="PCN">Pitcairn Islands</option>
+                    <option value="POL">Poland</option>
+                    <option value="PRT">Portugal</option>
+                    <option value="QAT">Qatar</option>
+                    <option value="REU">Reunion</option>
+                    <option value="ROM">Romania</option>
+                    <option value="RUS">Russia</option>
+                    <option value="RWA">Rwanda</option>
+                    <option value="SHN">Saint Helena</option>
+                    <option value="KNA">Saint Kitts and Nevis</option>
+                    <option value="LCA">Saint Lucia</option>
+                    <option value="SPM">Saint Pierre and Miquelon</option>
+                    <option value="VCT">Saint Vincent and the Grenadines</option>
+                    <option value="WSM">Samoa</option>
+                    <option value="SMR">San Marino</option>
+                    <option value="STP">Sao Tome and Principe</option>
+                    <option value="SAU">Saudi Arabia</option>
+                    <option value="SEN">Senegal</option>
+                    <option value="SYC">Seychelles</option>
+                    <option value="SLE">Sierra Leone</option>
+                    <option value="SGP">Singapore</option>
+                    <option value="SVK">Slovakia</option>
+                    <option value="SVN">Slovenia</option>
+                    <option value="SLB">Solomon Islands</option>
+                    <option value="SOM">Somalia</option>
+                    <option value="ZAF">South Africa</option>
+                    <option value="SGS">South Georgia and the South Sandwich Islands</option>
+                    <option value="KOR">South Korea</option>
+                    <option value="ESP">Spain</option>
+                    <option value="LKA">Sri Lanka</option>
+                    <option value="SDN">Sudan</option>
+                    <option value="SUR">Suriname</option>
+                    <option value="SJM">Svalbard and Jan Mayen</option>
+                    <option value="SWZ">Swaziland</option>
+                    <option value="SWE">Sweden</option>
+                    <option value="CHE">Switzerland</option>
+                    <option value="SYR">Syria</option>
+                    <option value="TWN">Taiwan</option>
+                    <option value="TJK">Tajikistan</option>
+                    <option value="TZA">Tanzania</option>
+                    <option value="THA">Thailand</option>
+                    <option value="TGO">Togo</option>
+                    <option value="TKL">Tokelau</option>
+                    <option value="TON">Tonga</option>
+                    <option value="TTO">Trinidad and Tobago</option>
+                    <option value="TUN">Tunisia</option>
+                    <option value="TUR">Turkey</option>
+                    <option value="TKM">Turkmenistan</option>
+                    <option value="TCA">Turks and Caicos Islands</option>
+                    <option value="TUV">Tuvalu</option>
+                    <option value="UGA">Uganda</option>
+                    <option value="UKR">Ukraine</option>
+                    <option value="ARE">United Arab Emirates</option>
+                    <option value="GBR">United Kingdom</option>
+                    <option value="UMI">United States Minor Outlying Islands</option>
+                    <option value="URY">Uruguay</option>
+                    <option value="UZB">Uzbekistan</option>
+                    <option value="VUT">Vanuatu</option>
+                    <option value="VEN">Venezuela</option>
+                    <option value="VNM">Vietnam</option>
+                    <option value="VGB">Virgin Islands, British</option>
+                    <option value="VIR">Virgin Islands, U.S.</option>
+                    <option value="WLF">Wallis and Futuna</option>
+                    <option value="ESH">Western Sahara</option>
+                    <option value="YEM">Yemen</option>
+                    <option value="ZMB">Zambia</option>
+                    <option value="ZWE">Zimbabwe</option>
+                  </select>
+                </div>
+                <%#<link rel="stylesheet" href="/assets_global/css/qas/proweb.css">%>
+                <div id="ctrlHolder_workphone" class="ctrlHolder">
+                  <p class="errorFieldHide" id="workphone_err"></p>
+                  <label for="workphone" class="">联络电话</label>
+                  <input name="booking[phone]" id="workphone" value="" size="30" type="text" class="" tabindex="13"></div>
+              </fieldset>
+              <fieldset class="inlineLabels">
+                <h3>您的代理商信息</h3>
+                <div id="ctrlHolder_agentName" class="ctrlHolder borderTop">
+                  <p class="errorFieldHide" id="agentName_err"></p>
+                  <label for="agentName" class="">代理商名称</label>
+                  <input name="booking[agent_name]" id="agentName" value="" size="30" type="text" class="" tabindex="14"></div>
+                
+                <div id="ctrlHolder_agencyName" class="ctrlHolder">
+                  <p class="errorFieldHide" id="agencyName_err"></p>
+                  <label for="agent_code" class="">代理商代码</label>
+                  <input name="booking[agent_code]" id="agent_code" value="" size="30" type="text" class="" tabindex="16"></div>
+              </fieldset>
+              <fieldset class="inlineLabels">
+                <h3>您的需求</h3>
+                <div id="ctrlHolder_comments" class="ctrlHolder">
+                  <p class="errorFieldHide" id="comments_err"></p>
+                  <label for="comments" class="">请描述您的旅行需求</label>
+                  <textarea name="booking[comment]" id="comments" rows="10" cols="60" class="textInput" tabindex="20"></textarea>
+                </div>
+              </fieldset>
+              <div class="buttonHolder">
+                <input type="submit" name="submit_btn" id="submit_btn" value="提交订单 - 完成" class="uniFormButton" onclick="" tabindex="23"></div>
+            </form>
+          </div>
+        </div>
+        
+        <!-- TRIP NAVIGATION BOTTOM -->
+      </div>
+    </div>
+
+<% content_for :footer do %>
+
+<%= javascript_include_tag "jquery.slides.min.js" %>
+<script>
+// refresh window active tabs on hash
+var getTabActive=function(){
+    $("#trip_navigation_top li").removeClass("current");
+    $(".tab_item").addClass("hide");
+    $('#trip_navigation_top a[href='+window.location.hash+']').parent().addClass("current");
+    $(window.location.hash).removeClass("hide");
+}
+$("document").ready(function(){
+  if(window.location.hash&&$(window.location.hash).length>0){
+    getTabActive();
+  }
+})
+
+// listen change of window.location.hash, then active
+if (("onhashchange" in window) && !($.browser.msie)) {
+     window.onhashchange = function () {
+       if ($(window.location.hash).length>0) {
+        getTabActive();
+        return false;
+       };     
+     }
+}
+else {
+  $(window).bind('hashchange', function() {
+    if($(window.location.hash).length>1){
+      getTabActive();
+      return false;
+     }
+  });
+}
+
+var getSeriesOverlay=function(a){
+  $(".text_modal").show();
+  $('<div id="popout_modal_mask"></div>').appendTo("body");
+}
+$(".text_modal .close").click(function(){
+  $(".text_modal").hide();
+  $('#popout_modal_mask').remove();
+});
+$("#popout_modal_mask").live("click",function(){
+  $(".text_modal").hide();
+  $(".popout_modal").hide();
+  $(this).remove();
+})
+var modal_slides=function(a){
+  $(a).parent().parent().find(".popout_modal").show().find('#destination_slides_modal').slidesjs({
+  width: 514,
+  height: 344,
+  navigation: false,
+  pagination: {
+    effect: "fade"
+  },
+  effect: {
+    fade: {
+      speed: 800
+    }
+  },
+  callback:{
+    loaded: function(number) {
+          $('#popout_modal p.slide_img_title').text($("#destination_slides_modal img.slidesjs-slide").eq(number-1).attr("alt"));
+        },
+    complete: function(number) {
+          $('#popout_modal p.slide_img_title').text($("#destination_slides_modal img.slidesjs-slide").eq(number-1).attr("alt"));
+    }
+  }
+});
+  $('<div id="popout_modal_mask"></div>').appendTo("body");
+  return false;
+}
+var modal_close=function(){
+  $(".popout_modal").hide();
+  $('#popout_modal_mask').remove();
+  return false;
+}
+
+
+</script>
+<% end %>

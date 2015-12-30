@@ -1,0 +1,62 @@
+<div class="row">
+<h3>后台管理 > 预定列表 <div class="pull-right"><%= link_to '创建新预定', new_admin_booking_path %></div></h3>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>称呼</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>优先联系方式</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Country</th>
+    <th>Region</th>
+    <th>Postal code</th>
+    <th>Is subscribe</th>
+    <th>User</th>
+    <th>Travel</th>
+    <th>Datesprice</th>
+    <th>Destination</th>
+    <th>People count</th>
+    <th>Agent name</th>
+    <th>Agent code</th>
+    <th>Comment</th>
+    <th>Has target</th>
+    <th>操作</th>
+  </tr>
+
+<% @bookings.each do |booking| %>
+  <tr>
+    <td>
+      <%= booking.id %>
+    </td>
+    <td><%= booking.mrs_title %></td>
+    <td><%= booking.first_name %></td>
+    <td><%= booking.last_name %></td>
+    <td><%= booking.preferred_contact_method %></td>
+    <td><%= booking.email %></td>
+    <td><%= booking.phone %></td>
+    <td><%= booking.country %></td>
+    <td><%= booking.region %></td>
+    <td><%= booking.postal_code %></td>
+    <td><%= booking.is_subscribe %></td>
+    <td><%= booking.user_id %></td>
+    <td><%= booking.travel.try(:name) %></td>
+    <td><%= booking.datesprice_id %></td>
+    <td><%= booking.destination_id %></td>
+    <td><%= booking.people_count %></td>
+    <td><%= booking.agent_name %></td>
+    <td><%= booking.agent_code %></td>
+    <td><%= booking.comment %></td>
+    <td><%= booking.has_target %></td>
+    <td>
+      <%= link_to '查看', [:admin, booking] %> | 
+      <%= link_to '编辑', edit_admin_booking_path(booking) %> | 
+      <%= link_to '删除', [:admin, booking], :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= paginate @bookings %>
+</div>

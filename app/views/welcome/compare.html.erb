@@ -1,0 +1,205 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+	<li>
+		<a href="/">首页</a>
+		&nbsp;&nbsp;/&nbsp;&nbsp;
+	</li>
+	<li>线路比较</li>
+</ul>
+<div class="self_clear">
+	<div id="primary_content" class="align_edges">
+		<h1>&nbsp;&nbsp;</h1>
+		<div style="position:relative; float:right; font-weight: bold; top: -30px;">
+			
+		</div>
+		<table id="compare_trips" style="position:relative;top:-16px;">
+			<tbody>
+				<tr>
+					<td>
+						<h3>线路 1</h3>
+					</td>
+					<td>
+						<h3>线路 2</h3>
+					</td>
+					<td>
+						<h3>线路 3</h3>
+					</td>
+				</tr>
+				<!-- SELECT BOXES -->
+				<tr id="c_saved_trips" class="nth_child">
+					<% (0..2).each do |i| %>
+						<% if @compares[i] %>
+						<td>
+						<select name="saved_trip_1" id="saved_trip_1">
+							<option value="5813"><%= @compares[i].name %></option>
+						</select>
+						</td>
+						<% else %>
+						<td>
+						<select name="saved_trip_3" id="saved_trip_3">
+							<option value="0">没有线路</option>
+						</select>
+						</td>
+						<% end %>
+					<% end -%>
+				</tr>
+				<!-- TRIP NAME -->
+				<tr id="c_trip_name" class="nth_child">
+					<% (0..2).each do |i| %>
+						<% if @compares[i] %>
+						<td>
+							<h4>
+								<a href="/travels/<%= @compares[i].id %>"><%= @compares[i].name %></a>
+							</h4>
+						</td>
+						<% else %>
+						<td></td>
+						<% end %>
+					<% end -%>
+				</tr>
+				<tr id="c_trip_overview" class="nth_child">
+					<% (0..2).each do |i| %>
+						<% if @compares[i] %>
+						<td>
+							<ul class="clear_list_style line_rule">
+								<li class="self_clear">
+									<span><%= @compares[i].sub_name %></span>
+									旅行系列:
+								</li>
+								<li class="self_clear">
+									<span><%= @compares[i].days_count %></span>
+									天数:
+								</li>
+								<li class="self_clear">
+									<span>$<%= @compares[i].priced_from %></span>
+									最低价格:
+								</li>
+								<li class="self_clear">
+									<span><%= @compares[i].max_group_size %></span>
+									团队规模:
+								</li>
+								<li class="self_clear">
+									<span><%= @compares[i].departures %></span>
+									发团数量:
+								</li>
+							</ul>
+						</td>
+						<% else %>
+						<td></td>
+						<% end %>
+					<% end -%>
+				</tr>
+				<tr id="c_series_header">
+					<% (0..2).each do |i| %>
+						<% if @compares[i] %>
+						<td>
+							<h3>帝国ITQI指数</h3>
+						</td>
+						<% else %>
+						<td></td>
+						<% end %>
+					<% end -%>					
+				</tr>
+				<tr id="c_series_desc" class="nth_child">
+					<% (0..2).each do |i| %>
+						<% if @compares[i] %>
+						<td>
+							<p>
+								<%= raw(@compares[i].overview_desc) %>
+							</p>
+						</td>
+						<% else %>
+						<td></td>
+						<% end %>
+					<% end -%>						
+				</tr>
+				<tr id="c_trip_header">
+					<% (0..2).each do |i| %>
+						<% if @compares[i] %>
+						<td>
+							<h3>线路介绍</h3>
+						</td>
+						<% else %>
+						<td></td>
+						<% end %>
+					<% end -%>							
+				</tr>
+				<tr id="c_trip_desc" class="nth_child">
+					<% (0..2).each do |i| %>
+						<% if @compares[i] %>
+						<td>
+							<p>
+								<%= raw(@compares[i].overview_desc) %>
+							</p>
+						</td>
+						<% else %>
+						<td></td>
+						<% end %>
+					<% end -%>	
+				</tr>
+				<tr id="c_trip_itinerary_header">
+					<% (0..2).each do |i| %>
+						<% if @compares[i] %>
+						<td>
+							<h3>线路日程</h3>
+						</td>
+						<% else %>
+						<td></td>
+						<% end %>
+					<% end -%>							
+				</tr>
+				<tr id="c_trip_itinerary" class="nth_child">
+					<% (0..2).each do |i| %>
+						<% if @compares[i] %>
+						<td>
+							<% @compares[i].itineraries.each do |itine| %>
+								<dt><%= itine.name %></dt>
+								<dd>
+									<p><%= itine.desc %></p>
+									<em><%= itine.hotel.try(:name) %> <%= itine.meals %></em>
+								</dd>
+							<% end -%>
+						</td>
+						<% else %>
+						<td></td>
+						<% end %>
+					<% end -%>					
+				</tr>
+				<tr id="c_trip_dates_header">
+					<% (0..2).each do |i| %>
+						<% if @compares[i] %>
+						<td>
+							<h3>团期和价格</h3>
+						</td>
+						<% else %>
+						<td></td>
+						<% end %>
+					<% end -%>					
+				</tr>
+				<tr id="c_trip_dates" class="nth_child">
+					<% (0..2).each do |i| %>
+						<% if @compares[i] %>
+						<td>
+							<ul class="clear_list_style line_rule">
+								<li>
+									<% @compares[i].datesprices.each do |datesprice| %>
+									<%= datesprice.try(:start_date).try(:strftime, "%Y-%m-%d") %> - <%= datesprice.try(:end_date).try(:strftime, "%Y-%m-%d") %>
+									 / 价格: <strong><%= datesprice.try(:prices) %></strong> <br>
+									<% end %>
+								</li>
+							</ul>
+						</td>
+						<% else %>
+						<td></td>
+						<% end %>
+					<% end -%>					
+				</tr>
+				<tr id="end_cap">
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+

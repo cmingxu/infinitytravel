@@ -1,0 +1,36 @@
+<div class="row">
+<h3>后台管理 > 查看 <div class="pull-right"><%= link_to '编辑', edit_admin_destination_path(@destination) %> |
+<%= link_to '返回列表', admin_destinations_path %></div></h3>
+<hr>
+<p id="notice"><%= notice %></p>
+<table class="table table-striped table-bordered"> 
+	<tr>
+		<td style="width:200px;text-align:right;">ID:</td>
+		<td><%= @destination.id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Name:</td>
+		<td><%= @destination.name %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Desc title:</td>
+		<td><%= @destination.desc_title %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Desc:</td>
+		<td><%= @destination.desc %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Banner pic:</td>
+		<td><%= @destination.banner_pic %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Map pic:</td>
+		<td><%= @destination.map_pic %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Ancestry:</td>
+		<td><%= @destination.ancestry %></td>
+	</tr>
+	</table>
+</div>

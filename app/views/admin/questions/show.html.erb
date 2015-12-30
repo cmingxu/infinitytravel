@@ -1,0 +1,52 @@
+<div class="row">
+<h3>后台管理 > 查看 <div class="pull-right"><%= link_to '编辑', edit_admin_question_path(@question) %> |
+<%= link_to '返回列表', admin_questions_path %></div></h3>
+<hr>
+<p id="notice"><%= notice %></p>
+<table class="table table-striped table-bordered"> 
+	<tr>
+		<td style="width:200px;text-align:right;">ID:</td>
+		<td><%= @question.id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">
+
+称呼:</td>
+		<td><%= @question.mrs_title %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">First name:</td>
+		<td><%= @question.first_name %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Last name:</td>
+		<td><%= @question.last_name %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">
+
+优先联系方式:</td>
+		<td><%= @question.preferred_contact_method %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Email:</td>
+		<td><%= @question.email %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Phone:</td>
+		<td><%= @question.phone %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Country:</td>
+		<td><%= @question.country %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Question:</td>
+		<td><%= @question.question %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Travel:</td>
+		<td><%= @question.travel_id %></td>
+	</tr>
+	</table>
+</div>

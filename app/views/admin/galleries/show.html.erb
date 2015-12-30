@@ -1,0 +1,27 @@
+<div class="row">
+<h3>后台管理 > 画廊 / <%= @gallery.title %> <div class="pull-right"><%= link_to '编辑', edit_admin_gallery_path(@gallery) %> / <a href="/admin/galleries/<%= @gallery.id %>/photos/new">添加新图片</a></h3>
+<hr>
+<p id="notice"><%= notice %></p>
+<table class="table table-striped table-bordered"> 
+	<tr>
+		<td style="width:200px;text-align:right;">ID:</td>
+		<td><%= @gallery.id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Title:</td>
+		<td><%= @gallery.title %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">图片:</td>
+		<td>
+			<% @gallery.photos.each do |photo| %>
+				<img src="<%= photo.pic.url %>" alt="" style="width:200px;"><br>
+				<%= photo.desc %>
+				<%= link_to '编辑', edit_admin_photo_path(photo) %> | 
+      	<%= link_to '删除', [:admin, photo], :confirm => '确定要删除么?', :method => :delete %>
+				<br><br>
+			<% end %>
+		</td>
+	</tr>
+	</table>
+</div>

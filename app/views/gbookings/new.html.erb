@@ -1,0 +1,255 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+	<li>
+		<a href="/">首页</a>
+		&nbsp;&nbsp;/&nbsp;&nbsp;
+	</li>
+	<li>
+		<a href="/search">旅行线路</a>
+		&nbsp;&nbsp;/&nbsp;&nbsp;
+	</li>
+	<li>提交需求</li>
+</ul>
+<div class="self_clear">
+	<div id="secondary_content" class="hide_from_print">
+		<div id="cs_control_3131" class="">
+			<div class="CS_Element_Schedule" title="" id="CS_Element_contentleft">
+				<a name="custom12103" id="custom12103"></a>
+				<a name="CP_JUMP_12103" id="CP_JUMP_12103"></a>
+				<div id="cs_control_12103" class="cs_control CS_Element_Custom">
+					<div class="hl3">旅行导航</div>
+					<!-- OHSU Nav -->
+					<ul class="section cspot_nav">
+						<% Interest.all.each do |interest| %>
+						<li>
+							<a href="search/" title="<%= interest.title %>"><%= interest.title %></a>
+						</li>
+					  <% end %>
+					</ul>
+				</div>
+				<a name="customcf4702" id="customcf4702"></a>
+				<a name="CP_JUMP_4702" id="CP_JUMP_4702"></a>
+				<div id="cs_control_4702" class="cs_control CS_Element_CustomCF">
+					<div id="CS_CCF_9059_4702">
+						<div class="end_cap"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="dMainFBContest"></div>
+	</div>
+	<div id="primary_content" class="align_edges">
+		<div id="cs_control_1329" class="">
+			<div class="CS_Element_Schedule" title="" id="CS_Element_content">
+				<a name="textblocknohdr8690" id="textblocknohdr8690"></a>
+				<a name="CP_JUMP_8690" id="CP_JUMP_8690"></a>
+				<div id="cs_control_8690" class="cs_control CS_Element_Textblock">
+					<div class="CS_Textblock_Text">
+						<h1>提交私人订制线路需求</h1>
+					</div>
+				</div>
+				<a name="customcf9078" id="customcf9078"></a>
+				<a name="CP_JUMP_9078" id="CP_JUMP_9078"></a>
+				<div id="cs_control_9078" class="cs_control CS_Element_CustomCF">
+					<div id="CS_CCF_9059_9078">
+						<p>
+							<% if user_signed_in? %>
+				              欢迎参加我们的旅行，<%= current_user.identity %>
+				            <% else %>
+				              如果您已有账号,请<a href="/login">登录</a>。
+				            <% end %>
+						</p>
+						<div style="width:80%">
+							<div class="self-clear">
+								<p id="requiredText">
+									必填项 <em>*</em>
+								</p>
+							</div>
+							<form action="/gbookings" id="fit_request" method="post" name="fit_request" class="uniForm">
+								<fieldset class="inlineLabels">
+									<h3>您的信息</h3>
+									<div id="ctrlHolder_title" class="ctrlHolder borderTop">
+										<label for="title" class="required"> <em>*</em>
+											性别
+										</label>
+										<select name="gbooking[mrs_title]" id="title" class="required" tabindex="1" style="">
+											<option value="0">请选择</option>
+											<option value="男士">男士</option>
+											<option value="女士">女士</option>
+										</select>
+									</div>
+									<div id="ctrlHolder_firstName" class="ctrlHolder">
+										<label for="firstName" class="required">
+											<em>*</em>
+											名字
+										</label>
+										<input name="gbooking[first_name]" id="firstName" value="" size="30" type="text" class="required" tabindex="2"></div>
+								</fieldset>
+								<fieldset class="inlineLabels">
+									<h3>联络信息</h3>
+									<div id="ctrlHolder_contact_preference" class="ctrlHolder borderTop">
+										<p class="errorFieldHide" id="contact_preference_err"></p>
+										<p class="label ">最佳联络方式</p>
+										<label for="contact_preference-1" class="inlineLabel">
+											<input name="gbooking[preferred_contact_method]" id="contact_preference-1" type="radio" value="Email" checked="checked" class="" tabindex="5">Email</label>
+										<label for="contact_preference-2" class="inlineLabel">
+											<input name="gbooking[preferred_contact_method]" id="contact_preference-2" type="radio" value="Daytime Phone" class="" tabindex="5">电话</label>
+									</div>
+									<div id="ctrlHolder_email" class="ctrlHolder">
+										<label for="email" class="required">
+											<em>*</em>
+											邮箱
+										</label>
+										<input name="gbooking[email]" id="email" value="" size="30" type="text" class="required email" tabindex="6"></div>
+									<div id="ctrlHolder_address1" class="ctrlHolder borderTop">
+										<label for="address1" class="required">
+											<em>*</em>
+											住址
+										</label>
+										<input name="gbooking[address]" id="address1" value="" size="30" type="text" class="noemail required" tabindex="7"></div>
+									<div id="ctrlHolder_city" class="ctrlHolder">
+										<label for="city" class="required">
+											<em>*</em>
+											所在城市
+										</label>
+										<input name="gbooking[city]" id="city" value="" size="30" type="text" class="required" tabindex="9"></div>
+									<div id="ctrlHolder_postal_code" class="ctrlHolder">
+										<label for="postal_code" class="required">
+											<em>*</em>
+											邮编
+										</label>
+										<input name="gbooking[postal_code]" id="postal_code" value="" size="30" type="text" class="required" tabindex="11"></div>
+									<link rel="stylesheet" href="/assets_global/css/qas/proweb.css">
+									<div id="ctrlHolder_workphone" class="ctrlHolder">
+										<p class="errorFieldHide" id="workphone_err"></p>
+										<label for="workphone" class="">联络电话</label>
+										<input name="gbooking[phone]" id="workphone" value="" size="30" type="text" class="" tabindex="13"></div>
+								</fieldset>
+								<fieldset class="inlineLabels">
+									<h3>您的代理商信息</h3>
+									<div id="ctrlHolder_agentName" class="ctrlHolder borderTop">
+										<p class="errorFieldHide" id="agentName_err"></p>
+										<label for="agentName" class="">代理商名称</label>
+										<input name="gbooking[agent_name]" id="agentName" value="" size="30" type="text" class="" tabindex="16"></div>
+									<div id="ctrlHolder_agentEmail" class="ctrlHolder">
+										<p class="errorFieldHide" id="agentEmail_err"></p>
+										<label for="agentEmail" class="">代理商代码</label>
+										<input name="gbooking[agent_code]" id="agentEmail" value="" size="30" type="text" class="" tabindex="17"></div>
+								</fieldset>
+								<fieldset class="inlineLabels">
+									<h3>您的需求</h3>
+									<input name="program_known" id="program_known" value="0" type="hidden">
+									<div id="ctrlHolder_regions" class="ctrlHolder borderTop">
+										<p class="errorFieldHide" id="regions_err">请选择目的地</p>
+										<label for="regions" class="required">
+											<em>*</em>
+											请选择目的地
+										</label>
+										<select name="gbooking[destination_id]" id="regions" class="required" tabindex="20" style="">
+											<option value="">请选择想去的目的地</option>
+											<% Destination.all.each do |destination| %>
+												<option value="<%= destination.id %>"><%= destination.name %></option>
+											<% end %>
+										</select>
+									</div>
+									<div id="ctrlHolder_travelDate" class="ctrlHolder">
+										<p class="errorFieldHide" id="travelDate_err">Enter your preferred departure date</p>
+										<label for="travelDate" class="required">
+											<em>*</em>
+											出行日期
+										</label>
+										<input name="gbooking[departure_date]" id="travelDate" value="" type="text" class="required usdate textInput" style="display:none;" onchange="$updateSelectDate('travelDate','travelDate_year','travelDate_month','travelDate_day'); $updateDaysInMonth('travelDate_year','travelDate_month','travelDate_day');" autocomplete="off">
+										<p class="textOnly">
+											<select name="travelDate_year" id="travelDate_year" onchange="$updateDaysInMonth('travelDate_year','travelDate_month','travelDate_day'); $updateTextDate('travelDate','travelDate_year','travelDate_month','travelDate_day');" tabindex="23" style="">
+												<option value="0">年</option>
+												<option value="2016">2016</option>
+												<option value="2015">2015</option>
+												<option value="2014">2014</option>
+												<option value="2013">2013</option>
+											</select>
+											<select name="travelDate_month" id="travelDate_month" onchange="$updateDaysInMonth('travelDate_year','travelDate_month','travelDate_day'); $updateTextDate('travelDate','travelDate_year','travelDate_month','travelDate_day');" tabindex="21" style="">
+												<option value="0">月</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+											</select>
+											<select name="travelDate_day" id="travelDate_day" onchange="$updateDaysInMonth('travelDate_year','travelDate_month','travelDate_day'); $updateTextDate('travelDate','travelDate_year','travelDate_month','travelDate_day');" tabindex="22" style="">
+												<option value="0">日</option>
+												<option value="01">1</option>
+												<option value="02">2</option>
+												<option value="03">3</option>
+												<option value="04">4</option>
+												<option value="05">5</option>
+												<option value="06">6</option>
+												<option value="07">7</option>
+												<option value="08">8</option>
+												<option value="09">9</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+												<option value="24">24</option>
+												<option value="25">25</option>
+												<option value="26">26</option>
+												<option value="27">27</option>
+												<option value="28">28</option>
+												<option value="29">29</option>
+												<option value="30">30</option>
+												<option value="31">31</option>
+											</select>
+											
+										</p>
+									</div>
+									<div id="ctrlHolder_lengthOfTrip" class="ctrlHolder">
+										<p class="errorFieldHide" id="lengthOfTrip_err">Enter the length of your trip in days</p>
+										<label for="lengthOfTrip" class="required">
+											<em>*</em>
+											旅行天数
+										</label>
+										<input name="gbooking[trip_day_length]" id="lengthOfTrip" value="" maxlength="3" type="text" class="required integer textInput" tabindex="24">
+										<p class="formHint">至少6天</p>
+									</div>
+									<div id="ctrlHolder_adultPassengers" class="ctrlHolder">
+										<p class="errorFieldHide" id="adultPassengers_err">人数</p>
+										<label for="adultPassengers" class="required">
+											<em>*</em>
+											人数
+										</label>
+										<input name="gbooking[adult_count]" id="adultPassengers" value="" maxlength="3" type="text" class="required integer textInput" tabindex="25"></div>
+									<div id="ctrlHolder_addInfo" class="ctrlHolder">
+										<p class="errorFieldHide" id="addInfo_err"></p>
+										<label for="addInfo" class="required">
+											<em>*</em>
+											请描述您的旅行需求
+										</label>
+										<textarea name="gbooking[city_comment]" id="addInfo" rows="10" cols="60" class="required textInput" tabindex="28"></textarea>
+									</div>
+								</fieldset>
+								<div class="buttonHolder">
+									<input type="submit" name="submit_btn" id="submit_btn" value="提交需求" class="uniFormButton" onclick="" tabindex="30"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

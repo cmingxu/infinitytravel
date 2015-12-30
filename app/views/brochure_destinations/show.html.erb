@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Brochure:</b>
+  <%= @brochure_destination.brochure_id %>
+</p>
+
+<p>
+  <b>Destination:</b>
+  <%= @brochure_destination.destination_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_brochure_destination_path(@brochure_destination) %> |
+<%= link_to 'Back', brochure_destinations_path %>

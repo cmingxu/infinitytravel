@@ -1,0 +1,62 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+    <li>
+        <a href="/">首页</a>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+    </li>
+    <li>用户提交的照片</li>
+</ul>
+<div class="self_clear">
+    <div id="primary_content" class="align_edges">
+        <div id="cs_control_1329" class="">
+            <div class="CS_Element_Schedule" title="" id="CS_Element_content">
+                <a name="customcf2375" id="customcf2375"></a>
+                <a name="CP_JUMP_2375" id="CP_JUMP_2375"></a>
+                <div id="cs_control_2375" class="cs_control CS_Element_CustomCF">
+                    <div id="CS_CCF_1376_2375">
+                        <h1>用户提交的获奖照片</h1>
+                            <% @photocontests.each do |photocontest| %>   
+                                <a class="boxes" style="float: left;margin-right: 10px;" href="<%= photocontest.photo.url %>" title="<%= photocontest.username %> - <%= photocontest.name %>">
+                                    <img src="<%= photocontest.photo.url %>" width="200">
+                                    <%= photocontest.username %>
+                                    <%= photocontest.name %>
+                                </a>
+                            <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="media" style="display:none;">
+              <div class="photo_contact round_corners color_e4e5e6">
+                <div class="ctl"></div>
+                <div class="ctr"></div>
+                <div class="cbr"></div>
+                <div class="cbl"></div>
+                <h3>提交您的旅行照片</h3>
+                <p>
+                  <a href="/login" target="_blank">点击这里</a>
+                  把您的精彩旅行照片提交给我们，我们将挑选出精彩的照片在网站中展示.
+                </p>
+                <p class="clear_margins">
+                  <a class="icon swirl_arrow" href="/photocontests" target="_blank">查看照片</a>
+                </p>
+              </div>
+            </div>
+</div>
+
+
+
+<% content_for :header do %>
+<link rel="stylesheet" type="text/css" href="/stylesheets/fancybox.css" media="screen" />
+<% end %>
+
+<% content_for :footer do %>
+
+        <%= javascript_include_tag "jquery.fancybox.js" %>
+        <script>
+            
+        $("a.boxes").fancybox({
+            'titlePosition': 'inside'
+        });
+        </script>
+<% end %>

@@ -1,0 +1,31 @@
+<%= form_for([:admin, @brochure_interest],:html => {:class => "form-horizontal" }) do |f| %>
+  <% if @brochure_interest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@brochure_interest.errors.count, "error") %> prohibited this brochure_interest from being saved:</h2>
+
+      <ul>
+      <% @brochure_interest.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <label class="control-label">brochure_id</label>
+    <div class="controls">
+    <%= f.text_field :brochure_id %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">interest_id</label>
+    <div class="controls">
+    <%= f.text_field :interest_id %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

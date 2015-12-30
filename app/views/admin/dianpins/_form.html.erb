@@ -1,0 +1,55 @@
+<%= form_for([:admin, @dianpin],:html => {:class => "form-horizontal" }) do |f| %>
+  <% if @dianpin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dianpin.errors.count, "error") %> prohibited this dianpin from being saved:</h2>
+
+      <ul>
+      <% @dianpin.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <label class="control-label">name</label>
+    <div class="controls">
+    <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">cont</label>
+    <div class="controls">
+    <%= f.text_area :cont %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">travel_code</label>
+    <div class="controls">
+    <%= f.text_field :travel_code %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">travel_id</label>
+    <div class="controls">
+    <%= f.text_field :travel_id %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">user_id</label>
+    <div class="controls">
+    <%= f.text_field :user_id %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">is_show</label>
+    <div class="controls">
+    <%= f.check_box :is_show %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

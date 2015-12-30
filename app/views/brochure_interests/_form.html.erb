@@ -1,0 +1,25 @@
+<%= form_for(@brochure_interest) do |f| %>
+  <% if @brochure_interest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@brochure_interest.errors.count, "error") %> prohibited this brochure_interest from being saved:</h2>
+
+      <ul>
+      <% @brochure_interest.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :brochure_id %><br />
+    <%= f.text_field :brochure_id %>
+  </div>
+  <div class="field">
+    <%= f.label :interest_id %><br />
+    <%= f.text_field :interest_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,37 @@
+<h1>Listing datesprices</h1>
+
+<table>
+  <tr>
+    <th>Travel</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Prices</th>
+    <th>Single supplement</th>
+    <th>Internal airfare</th>
+    <th>Availability status</th>
+    <th>Available people count</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @datesprices.each do |datesprice| %>
+  <tr>
+    <td><%= datesprice.travel_id %></td>
+    <td><%= datesprice.start_date %></td>
+    <td><%= datesprice.end_date %></td>
+    <td><%= datesprice.prices %></td>
+    <td><%= datesprice.single_supplement %></td>
+    <td><%= datesprice.internal_airfare %></td>
+    <td><%= datesprice.availability_status %></td>
+    <td><%= datesprice.available_people_count %></td>
+    <td><%= link_to 'Show', datesprice %></td>
+    <td><%= link_to 'Edit', edit_datesprice_path(datesprice) %></td>
+    <td><%= link_to 'Destroy', datesprice, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Datesprice', new_datesprice_path %>

@@ -1,0 +1,33 @@
+<%= form_for([:admin, @banner],:html => {:class => "form-horizontal", :multipart => true }) do |f| %>
+
+  <div class="control-group">
+    <label class="control-label">name</label>
+    <div class="controls">
+    <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">图片所在位置(不要修改)</label>
+    <div class="controls">
+    <%= f.text_field :imgname %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">图片</label>
+    <div class="controls">
+    <img src="<%= @banner.cover.url %>" alt=""> <br>
+    <%= f.file_field :cover %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">链接地址</label>
+    <div class="controls">
+    <%= f.text_field :link %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

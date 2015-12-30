@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Travel:</b>
+  <%= @datesprice.travel_id %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @datesprice.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @datesprice.end_date %>
+</p>
+
+<p>
+  <b>Prices:</b>
+  <%= @datesprice.prices %>
+</p>
+
+<p>
+  <b>Single supplement:</b>
+  <%= @datesprice.single_supplement %>
+</p>
+
+<p>
+  <b>Internal airfare:</b>
+  <%= @datesprice.internal_airfare %>
+</p>
+
+<p>
+  <b>Availability status:</b>
+  <%= @datesprice.availability_status %>
+</p>
+
+<p>
+  <b>Available people count:</b>
+  <%= @datesprice.available_people_count %>
+</p>
+
+
+<%= link_to 'Edit', edit_datesprice_path(@datesprice) %> |
+<%= link_to 'Back', datesprices_path %>

@@ -1,0 +1,11 @@
+<select name="customizebookings[][hotel_id]" id="hotel_s">
+	<option value="">选择酒店</option>
+	<% @hotels.each do |hotel| %>
+	<option value="<%= hotel.id %>"><%= hotel.name %></option>
+	<% end %>
+</select>
+<div id="destination_slides">
+	<% @city.gallery.photos.each do |photo| %>
+  	<img src="<%= photo.pic.url %>" alt="<%= photo.desc %>" >
+  <% end %>
+</div>

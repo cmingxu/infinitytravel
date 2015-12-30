@@ -1,0 +1,18 @@
+<div class="row">
+<h3>后台管理 > 查看 <div class="pull-right"><%%= link_to '编辑', edit_admin_<%= singular_table_name %>_path(@<%= singular_table_name %>) %> |
+<%%= link_to '返回列表', admin_<%= index_helper %>_path %></div></h3>
+<hr>
+<p id="notice"><%%= notice %></p>
+<table class="table table-striped table-bordered"> 
+	<tr>
+		<td style="width:200px;text-align:right;">ID:</td>
+		<td><%%= @<%= singular_table_name %>.id %></td>
+	</tr>
+	<% for attribute in attributes -%>
+	<tr>
+		<td style="width:200px;text-align:right;"><%= attribute.human_name %>:</td>
+		<td><%%= @<%= singular_table_name %>.<%= attribute.name %> %></td>
+	</tr>
+	<% end -%>
+</table>
+</div>

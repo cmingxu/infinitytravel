@@ -1,0 +1,32 @@
+<div class="row">
+<h3>后台管理 > 查看 <div class="pull-right"><%= link_to '编辑', edit_admin_customizebooking_path(@customizebooking) %> |
+<%= link_to '返回列表', admin_customizebookings_path %></div></h3>
+<hr>
+<p id="notice"><%= notice %></p>
+<table class="table table-striped table-bordered"> 
+	<tr>
+		<td style="width:200px;text-align:right;">ID:</td>
+		<td><%= @customizebooking.id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Number:</td>
+		<td><%= @customizebooking.number %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Destination:</td>
+		<td><%= @customizebooking.destination_id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">City:</td>
+		<td><%= @customizebooking.city_id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Hotel:</td>
+		<td><%= @customizebooking.hotel_id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Days:</td>
+		<td><%= @customizebooking.days %></td>
+	</tr>
+	</table>
+</div>

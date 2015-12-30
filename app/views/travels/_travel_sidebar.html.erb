@@ -1,0 +1,72 @@
+
+      <div id="secondary_content" class="hide_from_print">
+        <% if @travel.brochures.size > 0 %>
+        <!-- RELATED BROCHURES -->
+        <div class="hl3">相关手册</div>
+        <% end %>
+        <% @travel.brochures.each do |brochure| %>
+        <div class="section">
+          <div class="related_brochure self_clear">
+            <p>
+              <img src="<%= brochure.cover.url %>" width="93" height="120" alt="<%= brochure.name %>" title="<%= brochure.name %>"><%= brochure.name %></p>
+            <ul>
+              <li>
+                <a class="icon page_flip" href="<%= brochure.doc.url %>" title="View <%= brochure.name %>" rel="<%= brochure.name %>" target="_blank" >阅览</a>
+              </li>
+              <li>
+                <a class="icon download" href="<%= brochure.doc.url %>">下载</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <% end %>
+        <div class="section">
+          <p>
+            <a class="icon swirl_arrow" href="/brochures">查看所有手册</a>
+          </p>
+        </div>
+        <!-- DOWNLOAD TRIP FACTS -->
+        <!-- RELATED INFORMATION-->
+        <div class="hl3">相关画廊</div>
+        <dl class="section clear_list_style">
+          <dd>
+            <ul class="bullet_list">
+              <% @travel.destinations.each do |destination| %>
+                <% if destination.gallery.photos.size > 0 %>
+                  <li>
+                  <a href="javascript:void(0);" title="Pashan Garh" onclick="modal_slides(<%= destination.gallery.id %>)"><%= destination.gallery.title  %></a>
+                </li>
+                <% end %>
+              <% end %>
+            <% @travel.itineraries.each do |itinerary| %>
+                  <% if itinerary.hotel && itinerary.hotel.gallery && itinerary.hotel.gallery.photos.size > 0 %>
+                  <li>
+                  <a href="javascript:void(0);" title="Pashan Garh" onclick="modal_slides(<%= itinerary.hotel.gallery.id %>)"><%= itinerary.hotel.gallery.title  %></a>
+                </li>
+                <% end %>
+              <% end %>
+            </ul>
+          </dd>
+        </dl>
+
+
+
+        <% @travel.travel_pages.group_by(&:category).each do |category, pages| %>
+        <div class="hl3"><%= category %></div>
+        <dl class="section clear_list_style">
+          <dd>
+            <ul class="bullet_list">
+              <% pages.each do |page| %>
+                  <li>
+                  <a href="<%= page.url %>"><%= page.name  %></a>
+                </li>
+              <% end %>
+            </ul>
+          </dd>
+        </dl>
+      <% end %>
+
+        <div class="end_cap"></div>
+        <a href="/search.cfm?scrs=70" onclick="pageTracker._trackEvent('Banner', 'click', 'Signature Series Banner');"></a>
+        <div id="dMainFBContest"></div>
+      </div>

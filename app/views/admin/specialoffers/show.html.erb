@@ -1,0 +1,28 @@
+<div class="row">
+<h3>后台管理 > 查看 <div class="pull-right"><%= link_to '编辑', edit_admin_specialoffer_path(@specialoffer) %> |
+<%= link_to '返回列表', admin_specialoffers_path %></div></h3>
+<hr>
+<p id="notice"><%= notice %></p>
+<table class="table table-striped table-bordered"> 
+	<tr>
+		<td style="width:200px;text-align:right;">ID:</td>
+		<td><%= @specialoffer.id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Cover:</td>
+		<td><%= @specialoffer.cover %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Title:</td>
+		<td><%= @specialoffer.title %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Desc:</td>
+		<td><%= @specialoffer.desc %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Cont:</td>
+		<td><%= @specialoffer.cont %></td>
+	</tr>
+	</table>
+</div>

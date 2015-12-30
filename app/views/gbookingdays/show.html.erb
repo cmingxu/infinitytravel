@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Destination:</b>
+  <%= @gbookingday.destination_id %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @gbookingday.city_id %>
+</p>
+
+<p>
+  <b>Hotel:</b>
+  <%= @gbookingday.hotel_id %>
+</p>
+
+<p>
+  <b>Days:</b>
+  <%= @gbookingday.days %>
+</p>
+
+
+<%= link_to 'Edit', edit_gbookingday_path(@gbookingday) %> |
+<%= link_to 'Back', gbookingdays_path %>

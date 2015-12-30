@@ -1,0 +1,46 @@
+<%= form_for([:admin, @interest],:html => {:class => "form-horizontal", :multipart => true }) do |f| %>
+  <% if @interest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@interest.errors.count, "error") %> prohibited this interest from being saved:</h2>
+
+      <ul>
+      <% @interest.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="control-group">
+    <label class="control-label">cover</label>
+    <div class="controls">
+    <p>
+      <img src="<%= @interest.cover.url %>">
+    </p>
+    <%= f.file_field :cover %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">title</label>
+    <div class="controls">
+    <%= f.text_field :title %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">cont</label>
+    <div class="controls">
+    <%= f.text_area :cont %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">parent_id</label>
+    <div class="controls">
+    <%= f.text_field :parent_id %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

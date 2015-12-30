@@ -1,0 +1,8 @@
+<div class="row">
+<h3>后台管理 > 编辑<%= singular_table_name %> <div class="pull-right"><%%= link_to '查看', [:admin, @<%= singular_table_name %>] %> |
+<%%= link_to '返回列表', admin_<%= index_helper %>_path %></div></h3>
+<hr>
+
+<%%= render 'form' %>
+
+</div>

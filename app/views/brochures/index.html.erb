@@ -1,0 +1,49 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+    <li>
+        <a href="/">首页</a>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+    </li>
+    <li>所有旅行手册</li>
+</ul>
+<div class="self_clear">
+    <div id="primary_content" class="align_edges">
+        <div id="cs_control_1329" class="">
+            <div class="CS_Element_Schedule" title="" id="CS_Element_content">
+                <a name="customcf2375" id="customcf2375"></a>
+                <a name="CP_JUMP_2375" id="CP_JUMP_2375"></a>
+                <div id="cs_control_2375" class="cs_control CS_Element_CustomCF">
+                    <div id="CS_CCF_1376_2375">
+                        <h1>所有旅行手册</h1>
+                        <form id="dsp_brochure_order" action="/travel_brochures/?fuseaction=dsp_brochure_order&amp;cbc=Request Brochure" method="post">
+                            <input type="hidden" name="fuseaction" value="dsp_brochure_order">
+                            <input type="hidden" name="isAgent" id="isAgent" value="0">
+                            <table width="100%">
+                                <tbody>
+                                    <% @brochures.each_slice(3) do |brochures| %>
+                                        <tr>
+                                        <% brochures.each do |brochure| %>                             
+                                        <td width="33%">
+                                            <img src="<%= brochure.cover.url %>" alt="<%= brochure.name %>" title="<%= brochure.name %>" width="125" height="162"><strong><%= brochure.name %></strong>
+                                            <ul class="clear_list_style attribute_list">
+                                                <!-- Page flip brochure -->
+                                                <li>
+                                                    <a class="icon page_flip" href="<%= brochure.doc.url %>" title="<%= brochure.name %>"  target="_blank">阅览</a>
+                                                </li>
+                                                <!-- Download brochure -->
+                                                <li>
+                                                    <a class="icon download" href="<%= brochure.doc.url %>">下载</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                        <% end %>
+                                        </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

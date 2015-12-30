@@ -1,0 +1,253 @@
+    <ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+      <li>
+        <a href="/">首页</a>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+      </li>
+      <li>
+        <a href="/destinations">旅游目的地</a>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+      </li>
+      <% if @destination.parent %>
+        <% if @destination.parent.parent %>
+          <% if @destination.parent.parent.parent %>
+            <li>
+            <a href="/destinations/<%= @destination.parent.parent.parent.id %>"><%= @destination.parent.parent.parent.name %></a>
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            </li>
+          <% end %>
+          <li>
+          <a href="/destinations/<%= @destination.parent.parent.id %>"><%= @destination.parent.parent.name %></a>
+          &nbsp;&nbsp;/&nbsp;&nbsp;
+          </li>
+        <% end %>
+        <li>
+        <a href="/destinations/<%= @destination.parent.id %>"><%= @destination.parent.name %></a>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        </li>
+      <% end %>
+      <li><%= @destination.name %></li>
+    </ul>
+    <div class="self_clear">
+      <div id="secondary_content" class="hide_from_print">
+        <div id="cs_control_3131" class="">
+          <div class="CS_Element_Schedule" title="" id="CS_Element_contentleft">
+            <% if @destination.brochures.size > 0 %>
+            <div id="cs_control_16254" class="cs_control CS_Element_CustomCF"> <div id="CS_CCF_16182_16254"> 
+              <div class="hl3">相关旅行手册</div>
+            <% @destination.brochures.each do |brochure| %>
+            <div class="section">
+              <div class="related_brochure self_clear">
+                <p><img src="<%= brochure.cover.url %>" width="93" height="120" alt="<%= brochure.name %>" title="<%= brochure.name %>"><%= brochure.name %></p>
+                <ul>
+                  <li><a class="icon page_flip" href="<%= brochure.doc.url %>" title="View <%= brochure.name %>" rel="<%= brochure.name %>" target="_blank" >阅览</a></li>
+                  <li><a class="icon download" href="<%= brochure.doc.url %>">下载</a></li>
+                </ul>
+              </div>
+              <p><a class="icon swirl_arrow" href="/brochures/">查看全部旅行手册</a></p>
+            </div> 
+            <% end %>
+            </div> </div>
+            <% end %>
+
+            <div id="cs_control_13651" class="cs_control CS_Element_Custom">
+              <div class="hl3">旅游目的地导航</div>
+              <!-- travel destinations -->
+              <ul class="section cspot_nav" style="padding:0px">
+                        <% @destinations.each do |destination| %>
+                            <% if destination.is_root?  %>
+                                <li class="icon <%= destination.has_children? ?  'expando_hide' : 'bullet_arrow' %>">
+                                    <a href="/destinations/<%= destination.id %>/"><%= destination.name %></a>
+                                    <% if destination.has_children? and  destination.id == @destination.root.id %>
+                                        <ul>
+                                        <% destination.children.each do |destination_2| %>
+                                            <li class="icon <%= destination_2.has_children? ?  'expando_show' : 'bullet_arrow' %>">
+                                                <a href="/destinations/<%= destination_2.id %>/"><%= destination_2.name %></a>
+                                                <% if destination_2.has_children?  %>
+                                                    <ul>
+                                                        <% destination_2.children.each do |destination_3| %>
+                                                            <li class="icon <%= destination_3.has_children? ?  'expando_show' : 'bullet_arrow' %>">
+                                                                <a href="/destinations/<%= destination_3.id %>/"><%= destination_3.name %></a>
+                                                                <% if destination_3.has_children?  %>
+                                                                    <ul>
+                                                                        <% destination_3.children.each do |destination_4| %>
+                                                                            <li class="icon bullet_arrow">
+                                                                                <a href="/destinations/<%= destination_4.id %>/"><%= destination_4.name %></a>
+                                                                            </li>
+                                                                        <% end %>
+                                                                    </ul>
+                                                                <% end %>
+                                                            </li>
+                                                        <% end %>
+                                                    </ul>
+                                                <% end %>
+                                            </li>
+                                        <% end %>
+                                        </ul>
+                                    <% end %>
+                                </li>
+                            <% end %>
+                        <% end %>
+              </ul>
+            </div>
+            <div id="cs_control_12107" class="cs_control CS_Element_CustomCF">
+              <div id="CS_CCF_12275_12107">
+                <div class="end_cap"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="dMainFBContest"></div>
+      </div>
+      <div id="primary_content" class="align_edges">
+        <div class="self_clear">
+          <h1><%= @destination.name %> 旅行</h1>
+          <div id="right_column_content" class="hide_from_print">
+            <% if !@destination.flashmap.blank? %>
+            <embed width="250" height="352" src="/flashmap/<%= @destination.flashmap %>" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" align="middle" play="true" loop="true" scale="showall" wmode="transparent" devicefont="false" bgcolor="#ffffff" name="travel_destinations" menu="true" allowfullscreen="false" allowscriptaccess="sameDomain" salign="" type="application/x-shockwave-flash">
+            <% end %>
+            <div id="cs_control_9506" class="">
+              <div class="CS_Element_Schedule" title="" id="CS_Element_contentsupplemental"></div>
+            </div>
+          </div>
+          <% if @destination.gallery.photos.size > 0 %>
+          <div id="inline_gallery" class="hide_from_print round_corners color_f4f4f4">
+            <div class="ctl"></div>
+            <div class="ctr"></div>
+            <div class="cbr"></div>
+            <div class="cbl"></div>
+            <div class="inline_gallery self_clear">
+              <div id="destination_slides" style="height:276px;">
+                <% @destination.gallery.photos.each do |photo| %>
+                <img src="<%= photo.pic.url %>" alt="<%= photo.desc %>" >
+                <% end %>
+              </div>  
+              <div id="popout_modal">
+                <div class="close_modal" onclick="modal_close();">X</div>
+                <strong class="title"><%= @destination.gallery.title %></strong>
+                <div id="destination_slides_modal">
+
+                  <% @destination.gallery.photos.each do |photo| %>
+                    <img src="<%= photo.pic.url %>" alt="<%= photo.desc %>" >
+                  <% end %>
+                </div>
+                <p class="slide_img_title"></p>
+              </div>
+              <p class="slide_img_title"></p>           
+              <p>
+                <a class="icon open_window" href="javascript:void(0);" onclick="modal_slides();">查看全尺寸大图</a>
+              </p>
+            </div>
+          </div>
+          <% end %>
+          <div id="cs_control_1329" class="">
+            <div class="CS_Element_Schedule" title="" id="CS_Element_content">
+              <a name="custom12294" id="custom12294"></a>
+              <a name="CP_JUMP_12294" id="CP_JUMP_12294"></a>
+              <div id="cs_control_12294" class="cs_control CS_Element_Custom">
+                <h4 class="rounded_btn">
+                  <a class="icon search" title="查看所有 <%= @destination.name %> 旅行线路" href="/search?destination=<%= @destination.id %>">查看所有 <%= @destination.name %> 旅行线路</a>
+                </h4>
+              </div>
+              <a name="textblocknohdr12296" id="textblocknohdr12296"></a>
+              <a name="CP_JUMP_12296" id="CP_JUMP_12296"></a>
+              <div id="cs_control_12296" class="cs_control CS_Element_Textblock">
+                <div class="CS_Textblock_Text">
+                  <h2 class="secondary_title"><%= @destination.desc_title %></h2>
+                  <p itemprop="description">
+                      <%=raw @destination.desc %>
+                  </p>
+                </div>
+              </div>
+              <div id="cs_control_17727" class="cs_control CS_Element_CustomCF">
+                <div id="CS_CCF_12275_17727">
+                  <!-- META DATA BEGIN -->
+                  <!-- META DATA END -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<% content_for :footer do %>
+<%= javascript_include_tag "jquery.slides.min.js" %>
+<script>
+$(function() {
+      var max_p=7;
+      $('#destination_slides').slidesjs({
+        width: 386,
+        height: 258,
+        navigation: {
+          effect: "fade"
+        },
+        pagination: {
+          effect: "fade"
+        },
+        play: {
+          active: true,
+          auto: true,
+          interval: 4000,
+          swap: true,
+          pauseOnHover: true,
+          restartDelay: 2500
+        },        
+        effect: {
+          fade: {
+            speed: 800
+          }
+        },
+        callback:{
+          loaded: function(number) {
+              $('p.slide_img_title').text($("#destination_slides img.slidesjs-slide").eq(number-1).attr("alt"));
+              number>max_p? $('#destination_slides ul.slidesjs-pagination').animate({left: -(number-max_p)*25}): $('#destination_slides ul.slidesjs-pagination').animate({left: 0})
+            },
+          complete: function(number) {
+              $('p.slide_img_title').text($("#destination_slides img.slidesjs-slide").eq(number-1).attr("alt"));
+              number>max_p? $('#destination_slides ul.slidesjs-pagination').animate({left: -(number-max_p)*25}) : $('#destination_slides ul.slidesjs-pagination').animate({left: 0})
+          }
+        }
+      });
+      $('#destination_slides_modal').slidesjs({
+        width: 514,
+        height: 344,
+        navigation: false,
+        pagination: {
+          effect: "fade"
+        },
+        play: {
+          active: true,
+          auto: true,
+          interval: 4000,
+          swap: true,
+          pauseOnHover: true,
+          restartDelay: 2500
+        },        
+        effect: {
+          fade: {
+            speed: 800
+          }
+        },
+        callback:{
+          loaded: function(number) {
+                $('#popout_modal p.slide_img_title').text($("#destination_slides_modal img.slidesjs-slide").eq(number-1).attr("alt"));
+                number>max_p? $('#popout_modal ul.slidesjs-pagination').animate({left: -(number-max_p)*25}): $('#popout_modal ul.slidesjs-pagination').animate({left: 0})
+              },
+          complete: function(number) {
+                $('#popout_modal p.slide_img_title').text($("#destination_slides_modal img.slidesjs-slide").eq(number-1).attr("alt"));
+                number>max_p? $('#popout_modal ul.slidesjs-pagination').animate({left: -(number-max_p)*25}): $('#popout_modal ul.slidesjs-pagination').animate({left: 0})
+          }
+        }
+      });
+    });
+var modal_slides=function(){
+  $("#popout_modal").show();
+  $('<div id="popout_modal_mask"></div>').appendTo("body");
+}
+var modal_close=function(){
+  $("#popout_modal").hide();
+  $('#popout_modal_mask').remove();
+}
+</script>
+<% end %>   

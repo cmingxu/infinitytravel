@@ -1,0 +1,32 @@
+<div class="row">
+<h3>后台管理 > Gbookingday列表 <div class="pull-right"><%= link_to '创建新Gbookingdays', new_admin_gbookingday_path %></div></h3>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>Destination</th>
+    <th>City</th>
+    <th>Hotel</th>
+    <th>Days</th>
+    <th>操作</th>
+  </tr>
+
+<% @gbookingdays.each do |gbookingday| %>
+  <tr>
+    <td>
+      <%= gbookingday.id %>
+    </td>
+    <td><%= gbookingday.destination_id %></td>
+    <td><%= gbookingday.city_id %></td>
+    <td><%= gbookingday.hotel_id %></td>
+    <td><%= gbookingday.days %></td>
+    <td>
+      <%= link_to '查看', [:admin, gbookingday] %> | 
+      <%= link_to '编辑', edit_admin_gbookingday_path(gbookingday) %> | 
+      <%= link_to '删除', [:admin, gbookingday], :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= paginate @gbookingdays %>
+</div>

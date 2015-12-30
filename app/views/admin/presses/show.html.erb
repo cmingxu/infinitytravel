@@ -1,0 +1,20 @@
+<div class="row">
+<h3>后台管理 > 查看 <div class="pull-right"><%= link_to '编辑', edit_admin_press_path(@press) %> |
+<%= link_to '返回列表', admin_presses_path %></div></h3>
+<hr>
+<p id="notice"><%= notice %></p>
+<table class="table table-striped table-bordered"> 
+	<tr>
+		<td style="width:200px;text-align:right;">ID:</td>
+		<td><%= @press.id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Title:</td>
+		<td><%= @press.title %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Cont:</td>
+		<td><%= raw @press.cont %></td>
+	</tr>
+	</table>
+</div>

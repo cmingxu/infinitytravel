@@ -1,0 +1,57 @@
+<div class="row">
+<h3>后台管理 > Destination列表 <div class="pull-right"><%= link_to '创建新Destinations', new_admin_destination_path %></div></h3>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Desc title</th>
+    <th>Banner pic</th>
+    <th>Map pic</th>
+    <th>层级关系</th>
+    <th>画廊</th>
+    <th>Pdf</th>
+    <th>Flash地图</th>
+    <th>操作</th>
+  </tr>
+
+<% @destinations.each do |destination| %>
+  <tr>
+    <td>
+      <%= destination.id %>
+    </td>
+    <td><%= destination.name %></td>
+    <td><%= destination.desc_title %></td>
+    <td><%= destination.banner_pic %></td>
+    <td><%= destination.map_pic %></td>
+    <td><%= destination.ancestry %></td>
+    <td>
+      <% if destination.gallery  %>
+      <%= destination.gallery.photos.size %> / <a href="/admin/galleries/<%= destination.gallery.id %>">管理图片</a>
+    <% end %>
+  </td>
+    <td>
+      <h5><a href="/admin/destinations/<%= destination.id %>/new_brochure_destination">绑定相关Pdf</a></h5>
+      <table>
+        <tbody>
+          <% destination.brochures.each do |brochure| %>
+          <tr>
+            <td><a href="/admin/brochures/<%= brochure.id %>"><%= brochure.name %></a></td>
+            <td><a href="/admin/destinations/<%= destination.id %>/destroy_brochure_destination/<%= brochure.id %>">删除</a></td>
+            <td></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </td>
+    <td><%= destination.flashmap %></td>
+    <td>
+      <%= link_to '查看', [:admin, destination] %> | 
+      <%= link_to '编辑', edit_admin_destination_path(destination) %> | 
+      <%= link_to '删除', [:admin, destination], :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= paginate @destinations %>
+</div>

@@ -1,0 +1,97 @@
+<%= form_for(@gbooking) do |f| %>
+  <% if @gbooking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gbooking.errors.count, "error") %> prohibited this gbooking from being saved:</h2>
+
+      <ul>
+      <% @gbooking.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :mrs_title %><br />
+    <%= f.text_field :mrs_title %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :preferred_contact_method %><br />
+    <%= f.text_field :preferred_contact_method %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </div>
+  <div class="field">
+    <%= f.label :region %><br />
+    <%= f.text_field :region %>
+  </div>
+  <div class="field">
+    <%= f.label :postal_code %><br />
+    <%= f.text_field :postal_code %>
+  </div>
+  <div class="field">
+    <%= f.label :is_subscribe %><br />
+    <%= f.check_box :is_subscribe %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :agent_name %><br />
+    <%= f.text_field :agent_name %>
+  </div>
+  <div class="field">
+    <%= f.label :agent_code %><br />
+    <%= f.text_field :agent_code %>
+  </div>
+  <div class="field">
+    <%= f.label :destination_id %><br />
+    <%= f.text_field :destination_id %>
+  </div>
+  <div class="field">
+    <%= f.label :departure_date %><br />
+    <%= f.datetime_select :departure_date %>
+  </div>
+  <div class="field">
+    <%= f.label :trip_day_length %><br />
+    <%= f.text_field :trip_day_length %>
+  </div>
+  <div class="field">
+    <%= f.label :adult_count %><br />
+    <%= f.text_field :adult_count %>
+  </div>
+  <div class="field">
+    <%= f.label :child_count %><br />
+    <%= f.text_field :child_count %>
+  </div>
+  <div class="field">
+    <%= f.label :event_comment %><br />
+    <%= f.text_area :event_comment %>
+  </div>
+  <div class="field">
+    <%= f.label :city_comment %><br />
+    <%= f.text_area :city_comment %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

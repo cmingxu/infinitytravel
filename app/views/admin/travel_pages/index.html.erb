@@ -1,0 +1,40 @@
+<<div class="row">
+<h3>后台管理 > Page列表 <div class="pull-right"></div></h3>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>分类</th>
+    <th>Title</th>
+    <th>页面类型</th>
+    <th>操作</th>
+  </tr>
+
+<% @travel_pages.each do |page| %>
+  <tr>
+    <td>
+      <%= page.id %>
+    </td>
+    <td><%= page.category %></td>
+    <td><%= page.name %></td>
+    <td><%= page.url %></td>
+    <td>
+      <%= link_to '删除', admin_travel_travel_page_path(@travel, page), :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+</div>
+
+<%= form_tag admin_travel_travel_pages_path(@travel), :method => :post do %>
+  页面名称：
+  <%= text_field_tag "travel_page[name]" %>
+  <br>
+  页面URL：
+  <%= text_field_tag "travel_page[url]" %>
+  <br>
+  分类：
+  <%= text_field_tag "travel_page[category]" %>
+  <br />
+  <%= submit_tag "提交", :class => "btn" %>
+<% end %>

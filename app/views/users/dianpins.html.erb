@@ -1,0 +1,70 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+  <li>
+    <a href="/">首页</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <li>用户中心&nbsp;&nbsp;/&nbsp;&nbsp;我的点评</li>
+</ul>
+<div class="self_clear">
+  <div id="secondary_content" class="hide_from_print">
+    <%= render 'users/user_nav' %>
+  </div>
+  <div id="primary_content" class="align_edges">
+    <div id="cs_control_1329" class="">
+      <div class="CS_Element_Schedule" id="CS_Element_content">
+        <a name="customcf1644" id="customcf1644"></a>
+        <a name="CP_JUMP_1644" id="CP_JUMP_1644"></a>
+        <div id="cs_control_1644" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1393_1644">
+            <div id="special_offers">
+              <h3>用户中心 / 我的点评</h3>
+              <p>
+        <% if !@dianpins.empty? %>
+				 <table>
+				 	<tbody class="format_table">
+				 		<tr>
+				 			<th>姓名</th>
+				 			<th>旅行代码</th>
+				 			<th>相关线路</th>
+				 			<th>点评内容</th>
+				 			<th>时间</th>
+				 			<th>操作</th>
+				 		</tr>
+				 		<% @dianpins.each do |dianpin|%>
+				 		<tr>
+				 			<td><%= dianpin.first_name %></td>
+				 			<td><%= dianpin.travel_code %></td>
+				 			<td><%= dianpin.travel.name %></td>
+				 			<td><%= dianpin.cont %></td>
+				 			<td><%= dianpin.created_at %></td>
+				 			<td></td>
+				 		</tr>
+				 		<% end %>
+				 	</tbody>
+				 </table>
+				 <% else -%>
+         <table>
+          <tbody class="format_table">
+           <tr>
+              <th>姓名</th>
+              <th>旅行代码</th>
+              <th>相关线路</th>
+              <th>点评内容</th>
+              <th>时间</th>
+              <th>操作</th>
+            </tr>
+            <tr>
+              <td colspan="6">您还没有任何点评!</td>
+            </tr>
+            </tbody>
+         </table>
+				 <% end -%>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

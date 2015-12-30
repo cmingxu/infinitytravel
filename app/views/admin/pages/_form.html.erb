@@ -1,0 +1,55 @@
+<%= form_for([:admin, @page],:html => {:class => "form-horizontal" }) do |f| %>
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+      <ul>
+      <% @page.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <label class="control-label">name</label>
+    <div class="controls">
+    <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">title</label>
+    <div class="controls">
+    <%= f.text_field :title %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">页面类型</label>
+    <div class="controls">
+    <%= f.text_field :page_type %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">cont</label>
+    <div class="controls">
+    <%= f.text_area :cont %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>
+
+
+
+<% content_for :footer do %>
+    <script type="text/javascript" src="/plugins/u/editor_config.js"></script>
+    <script type="text/javascript" src="/plugins/u/editor_all.min.js"></script>
+    <link rel="stylesheet" href="/plugins/u/themes/default/css/ueditor.css" />   
+    <script type="text/javascript">
+      var page_cont = new UE.ui.Editor();
+      new UE.ui.Editor().render('page_cont');
+    </script>
+<% end %>

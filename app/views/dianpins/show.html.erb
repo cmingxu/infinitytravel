@@ -1,0 +1,157 @@
+    <ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+      <li>
+        <a href="/">首页</a>
+      </li>
+      <li>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <a href="/search">Travels</a>
+      </li>
+      <li>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <a href="/travels/<%= @travel.id %>"><%= @travel.name %></a>
+      </li>
+    </ul>
+    <div class="self_clear">
+      <%= render :partial => "travels/travel_sidebar", :locals => { :travel => @travel } %>
+
+      <div id="primary_content" class="align_edges">
+        <iframe style="position:absolute; left:-9999px;" id="print-frame" src="/images/transparent.gif"></iframe>
+        <!-- PRIMARY HEADING -->
+        <h1><%= @travel.name %></h1>
+        <h4 class="clear_margins icon luxury amp" style="padding-top:2px;">
+          <%= @travel.interests.first.title %>
+        </h4>
+        <!-- LIVEPERSON -->
+        <!-- LINK LIST -->
+        <ul class="attribute_list">
+          <li>
+            <a class="icon download" href="<%= @travel.brochures.first.doc.url %>">下载旅行手册</a>
+          </li>
+          <li>
+            <a rel="nofollow" class="icon print" title="Print This Trip" href="#" onclick="javascript:window.print(); return false" target="_blank">打印该线路</a>
+          </li>
+        </ul>
+        <!-- TRIP NAVIGATION -->
+        <!-- TRIP NAVIGATION -->
+        <div id="trip_navigation_top" class="self_clear padding_6_tabs">
+          <ul>
+            <li >
+              <a href="#tab1" title="Overview">线路介绍</a>
+            </li>
+            <li>
+              <a href="#tab7" title="景点介绍">景点介绍</a>
+            </li>
+            <li>
+              <a href="#tab2" title="Itinerary">行程</a>
+            </li>
+            <li>
+              <a href="#tab3" title="Dates &amp; Prices">团期和价格</a>
+            </li>
+            <% if @extend_travels and @extend_travels.size > 0 %>
+            <li>
+              <a href="#tab4" title="Extensions">扩展线路</a>
+            </li>
+            <% end %>
+            <li>
+              <a href="#tab5" title="Ask a Question">提问</a>
+            </li>
+            <li class="current">
+              <a href="#tab6" title="Ask a Question">用户点评</a>
+            </li>
+          </ul>
+        </div>
+
+        <div id="tab5" class="tab_item">
+
+          <h2>你的点评已经成功提交</h2>
+          <p>非常感谢.</p>
+
+          
+        </div>
+        
+        <!-- TRIP NAVIGATION BOTTOM -->
+      </div>
+    </div>
+
+<% content_for :footer do %>
+
+<%= javascript_include_tag "jquery.slides.min.js" %>
+<script>
+// refresh window active tabs on hash
+var getTabActive=function(){
+    $("#trip_navigation_top li").removeClass("current");
+    $(".tab_item").addClass("hide");
+    $('#trip_navigation_top a[href='+window.location.hash+']').parent().addClass("current");
+    $(window.location.hash).removeClass("hide");
+}
+$("document").ready(function(){
+  if(window.location.hash&&$(window.location.hash).length>0){
+    getTabActive();
+  }
+})
+
+// listen change of window.location.hash, then active
+if (("onhashchange" in window) && !($.browser.msie)) {
+     window.onhashchange = function () {
+       if ($(window.location.hash).length>0) {
+        getTabActive();
+        return false;
+       };     
+     }
+}
+else {
+  $(window).bind('hashchange', function() {
+    if($(window.location.hash).length>1){
+      getTabActive();
+      return false;
+     }
+  });
+}
+
+var getSeriesOverlay=function(a){
+  $(".text_modal").show();
+  $('<div id="popout_modal_mask"></div>').appendTo("body");
+}
+$(".text_modal .close").click(function(){
+  $(".text_modal").hide();
+  $('#popout_modal_mask').remove();
+});
+$("#popout_modal_mask").live("click",function(){
+  $(".text_modal").hide();
+  $(".popout_modal").hide();
+  $(this).remove();
+})
+var modal_slides=function(a){
+  $(a).parent().parent().find(".popout_modal").show().find('#destination_slides_modal').slidesjs({
+  width: 514,
+  height: 344,
+  navigation: false,
+  pagination: {
+    effect: "fade"
+  },
+  effect: {
+    fade: {
+      speed: 800
+    }
+  },
+  callback:{
+    loaded: function(number) {
+          $('#popout_modal p.slide_img_title').text($("#destination_slides_modal img.slidesjs-slide").eq(number-1).attr("alt"));
+        },
+    complete: function(number) {
+          $('#popout_modal p.slide_img_title').text($("#destination_slides_modal img.slidesjs-slide").eq(number-1).attr("alt"));
+    }
+  }
+});
+  $('<div id="popout_modal_mask"></div>').appendTo("body");
+  return false;
+}
+var modal_close=function(){
+  $(".popout_modal").hide();
+  $('#popout_modal_mask').remove();
+  return false;
+}
+
+
+</script>
+<% end %>

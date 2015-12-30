@@ -1,0 +1,51 @@
+<%= form_for([:admin, @brochure],:html => {:class => "form-horizontal", :multipart => true }) do |f| %>
+  <% if @brochure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@brochure.errors.count, "error") %> prohibited this brochure from being saved:</h2>
+
+      <ul>
+      <% @brochure.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <label class="control-label">name</label>
+    <div class="controls">
+    <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">desc</label>
+    <div class="controls">
+    <%= f.text_area :desc %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">cover</label>
+    <div class="controls">
+    <img src="<%= @brochure.cover.url %>" alt=""> <br>
+    <%= f.file_field :cover %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">doc: 必须是英文加下划线名称，不能有空格，特殊符号或中文</label>
+    <div class="controls">
+    <%= @brochure.doc.url %> <br>
+    <%= f.file_field :doc %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">comment</label>
+    <div class="controls">
+    <%= f.text_area :comment %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

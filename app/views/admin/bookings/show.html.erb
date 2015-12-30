@@ -1,0 +1,92 @@
+<div class="row">
+<h3>后台管理 > 查看 <div class="pull-right"><%= link_to '编辑', edit_admin_booking_path(@booking) %> |
+<%= link_to '返回列表', admin_bookings_path %></div></h3>
+<hr>
+<p id="notice"><%= notice %></p>
+<table class="table table-striped table-bordered"> 
+	<tr>
+		<td style="width:200px;text-align:right;">ID:</td>
+		<td><%= @booking.id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">
+
+称呼:</td>
+		<td><%= @booking.mrs_title %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">First name:</td>
+		<td><%= @booking.first_name %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Last name:</td>
+		<td><%= @booking.last_name %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">
+
+优先联系方式:</td>
+		<td><%= @booking.preferred_contact_method %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Email:</td>
+		<td><%= @booking.email %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Phone:</td>
+		<td><%= @booking.phone %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Country:</td>
+		<td><%= @booking.country %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Region:</td>
+		<td><%= @booking.region %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Postal code:</td>
+		<td><%= @booking.postal_code %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Is subscribe:</td>
+		<td><%= @booking.is_subscribe %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">User:</td>
+		<td><%= @booking.user_id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Travel:</td>
+		<td><%= @booking.travel_id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Datesprice:</td>
+		<td><%= @booking.datesprice_id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Destination:</td>
+		<td><%= @booking.destination_id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">People count:</td>
+		<td><%= @booking.people_count %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Agent name:</td>
+		<td><%= @booking.agent_name %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Agent code:</td>
+		<td><%= @booking.agent_code %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Comment:</td>
+		<td><%= @booking.comment %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Has target:</td>
+		<td><%= @booking.has_target %></td>
+	</tr>
+	</table>
+</div>

@@ -1,0 +1,147 @@
+
+<div class="row">
+<h3 class="path">后台管理首页</h3>
+
+<h5>最新订单</h5>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Phone</th>
+    <th>Travel</th>
+    <th>Datesprice</th>
+    <th>Destination</th>
+    <th>People count</th>
+    <th>Agent name</th>
+    <th>Agent code</th>
+    <th>订单时间</th>
+    <th>操作</th>
+  </tr>
+
+<% @bookings.each do |booking| %>
+  <tr>
+    <td>
+      <%= booking.id %>
+    </td>
+    <td><%= booking.first_name %></td>
+    <td><%= booking.last_name %></td>
+    <td><%= booking.phone %></td>
+    <td><%= booking.travel.try(:name) %></td>
+    <td><%= booking.datesprice_id %></td>
+    <td><%= booking.destination_id %></td>
+    <td><%= booking.people_count %></td>
+    <td><%= booking.agent_name %></td>
+    <td><%= booking.agent_code %></td>
+    <td><%= booking.created_at %></td>
+    <td>
+      <%= link_to '查看', [:admin, booking] %> | 
+      <%= link_to '编辑', edit_admin_booking_path(booking) %> | 
+      <%= link_to '删除', [:admin, booking], :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<h5>最新旅行意向(订制行程)</h5>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Phone</th>
+    <th>Agent name</th>
+    <th>Agent code</th>
+    <th>订制的线路</th>
+    <th>订单时间</th>
+    <th>操作</th>
+  </tr>
+
+<% @gbookings.each do |gbooking| %>
+  <tr>
+    <td>
+      <%= gbooking.id %>
+    </td>
+    <td><%= gbooking.first_name %></td>
+    <td><%= gbooking.last_name %></td>
+    <td><%= gbooking.phone %></td>
+    <td><%= gbooking.agent_name %></td>
+    <td><%= gbooking.agent_code %></td>
+    <td><%= gbooking.customizebookings.size %></td>
+    <td><%= gbooking.created_at %></td>
+    <td>
+      <%= link_to '查看', [:admin, gbooking] %> | 
+      <%= link_to '编辑', edit_admin_gbooking_path(gbooking) %> | 
+      <%= link_to '删除', [:admin, gbooking], :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<h5>最新咨询</h5>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Phone</th>
+    <th>Question</th>
+    <th>创建时间</th>
+    <th>操作</th>
+  </tr>
+
+<% @questions.each do |question| %>
+  <tr>
+    <td>
+      <%= question.id %>
+    </td>
+    <td><%= question.first_name %></td>
+    <td><%= question.last_name %></td>
+    <td><%= question.phone %></td>
+    <td><%= question.question %></td>
+    <td><%= question.created_at %></td>
+    <td>
+      <%= link_to '查看', [:admin, question] %> | 
+      <%= link_to '编辑', edit_admin_question_path(question) %> | 
+      <%= link_to '删除', [:admin, question], :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<h5>最新点评</h5>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Cont</th>
+    <th>Travel</th>
+    <th>Is show</th>
+    <th>点评时间</th>
+    <th>操作</th>
+  </tr>
+
+<% @dianpins.each do |dianpin| %>
+  <tr>
+    <td>
+      <%= dianpin.id %>
+    </td>
+    <td><%= dianpin.name %></td>
+    <td><%= dianpin.travel_id %></td>
+    <td><%= dianpin.user_id %></td>
+    <td><%= dianpin.is_show %></td>
+    <td><%= dianpin.created_at %></td>
+    <td>
+      <%= link_to '查看', [:admin, dianpin] %> | 
+      <%= link_to '编辑', edit_admin_dianpin_path(dianpin) %> | 
+      <%= link_to '删除', [:admin, dianpin], :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+</div>

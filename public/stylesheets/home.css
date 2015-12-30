@@ -1,0 +1,108 @@
+@charset "utf-8";
+/* main layout
+--------------------------------------*/
+.self_clear {position:relative;}
+#primary_content hr {margin:15px 0;}
+
+#secondary_content {position:absolute; top:0; left:0;}
+#primary_content {margin-left:285px; padding-top:30px; -margin-left:280px;}
+#primary_content p {margin:11px 0;}
+#primary_content #right-column-content p {margin:3px 0 10px;}
+
+#secondary_content h2.blue-hue,
+#secondary_content h3.blue-hue {color:#00447c; margin-top:0;}
+#featured_travel {margin-top:30px;}
+
+#right-column-content,
+#secondary_content input {float:right;}
+
+#right-column-content {width:250px;}
+#primary-column {margin-right:280px;}
+
+#promo-b img, #promo-c img, #promo-d img {margin-bottom:12px;}
+
+/*@SECONDARY CONTENT
+--------------------------------------*/
+#secondary_content {margin:30px 25px 0 0; -margin-right:23px; width:255px; background-color:transparent;}
+#secondary_content .round_corners {padding:15px;}
+#secondary_content h3 {border:none; padding:0; background:none; margin-top:12px;}
+#secondary_content ul {margin:0; padding:0px; background-color:#fff;}
+#secondary_content select {display:block; margin:15px 0; width:100%;}
+#secondary_content span strong {font-size:22px; vertical-align:middle; line-height:22px; color:#5d6064;}
+#secondary_content .view_results {margin-top:20px;}
+#secondary_content .view_results {margin-top:20px;}
+
+/* CTA */
+#secondary_content .cta h3,
+#secondary_content .cta p {line-height:normal; color:#777; margin:0;}
+#secondary_content .cta span {font-size:18px;}
+#secondary_content .cta hr {margin:8px 0;}
+#secondary_content .cta input {float:none;}
+#secondary_content .cta input[type="button"] {margin-left:5px;}
+
+/* SOCIAL MEDIA */
+.social-home {margin:10px 0;}
+.social-home img {display:inline;}
+.social-home span {padding-left:11px;}
+.social-home span.first_child {padding:0;}
+/*@END--------------------------------*/
+
+
+/* MINISEARCH SPINNER */
+#spinner_control{
+	position: absolute;
+	opacity: 0.9;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
+	z-index: 999;
+	background: #ffffff;
+	width:270px;
+	height:190px;
+	padding:0;
+	display:none;
+}
+.spinner-msg{
+	text-align:center;
+	font-size:11px;
+	color:#000;
+	font-size:12px;
+	margin-top:50px;
+
+}
+.spinner-img{
+	background:url('/images/spinner.gif') no-repeat;
+	width:24px;
+	height:24px;
+	margin:0 auto;
+	padding:0;
+}
+/*@END--------------------------------*/
+
+
+
+/*@REMOVE AMPERSAND OVERLAY (now included on masthead photo)
+--------------------------------------*/
+.ampersand {display:none;}
+
+/*@END--------------------------------*/
+
+
+#connections .borderbox {border:1px solid #ffd24f; margin-bottom:10px; padding:15px;}
+/*#connections #intro.borderbox {border-left-width:5px;}*/
+
+#connections #intro {background:url(/images/promo-powerbar.gif) no-repeat 0 50%; padding-left:50px;}
+#connections a.yellow-btn {padding:8px 12px; border-radius:5px; display:inline-block; font-size:12px; background:#ffd24f url(/images/home-promo-btn.gif) repeat-x 0 top; box-shadow:1px; border:#ffd24f 1px solid; }
+#connections a.yellow-btn:hover {background-image:none;}
+
+#connections .borderbox p:last-child {margin-bottom:0;}
+
+#connections #givaway {background:#f4f4f4; padding:0; height:268px;}
+#connections #givaway div {padding:15px;}
+#connections #givaway .italy {float:left; margin:-1px 5px -1px -1px;}
+
+#connections .main-msg {margin:15px 0; padding:16px 0; border-bottom:#e4e5e6 1px solid; border-top:#e4e5e6 1px solid;}
+
+/* hide contest promo from homepage */
+#dMainFBContest {display:none;}
+
+#brochures.borderbox {border:1px solid #e4e5e6; margin-top:20px; padding:0 15px 5px 15px; background:#f4f4f4;}

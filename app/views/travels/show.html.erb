@@ -1,0 +1,1004 @@
+		<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+			<li>
+				<a href="/">首页</a>
+			</li>
+			<li>
+				&nbsp;&nbsp;/&nbsp;&nbsp;
+				<a href="/search">旅行线路</a>
+			</li>
+			<li>
+				&nbsp;&nbsp;/&nbsp;&nbsp;<%= @travel.name %>
+			</li>
+		</ul>
+		<div class="self_clear">
+			
+			<%= render :partial => "travels/travel_sidebar", :locals => { :travel => @travel } %>
+
+			<div id="primary_content" class="align_edges">
+				<iframe style="position:absolute; left:-9999px;" id="print-frame" src="/images/transparent.gif"></iframe>
+				<!-- PRIMARY HEADING -->
+				<h1><%= @travel.name %></h1>
+				<h4 class="clear_margins icon luxury amp" style="padding-top:2px;">
+					<%= @travel.interests.first.title %>
+				</h4>
+				<!-- LIVEPERSON -->
+				<!-- LINK LIST -->
+				<ul class="attribute_list">
+					<li>
+						<a class="icon download" href="<%= @travel.brochures.first.doc.url %>">下载旅行手册</a>
+					</li>
+					<li>
+						<a rel="nofollow" class="icon print" title="Print This Trip" href="#" onclick="javascript:window.print(); return false" target="_blank">打印该线路</a>
+					</li>
+				</ul>
+				<!-- TRIP NAVIGATION -->
+				<div id="trip_navigation_top" class="self_clear padding_6_tabs">
+					<ul>
+						<li class="current">
+							<a href="#tab1" title="Overview">线路介绍</a>
+						</li>
+						<li>
+							<a href="#tab7" title="景点介绍">景点介绍</a>
+						</li>
+						<li>
+							<a href="#tab2" title="Itinerary">行程</a>
+						</li>
+						<li>
+							<a href="#tab3" title="Dates &amp; Prices">团期和价格</a>
+						</li>
+						<% if @extend_travels and @extend_travels.size > 0 %>
+						<li>
+							<a href="#tab4" title="Extensions">扩展线路</a>
+						</li>
+						<% end %>
+						<li>
+							<a href="#tab5" title="Ask a Question">提问</a>
+						</li>
+						<li>
+							<a href="#tab6" title="Ask a Question">用户点评</a>
+						</li>
+					</ul>
+				</div>
+
+				<!-- TRIP OVERVIEW -->
+				<div id="tab1" class="tab_item">
+					<h2>线路介绍</h2>
+					<div class="trip_overview">
+						<div class="self_clear">
+							<div id="mini_map">
+								<img width="205px" title="<%= @travel.name %>" alt="<%= @travel.name %>" src="<%= @travel.desc_mappic.url %>">
+							</div>
+							<img src="<%= @travel.cover.url %>" alt="<%= @travel.name %>" title="View <%= @travel.name %>" width="125" height="125">
+							<ul class="align_edges line_rule clear_margins">
+								<li>
+									<span>
+                    <img src="/images/<%= @travel.interest_icon %>.jpg" alt="" height="10" width="10"  style="width:15px;height:15px;margin-right: 7px;" />
+										<a class="" href="javascript:void(0);" onclick="getSeriesOverlay('54')" title="<%= @travel.interests.first.title %>"><%= @travel.interests.first.title %></a>
+									</span>
+									系列:
+								</li>
+								<li>
+									<span>￥<%= @travel.priced_from %></span>
+									最低价格:
+								</li>
+								<li>
+									<span><%= @travel.days_count %></span>
+									天数:
+								</li>
+								<li>
+                <span>
+                  <% if @travel.departures.present? and @travel.departures > 0 %>
+                    <%= @travel.departures %>
+                <% else %>
+                    订制发团
+                <% end %>
+                </span>
+                发团数量:
+                </li>
+                <li>
+                <span><%=  @travel.max_group_size == 0 ? "按需订制" : @travel.max_group_size %></span>
+                团队规模:
+                </li>
+              </ul>
+            </div>
+          </div>
+          <p>
+          <%= raw @travel.overview_desc %>
+          </p>
+
+
+
+
+          <!-- 原景点介绍位置 -->
+
+
+
+
+          <!-- & MOMENTS -->
+          <h2>独家优势</h2>
+          <p>
+          <%= raw @travel.overview_advantage %>
+          </p>
+          <div class="text_modal">
+            <a class="close"></a>
+            <div class="overlay-details">
+              <div class="overlay-padding">
+                <h3 class="clear_margins"><%= @travel.interests.first.title %></h3>
+                <p style="margin-bottom: 0px;"><%= @travel.interests.first.cont %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="tab7" class="hide tab_item">
+          <h2>景点介绍</h2>
+
+
+          <% if @travel.gallery.photos.size > 0 %>
+            <div id="inline_gallery" class="float_right hide_from_print round_corners color_f4f4f4">
+            <div class="ctl"></div>
+            <div class="ctr"></div>
+            <div class="cbr"></div>
+            <div class="cbl"></div>
+            <div class="inline_gallery self_clear">
+              <div id="destination_slides" style="height:276px;">
+                <% @travel.gallery.photos.each do |photo| %>
+                  <img src="<%= photo.pic.url %>" alt="<%= photo.desc %>" >
+              <% end %>
+              </div>
+              <p class="slide_img_title"></p>           
+              <p>
+              <a class="icon open_window" href="javascript:void(0);" onclick="modal_slides(<%= @travel.gallery.id %>);">查看大尺寸图片</a>
+              </p>
+            </div>
+          </div>
+        <% end %>
+
+          <p><%= raw @travel.jindian %></p>
+        </div>
+
+        <div id="tab2" class="hide tab_item">
+          <h2>行程</h2>
+
+          <a href="#" onclick="largeMap(this);return false;"><img class="float_right" src="<%= @travel.itinerary_pic.url %>" alt="<%= @travel.name %>" title="View <%= @travel.name %>" width="300"><img style="display: none" src="<%= @travel.itinerary_bigpic.url %>"></a>
+
+
+          <dl class="itinerary">
+            <% @travel.itineraries.each do |itinerary| %>
+              <dt><%= raw(itinerary.name.gsub(" ", "&nbsp;")) %></dt>
+            <dd>
+            <p>
+            <%= itinerary.desc %>
+            <%- if itinerary.hotel && itinerary.hotel.gallery %>
+              <br />
+            <em><a class="icon camera_white" href="javascript:void(0);"
+                onclick="modal_slides(<%= itinerary.hotel.gallery.id %>)"><%= itinerary.hotel.name %></a></em> 
+            
+            <em>餐食: <%= itinerary.meals %></em>
+          <% end %>
+            <!-- popout modals  -->
+
+            </dd>
+          <% end %>
+          </dl>
+        </div>
+        <div id="tab3" class="hide tab_item">
+          <h2>团期和价格</h2>
+            <% unless @travel.departures.present? and @travel.departures > 0 %>
+            <p>
+            帝国旅行可根据您的品味，围绕您想访问的名胜古迹及热衷参与的活动类型为您创建个性化的订制旅行线路。请拨打4000-917-321我们的客服热线或填写以下表格来开启创建您专属的私家旅程。我们的资深线路设计专家将与您进一步沟通并为您奉上合意的订制行程。
+            </p>
+            <% end %>
+            <div class='round_corners color_f2f2f2' style='padding: 15px'>
+              
+          <div class="trip_overview">
+            <div class="self_clear">
+              <div id="mini_map">
+                <img width="205px" title="<%= @travel.name %>" alt="<%= @travel.name %>" src="<%= @travel.desc_mappic.url %>">
+              </div>
+              <img src="<%= @travel.cover.url %>" alt="<%= @travel.name %>" title="View <%= @travel.name %>" width="125" height="125">
+              <ul class="align_edges line_rule clear_margins">
+                <li>
+                <span>
+          <img src="/images/<%= @travel.interest_icon %>.jpg" alt="" height="10" width="10"  style="width:15px;height:15px;margin-right: 7px;" />
+                  <a class="" href="javascript:void(0);" onclick="getSeriesOverlay('54')" title="<%= @travel.interests.first.title %>"><%= @travel.interests.first.title %></a>
+                </span>
+                系列:
+                </li>
+                <li>
+                <span>￥<%= @travel.priced_from %></span>
+                最低价格:
+                </li>
+                <li>
+                <span><%= @travel.days_count %></span>
+                天数:
+                </li>
+                <li>
+
+                <span>
+                  <% if @travel.departures.present? and @travel.departures > 0 %>
+                    <%= @travel.departures %>
+                <% else %>
+                    订制发团
+                <% end %>
+                </span>
+
+                发团数量:
+                </li>
+                <li>
+                <span><%=  @travel.max_group_size == 0 ? "按需订制" : @travel.max_group_size %></span>
+                团队规模:
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <p>价格为人民币单人价格, 标准间。</p>
+          <div id="price_departure_box" class="self_clear hide">
+            <div>
+              <img src="/images/departure_guarantee_small.gif" width="82" height="27">
+              Book with confidence — we guarantee that all small-group journeys will depart as planned.
+            </div>
+            <div>
+              <a href="/legal/price_assurance.cfm">
+                <img src="/images/price_assurance_small.gif" width="82" height="27"></a>
+              If the price goes down after you book, we will refund the difference — guaranteed.
+            </div>
+          </div>
+          <div id="dates_prices" class='round_corners color_f2f2f2'>
+            <dl class="expando">
+
+              <% @travel.datesprices.each_with_index do |datesprice, index| %>
+                <dt>
+              <table width="100%">
+                <thead>
+                  <tr>
+                    <th width="362">
+                      <a name="20131008" href="javascript:void(0);"><%= datesprice.start_date.strftime("%Y年%m月%d日") %> - <%= datesprice.end_date.strftime("%Y年%m月%d日") %></a>
+                    </th>
+                    <th></th>
+                    <th class="last_child"><%= datesprice.is_available? ? "可预订" : "不可预订" %> </th>
+                  </tr>
+                </thead>
+              </table>
+              </dt>
+              <dd>
+              <form  class="departure_form" action="/bookings/new" method="get">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>&nbsp;</th>
+                      <th>价格</th>
+                      <th>单人补差</th>
+                      <th>内陆航空(起)</th>
+                      <th>预定状态</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td class="width20">
+                      <% if datesprice.is_available? %>
+                        <label for="packageDateID_393641">
+                        <input type="radio" name="datesprice_id" value="<%= datesprice.id %>" <%= "checked" if index.zero? %>></label>
+                    <% end %>
+                    </td>
+                    <td class="width138">
+                      <label for="packageDateID_393641">¥<%= datesprice.prices %></label>
+                    </td>
+                    <td class="width138">
+                      <label for="packageDateID_393641">¥<%= datesprice.single_supplement %></label>
+                    </td>
+                    <td class="width138">
+                      <label for="packageDateID_393641">¥<%= datesprice.internal_airfare %></label>
+                    </td>
+                    <td class="width116">
+                      <label for="packageDateID_393641"><%= datesprice.is_available? ? "可预订" : "不可预订" %></label>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <% if datesprice.is_available? %>
+                  <div class="request_booking">
+                  <span>
+                    <input type="submit" value="提交订单"></span>
+                  <div id="error_form_393641"></div>
+                  请输入您预订的人数
+                  <input name="people_count" type="text" size="2" maxlength="2"></div>
+              <% end %>
+              </form>
+              </dd>
+            <% end %>
+
+
+            </dl>
+          </div>
+          <% if @travel.departures.blank? %>
+          </p>
+          <p>
+          <form action="/questions" id="faq_form" method="post" name="faq_form" class="uniForm">
+            <fieldset class="inlineLabels">
+              <h3>向我们提问</h3>
+
+            <p>我们在努力为您提供贴心的个性化订制服务的同时也尊重您的个人隐私及保护您所提供的个人信息。请注明帝国旅行与您的首选联系方式。 </p>
+              <div id="ctrlHolder_contact_preference" class="ctrlHolder borderTop">
+                <p class="errorFieldHide" id="contact_preference_err"></p>
+                <p class="label ">最佳联系方式</p>
+                <label for="contact_preference-1" class="inlineLabel">
+                  <input name="question[preferred_contact_method]" id="contact_preference-1" type="radio" value="Email" checked="checked" class="" tabindex="1">邮箱</label>
+                <label for="contact_preference-2" class="inlineLabel">
+                  <input name="question[preferred_contact_method]" id="contact_preference-2" type="radio" value="Daytime Phone" class="" tabindex="1">电话</label>
+              </div>
+              <div id="ctrlHolder_email" class="ctrlHolder">
+                <p class="errorFieldHide" id="email_err">Enter a valid email address</p>
+                <label for="email" class="required"> <em>*</em>
+                  邮箱
+                </label>
+                <input name="question[email]" id="email" value="" size="30" type="text" class="required email" tabindex="2">          
+              </div>
+              <div id="ctrlHolder_title" class="ctrlHolder">
+                <p class="errorFieldHide" id="title_err">Select your title</p>
+                <label for="title" class="required">
+                  <em>*</em>
+                  性别
+                </label>
+                <select name="question[mrs_title]" id="title" class="required" tabindex="3">
+                  <option value="0">请选择性别</option>
+                  <option value="153">男士</option>
+                  <option value="154">女士</option>
+                </select>
+              </div>
+              <div id="ctrlHolder_firstName" class="ctrlHolder">
+                <p class="errorFieldHide" id="firstName_err">Enter your first name</p>
+                <label for="firstName" class="required">
+                  <em>*</em>
+                  您的名字
+                </label>
+                <input name="question[first_name]" id="firstName" value="" size="30" type="text" class="required" tabindex="4">          
+              </div>
+              <div id="ctrlHolder_country" class="ctrlHolder">
+                <p class="errorFieldHide" id="country_err">Select a country</p>
+                <label for="country" class="required">
+                  <em>*</em>
+                  国家
+                </label>
+                <select name="question[country]" id="country" class="required" tabindex="6">
+                  <option value="0">请选择国家</option>
+                  <option>阿尔及利亚</option>
+                  <option>阿富汗</option>
+                  <option>阿根廷</option>
+                  <option>阿联酋</option>
+                  <option>阿曼</option>
+                  <option>阿塞拜疆</option>
+                  <option>埃及</option>
+                  <option>埃塞俄比亚</option>
+                  <option>爱尔兰</option>
+                  <option>安哥拉</option>
+                  <option>奥地利</option>
+                  <option>澳大利亚</option>
+                  <option>巴布亚新几内亚</option>
+                  <option>巴基斯坦</option>
+                  <option>巴林</option>
+                  <option>巴西</option>
+                  <option>白俄罗斯</option>
+                  <option>保加利亚</option>
+                  <option>贝宁</option>
+                  <option>比利时</option>
+                  <option>冰岛</option>
+                  <option>波黑</option>
+                  <option>波兰</option>
+                  <option>博茨瓦纳</option>
+                  <option>朝鲜</option>
+                  <option>赤道几内亚</option>
+                  <option>大溪地</option>
+                  <option>丹麦</option>
+                  <option>德国</option>
+                  <option>多哥</option>
+                  <option>俄罗斯</option>
+                  <option>厄瓜多尔</option>
+                  <option>厄立特里亚</option>
+                  <option>法国</option>
+                  <option>菲律宾</option>
+                  <option>斐济</option>
+                  <option>芬兰</option>
+                  <option>佛得角</option>
+                  <option>刚果(布)</option>
+                  <option>刚果(金)</option>
+                  <option>高棉</option>
+                  <option>古巴</option>
+                  <option>圭亚那</option>
+                  <option>哈萨克斯坦</option>
+                  <option>韩国</option>
+                  <option>荷兰</option>
+                  <option>吉尔吉斯斯坦</option>
+                  <option>几内亚</option>
+                  <option>加拿大</option>
+                  <option>加纳</option>
+                  <option>柬埔寨</option>
+                  <option>捷克</option>
+                  <option>津巴布韦</option>
+                  <option>喀麦隆</option>
+                  <option>卡塔尔</option>
+                  <option>科威特</option>
+                  <option>肯尼亚</option>
+                  <option>老挝</option>
+                  <option>黎巴嫩</option>
+                  <option>立陶宛</option>
+                  <option>利比亚</option>
+                  <option>罗马尼亚</option>
+                  <option>马达加斯加</option>
+                  <option>马来西亚</option>
+                  <option>马里</option>
+                  <option>马其顿</option>
+                  <option>毛里求斯</option>
+                  <option>毛里塔尼亚</option>
+                  <option>美国</option>
+                  <option>蒙古</option>
+                  <option>孟加拉国</option>
+                  <option>秘鲁</option>
+                  <option>缅甸</option>
+                  <option>摩洛哥</option>
+                  <option>摩洛哥公国</option>
+                  <option>莫桑比克</option>
+                  <option>墨西哥</option>
+                  <option>纳米比亚</option>
+                  <option>南非</option>
+                  <option>尼泊尔</option>
+                  <option>尼日利亚</option>
+                  <option>葡萄牙</option>
+                  <option>日本</option>
+                  <option>瑞典</option>
+                  <option>瑞士</option>
+                  <option>沙特阿拉伯</option>
+                  <option>斯里兰卡</option>
+                  <option>斯洛伐克</option>
+                  <option>苏丹</option>
+                  <option>塔吉克斯坦</option>
+                  <option>泰国</option>
+                  <option>坦桑尼亚</option>
+                  <option>突尼斯</option>
+                  <option>土耳其</option>
+                  <option>土库曼斯坦</option>
+                  <option>委内瑞拉</option>
+                  <option>文莱</option>
+                  <option>乌干达</option>
+                  <option>乌克兰</option>
+                  <option>乌拉圭</option>
+                  <option>乌兹别克斯坦</option>
+                  <option>西班牙</option>
+                  <option>希腊</option>
+                  <option>新加坡</option>
+                  <option>新西兰</option>
+                  <option>匈牙利</option>
+                  <option>叙利亚</option>
+                  <option>牙买加</option>
+                  <option>亚美尼亚</option>
+                  <option>也门</option>
+                  <option>伊拉克</option>
+                  <option>伊朗</option>
+                  <option>以色列</option>
+                  <option>意大利</option>
+                  <option>印度</option>
+                  <option>印尼</option>
+                  <option>英国</option>
+                  <option>约旦</option>
+                  <option>越南</option>
+                  <option>赞比亚</option>
+                  <option selected="selected">中国</option>
+                  <option>中国澳门</option>
+                  <option>中国台湾</option>
+                  <option>中国香港</option> 
+                </select>
+              </div>
+              <div id="ctrlHolder_workphone" class="ctrlHolder">
+                <p class="errorFieldHide" id="workphone_err"></p>
+                <label for="workphone" class="">电话</label>
+                <input name="question[phone]" id="workphone" value="" size="30" type="text" class="" tabindex="7">
+              </div>
+
+              <div id="ctrlHolder_question" class="ctrlHolder">
+                <p class="errorFieldHide" id="question_err">Ask your question here:</p>
+                <label for="question" class="required">
+                  <em>*</em>
+                  您的问题
+                </label>
+                <textarea name="question[question]" id="question" rows="7" cols="60" class="required textInput" tabindex="9">我想咨询关于<%= @travel.name %>
+              </textarea>
+              </div>
+              <input name="question[travel_id]" id="submitid" value="<%= @travel.id %>" type="hidden">         
+            </fieldset>
+            <div class="buttonHolder">
+              <input type="submit" name="submit_btn" id="submit_btn" value="提交问题" class="uniFormButton" onclick="" tabindex="10"></div>
+            
+              <p> 您还可以通过帝国旅行预订前往目的地国家的国际或内陆航班机票、安排行程开启前或行程结束后的宾馆住宿及机场接送等贴心服务；或购买帝国“安达”旅行保障计划来确保您的顺利出行或进一步升级您的出行体验。
+
+              <%= link_to "了解更多", "http://www.infinitytravel.com.cn/pages/1" %>
+               </p> 
+          </form>
+          </p>
+        <% end %>
+          <hr>
+          <p></p>
+          <h3 style="font-weight:normal;">提示:</h3>
+          <p>
+          <%= raw @travel.notes %>
+          </p>
+        </div>
+        </div>
+        <div id="tab4" class="hide tab_item">
+          <h2>相关扩展线路推荐</h2>
+          <p>
+          您可以选择以下扩展线路，所有可选扩展线路都可预订.
+          </p>
+          <dl id="search_results" class="self_clear line_rule cap_ends">
+            <% @extend_travels.each do |extend_travel| %>
+              <dt>
+            <a href="/travels/<%= extend_travel.id %>" title="View the overview for <%= extend_travel.name %>"><%= extend_travel.name %></a>
+            </dt>
+            <dd>
+            <div class="trip_overview">
+              <div class="self_clear">
+                <a href="/travels/<%= extend_travel.id %>" title="View the overview for <%= extend_travel.name %>">
+
+                  <img src="<%= extend_travel.cover.url %>" alt="View details for <%= extend_travel.name %>" title="View details for <%= extend_travel.name %>" width="125" height="125"></a>
+                <ul class="link_list self_clear clear_list_style">
+                  <li>
+                  <a class="icon swirl_arrow" href="/travels/<%= extend_travel.id %>" title="View the overview for <%= extend_travel.name %>">线路介绍</a>
+                  </li>
+                  <li>
+                  <a class="icon notebook" href="/travels/<%= extend_travel.id %>#tab2" title="View the itinerary for Aurangabad Extension">行程</a>
+                  </li>
+                  <li>
+                  <a class="icon dates" href="/travels/<%= extend_travel.id %>#tab3" title="View the dates &amp; prices for Aurangabad Extension">团期和价格</a>
+                  </li>
+                </ul>
+                <ul class="align_edges line_rule clear_margins">
+                  <li>
+                  <span>
+          <img src="/images/<%= @travel.interest_icon %>.jpg" alt="" height="10" width="10"  style="width:15px;height:15px;margin-right: 7px;" />
+										<a class="" href="javascript:void(0);" onclick="getSeriesOverlay('54')" title="<%= @travel.interests.first.title %>"><%= @travel.interests.first.title %></a>
+                  </span>
+                  系列:
+                  </li>
+                  <li>
+                  <span><%= extend_travel.priced_from %></span>
+                  最低价格:
+                  </li>
+                  <li>
+                  <span><%= extend_travel.days_count %></span>
+                  天数:
+                  </li>
+                  <li>
+                  <span>
+
+                  <% if extend_travel.departures.present? %>
+                    <%= extend_travel.departures.size %>
+                <% else %>
+                    订制发团
+                <% end %>
+
+                </span>
+                  发团数量:
+                  </li>
+                  <li>
+                  <span><%= extend_travel.max_group_size == 0 ? "按需订制" : extend_travel.max_group_size %></span>
+                  最大团队规模:
+                  </li>
+                </ul>
+              </div>
+            </div>
+            </dd>
+          <% end %>
+          </dl>
+        </div>
+        <div id="tab5" class="hide tab_item">
+          <div style="width:80%">
+            <div class="self-clear">
+              <p id="requiredText">
+              必填项 <em>*</em>
+              </p>
+            </div>
+            <form action="/questions" id="faq_form" method="post" name="faq_form" class="uniForm">
+              <fieldset class="inlineLabels">
+                <h3>向我们提问</h3>
+                <div id="ctrlHolder_contact_preference" class="ctrlHolder borderTop">
+                  <p class="errorFieldHide" id="contact_preference_err"></p>
+                  <p class="label ">最佳联系方式</p>
+                  <label for="contact_preference-1" class="inlineLabel">
+                    <input name="question[preferred_contact_method]" id="contact_preference-1" type="radio" value="Email" checked="checked" class="" tabindex="1">邮箱</label>
+                  <label for="contact_preference-2" class="inlineLabel">
+                    <input name="question[preferred_contact_method]" id="contact_preference-2" type="radio" value="Daytime Phone" class="" tabindex="1">电话</label>
+                </div>
+                <div id="ctrlHolder_email" class="ctrlHolder">
+                  <p class="errorFieldHide" id="email_err">Enter a valid email address</p>
+                  <label for="email" class="required"> <em>*</em>
+                    邮箱
+                  </label>
+                  <input name="question[email]" id="email" value="" size="30" type="text" class="required email" tabindex="2">          
+                </div>
+                <div id="ctrlHolder_title" class="ctrlHolder">
+                  <p class="errorFieldHide" id="title_err">Select your title</p>
+                  <label for="title" class="required">
+                    <em>*</em>
+                    性别
+                  </label>
+                  <select name="question[mrs_title]" id="title" class="required" tabindex="3">
+                    <option value="0">请选择性别</option>
+                    <option value="153">男士</option>
+                    <option value="154">女士</option>
+                  </select>
+                </div>
+                <div id="ctrlHolder_firstName" class="ctrlHolder">
+                  <p class="errorFieldHide" id="firstName_err">Enter your first name</p>
+                  <label for="firstName" class="required">
+                    <em>*</em>
+                    您的名字
+                  </label>
+                  <input name="question[first_name]" id="firstName" value="" size="30" type="text" class="required" tabindex="4">          
+                </div>
+                <div id="ctrlHolder_country" class="ctrlHolder">
+                  <p class="errorFieldHide" id="country_err">Select a country</p>
+                  <label for="country" class="required">
+                    <em>*</em>
+                    国家
+                  </label>
+                  <select name="question[country]" id="country" class="required" tabindex="6">
+                    <option value="0">请选择国家</option>
+                    <option>阿尔及利亚</option>
+                    <option>阿富汗</option>
+                    <option>阿根廷</option>
+                    <option>阿联酋</option>
+                    <option>阿曼</option>
+                    <option>阿塞拜疆</option>
+                    <option>埃及</option>
+                    <option>埃塞俄比亚</option>
+                    <option>爱尔兰</option>
+                    <option>安哥拉</option>
+                    <option>奥地利</option>
+                    <option>澳大利亚</option>
+                    <option>巴布亚新几内亚</option>
+                    <option>巴基斯坦</option>
+                    <option>巴林</option>
+                    <option>巴西</option>
+                    <option>白俄罗斯</option>
+                    <option>保加利亚</option>
+                    <option>贝宁</option>
+                    <option>比利时</option>
+                    <option>冰岛</option>
+                    <option>波黑</option>
+                    <option>波兰</option>
+                    <option>博茨瓦纳</option>
+                    <option>朝鲜</option>
+                    <option>赤道几内亚</option>
+                    <option>大溪地</option>
+                    <option>丹麦</option>
+                    <option>德国</option>
+                    <option>多哥</option>
+                    <option>俄罗斯</option>
+                    <option>厄瓜多尔</option>
+                    <option>厄立特里亚</option>
+                    <option>法国</option>
+                    <option>菲律宾</option>
+                    <option>斐济</option>
+                    <option>芬兰</option>
+                    <option>佛得角</option>
+                    <option>刚果(布)</option>
+                    <option>刚果(金)</option>
+                    <option>高棉</option>
+                    <option>古巴</option>
+                    <option>圭亚那</option>
+                    <option>哈萨克斯坦</option>
+                    <option>韩国</option>
+                    <option>荷兰</option>
+                    <option>吉尔吉斯斯坦</option>
+                    <option>几内亚</option>
+                    <option>加拿大</option>
+                    <option>加纳</option>
+                    <option>柬埔寨</option>
+                    <option>捷克</option>
+                    <option>津巴布韦</option>
+                    <option>喀麦隆</option>
+                    <option>卡塔尔</option>
+                    <option>科威特</option>
+                    <option>肯尼亚</option>
+                    <option>老挝</option>
+                    <option>黎巴嫩</option>
+                    <option>立陶宛</option>
+                    <option>利比亚</option>
+                    <option>罗马尼亚</option>
+                    <option>马达加斯加</option>
+                    <option>马来西亚</option>
+                    <option>马里</option>
+                    <option>马其顿</option>
+                    <option>毛里求斯</option>
+                    <option>毛里塔尼亚</option>
+                    <option>美国</option>
+                    <option>蒙古</option>
+                    <option>孟加拉国</option>
+                    <option>秘鲁</option>
+                    <option>缅甸</option>
+                    <option>摩洛哥</option>
+                    <option>摩洛哥公国</option>
+                    <option>莫桑比克</option>
+                    <option>墨西哥</option>
+                    <option>纳米比亚</option>
+                    <option>南非</option>
+                    <option>尼泊尔</option>
+                    <option>尼日利亚</option>
+                    <option>葡萄牙</option>
+                    <option>日本</option>
+                    <option>瑞典</option>
+                    <option>瑞士</option>
+                    <option>沙特阿拉伯</option>
+                    <option>斯里兰卡</option>
+                    <option>斯洛伐克</option>
+                    <option>苏丹</option>
+                    <option>塔吉克斯坦</option>
+                    <option>泰国</option>
+                    <option>坦桑尼亚</option>
+                    <option>突尼斯</option>
+                    <option>土耳其</option>
+                    <option>土库曼斯坦</option>
+                    <option>委内瑞拉</option>
+                    <option>文莱</option>
+                    <option>乌干达</option>
+                    <option>乌克兰</option>
+                    <option>乌拉圭</option>
+                    <option>乌兹别克斯坦</option>
+                    <option>西班牙</option>
+                    <option>希腊</option>
+                    <option>新加坡</option>
+                    <option>新西兰</option>
+                    <option>匈牙利</option>
+                    <option>叙利亚</option>
+                    <option>牙买加</option>
+                    <option>亚美尼亚</option>
+                    <option>也门</option>
+                    <option>伊拉克</option>
+                    <option>伊朗</option>
+                    <option>以色列</option>
+                    <option>意大利</option>
+                    <option>印度</option>
+                    <option>印尼</option>
+                    <option>英国</option>
+                    <option>约旦</option>
+                    <option>越南</option>
+                    <option>赞比亚</option>
+                    <option selected="selected">中国</option> 
+                    <option>中国澳门</option>
+                    <option>中国台湾</option>
+                    <option>中国香港</option> 
+                  </select>
+                </div>
+                <div id="ctrlHolder_workphone" class="ctrlHolder">
+                  <p class="errorFieldHide" id="workphone_err"></p>
+                  <label for="workphone" class="">电话</label>
+                  <input name="question[phone]" id="workphone" value="" size="30" type="text" class="" tabindex="7">
+                </div>
+
+                <div id="ctrlHolder_question" class="ctrlHolder">
+                  <label for="question" class="required">
+                    <em>*</em>
+                    您的问题
+                  </label>
+                  <textarea name="question[question]" id="question" rows="7" cols="60" class="required textInput" tabindex="9">我想咨询关于<%= @travel.name %>
+                </textarea>
+                </div>
+                <input name="question[travel_id]" id="submitid" value="<%= @travel.id %>" type="hidden">         
+              </fieldset>
+              <div class="buttonHolder">
+                <input type="submit" name="submit_btn" id="submit_btn" value="提交问题" class="uniFormButton" onclick="" tabindex="10"></div>
+
+          </form>
+          </div>
+        </div>
+
+        <div id="tab6" class="hide tab_item">
+          <div style="width:80%">
+            <% @travel.dianpins.each do |dianpin| %>
+              <p>
+            <%= dianpin.name %>
+            </p>
+            <p>
+            <%= dianpin.cont %>
+            </p>
+            <p>
+            <%= dianpin.created_at %>
+            </p>
+            <hr>
+          <% end %>
+            <form action="/dianpins" id="faq_form" method="post" name="faq_form" class="uniForm">
+              <fieldset class="inlineLabels">
+                <h3>你的点评</h3>
+                <div id="ctrlHolder_workphone" class="ctrlHolder">
+                  <p class="errorFieldHide" id="workphone_err"></p>
+                  <label for="workphone" class="">您的名字</label>
+                  <input name="dianpin[name]" id="workphone" value="" size="30" type="text" class="" tabindex="7">          
+                </div>
+                <div id="ctrlHolder_workphone" class="ctrlHolder">
+                  <p class="errorFieldHide" id="workphone_err"></p>
+                  <label for="workphone" class="">旅游团代码</label>
+                  <input name="dianpin[travel_code]" id="workphone" value="" size="30" type="text" class="" tabindex="7">          
+                </div>
+
+                <div id="ctrlHolder_question" class="ctrlHolder">
+                  <p class="errorFieldHide" id="question_err">Ask your 点评 here:</p>
+                  <label for="dianpin" class="required">
+                    <em>*</em>
+                    点评
+                  </label>
+                  <textarea name="dianpin[cont]" id="dianpin" rows="7" cols="60" class="required textInput" tabindex="9"></textarea>
+                </div>
+                <input name="dianpin[travel_id]" id="submitid" value="<%= @travel.id %>" type="hidden">         
+              </fieldset>
+              <div class="buttonHolder">
+                <input type="submit" name="submit_btn" id="submit_btn" value="提交点评" class="uniFormButton" onclick="" tabindex="10"></div>
+            </form>
+          </div>
+        </div>				
+        <!-- TRIP NAVIGATION BOTTOM -->
+      </div>
+    </div>
+
+
+    <% content_for :footer do %>
+      <%= javascript_include_tag "jquery.slides.min.js" %>
+    <script>
+// refresh window active tabs on hash
+    var getTabActive=function(){
+      $("#trip_navigation_top li").removeClass("current");
+      $(".tab_item").addClass("hide");
+      $('#trip_navigation_top a[href='+window.location.hash+']').parent().addClass("current");
+      $(window.location.hash).removeClass("hide");
+    }
+$("document").ready(function(){
+    if(window.location.hash&&$(window.location.hash).length>0){
+    getTabActive();
+    }
+    })
+$("#trip_navigation_top li a").live("click", function(){
+    $("#trip_navigation_top li").removeClass("current");
+    $(".tab_item").addClass("hide");
+    $(this).parent().addClass("current");
+    $($(this).attr("href")).removeClass("hide");
+    return false;
+    })
+// listen change of window.location.hash, then active
+if (("onhashchange" in window) && !($.browser.msie)) {
+  window.onhashchange = function () {
+    if ($(window.location.hash).length>0) {
+      getTabActive();
+      return false;
+    }
+  }
+}
+else {
+  $(window).bind('hashchange', function() {
+      if($(window.location.hash).length>1){
+      getTabActive();
+      return false;
+      }
+      });
+}
+
+var getSeriesOverlay=function(a){
+  $(".text_modal").show();
+  $('<div id="popout_modal_mask"></div>').appendTo("body");
+};
+$(".text_modal .close").click(function(){
+    $(".text_modal").hide();
+    $('#popout_modal_mask').remove();
+    });
+$("#popout_modal_mask").live("click",function(){
+    $(".text_modal").hide();
+    $(".popout_modal").hide();
+    $('#largeMap').remove();
+    $(this).remove();
+    });
+
+
+
+$(function() {
+    var max_p=7;
+    var $slide = $("#destination_slides");
+    $('#destination_slides').slidesjs({
+width: 260,
+height: 228,
+navigation: {
+effect: "fade"
+},
+play: {
+active: true,
+auto: true,
+interval: 4000,
+swap: true,
+pauseOnHover: true,
+restartDelay: 2500
+},
+pagination: {
+effect: "fade"
+},
+effect: {
+fade: {
+speed: 800
+}
+},
+callback:{
+loaded: function(number) {
+          $slide.parent().find('p.slide_img_title').text($slide.find("img.slidesjs-slide").eq(number-1).attr("alt"));
+          number>max_p? $slide.find('ul.slidesjs-pagination').animate({left: -(number-max_p)*25}): $slide.find('ul.slidesjs-pagination').animate({left: 0});
+        },
+complete: function(number) {
+            $slide.parent().find('p.slide_img_title').text($slide.find("img.slidesjs-slide").eq(number-1).attr("alt"));
+            number>max_p? $slide.find('ul.slidesjs-pagination').animate({left: -(number-max_p)*25}) : $slide.find('ul.slidesjs-pagination').animate({left: 0});
+          }
+         }
+});
+});
+var modal_slides_atn=function(){
+  $("#popout_modal.alt").show();
+  $('<div id="popout_modal_mask"></div>').appendTo("body");
+};
+var modal_close=function(){
+  $("#popout_modal").hide();
+  $("#popout_modal.alt").hide();
+  $('#popout_modal_mask').remove();
+};
+
+var initslide=function(){
+  var $pop = $('#destination_slides_modal');
+  var $modal = $("#popout_modal");
+  var max_p=7;
+  $modal.show().find('#destination_slides_modal').slidesjs({
+width: 514,
+height: 344,
+navigation: false,
+pagination: {
+effect: "fade"
+},
+effect: {
+fade: {
+speed: 800
+}
+},
+play: {
+active: true,
+auto: true,
+interval: 4000,
+swap: true,
+pauseOnHover: true,
+restartDelay: 2500
+},
+callback:{
+loaded: function(number) {
+          $modal.find('p.slide_img_title').text($pop.find("img.slidesjs-slide").eq(number-1).attr("alt"));
+          number>max_p? $pop.find('ul.slidesjs-pagination').animate({left: -(number-max_p)*25}): $pop.find('ul.slidesjs-pagination').animate({left: 0})
+        },
+complete: function(number) {
+            $modal.find('p.slide_img_title').text($pop.find("img.slidesjs-slide").eq(number-1).attr("alt"));
+            number>max_p? $pop.find('ul.slidesjs-pagination').animate({left: -(number-max_p)*25}): $pop.find('ul.slidesjs-pagination').animate({left: 0})
+          }
+         }
+});
+};
+var modal_slides=function(a){
+  if($('#popout_modal').size()>0){
+    $('#popout_modal').remove();
+  }
+  var $popout_modal_html='<div id="popout_modal" class="popout_modal"><div class="close_modal" onclick="modal_close();">X</div><img src="/images/ajax-loader.gif" id="ajaxloader"></div><div id="popout_modal_mask"></div>';
+  $('body').append($popout_modal_html);
+  $('#popout_modal').show();
+  $.ajax({
+url: '/welcome/get_gallery?id='+a,
+type: 'GET',
+data: {},
+success: function (data) {
+$('#ajaxloader').remove();
+$('#popout_modal').append(data);
+},
+error:function(){
+$('#ajaxloader').remove();
+$('<p>Someting goes wrong, please try again later.</p>').appendTo('#popout_modal');
+}
+}).done(initslide);
+}
+    </script>
+  <% end %>

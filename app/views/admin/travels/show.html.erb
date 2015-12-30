@@ -1,0 +1,56 @@
+<div class="row">
+<h3>后台管理 > 查看 <div class="pull-right"><%= link_to '编辑', edit_admin_travel_path(@travel) %> |
+<%= link_to '返回列表', admin_travels_path %></div></h3>
+<hr>
+<p id="notice"><%= notice %></p>
+<table class="table table-striped table-bordered"> 
+	<tr>
+		<td style="width:200px;text-align:right;">ID:</td>
+		<td><%= @travel.id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Name:</td>
+		<td><%= @travel.name %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Sub name:</td>
+		<td><%= @travel.sub_name %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Priced from:</td>
+		<td><%= @travel.priced_from %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Days count:</td>
+		<td><%= @travel.days_count %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Departures:</td>
+		<td><%= @travel.departures %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Max group size:</td>
+		<td><%= @travel.max_group_size %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Overview desc:</td>
+		<td><%= @travel.overview_desc %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Overview advantage:</td>
+		<td><%= @travel.overview_advantage %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Notes:</td>
+		<td><%= @travel.notes %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">扩展线路的ID:</td>
+		<td><%= @travel.extensions_ids %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Itinerary pic:</td>
+		<td><%= @travel.itinerary_pic %></td>
+	</tr>
+	</table>
+</div>

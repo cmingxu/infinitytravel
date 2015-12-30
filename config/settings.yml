@@ -1,0 +1,29 @@
+# config/setting.yml 使用 settingslogic gem来加载，开发环境下可无需重启生效，且可赋值
+# Use: @mpath = Setting['musicbase_path']
+# 注意，不可以使用Tab键，只能使用空格
+defaults: &defaults
+  admin_emails:
+    - "insub@126.com"
+    - "xxx@gmail.com"
+    - "cming.xu@gmail.com"
+    - "houshoushuai@gmail.com"
+  domain: 127.0.0.1
+  email_sender: support@xxx.com
+  email_password: this-is-password
+  weibo_api_key: "1790410102"
+  weibo_api_secret: "a439a5fdb62daa51852585939896f507"
+  weibo_redirect_uri: "http://infinitytravel.com.cn/weibo_callback"
+
+
+development:  
+  <<: *defaults
+  
+test: 
+  <<: *defaults
+  
+production:  
+  <<: *defaults
+  domain: http://infinitytravel.com.cn/
+  #perform_authentication: true
+  #username: admin
+  #password: secret

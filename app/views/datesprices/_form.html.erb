@@ -1,0 +1,49 @@
+<%= form_for(@datesprice) do |f| %>
+  <% if @datesprice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@datesprice.errors.count, "error") %> prohibited this datesprice from being saved:</h2>
+
+      <ul>
+      <% @datesprice.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :travel_id %><br />
+    <%= f.text_field :travel_id %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.datetime_select :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.datetime_select :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :prices %><br />
+    <%= f.text_field :prices %>
+  </div>
+  <div class="field">
+    <%= f.label :single_supplement %><br />
+    <%= f.text_field :single_supplement %>
+  </div>
+  <div class="field">
+    <%= f.label :internal_airfare %><br />
+    <%= f.text_field :internal_airfare %>
+  </div>
+  <div class="field">
+    <%= f.label :availability_status %><br />
+    <%= f.text_field :availability_status %>
+  </div>
+  <div class="field">
+    <%= f.label :available_people_count %><br />
+    <%= f.text_field :available_people_count %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

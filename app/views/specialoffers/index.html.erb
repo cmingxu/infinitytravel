@@ -1,0 +1,112 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+  <li>
+    <a href="/">首页</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <li>特别优惠</li>
+</ul>
+<div class="self_clear">
+  <div id="secondary_content" class="hide_from_print">
+    <div id="cs_control_3131" class="">
+      <div class="CS_Element_Schedule" id="CS_Element_contentleft">
+        <a name="customcf3135" id="customcf3135"></a>
+        <a name="CP_JUMP_3135" id="CP_JUMP_3135"></a>
+        <div id="cs_control_3135" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1393_3135">
+            <h3>旅行线路导航</h3>
+            <dl class="section clear_list_style">
+              <dt>旅行目的地</dt>
+              <dd>
+                <ul class="bullet_list">
+                  <% Destination.all.each do |destination| %>
+                      <li>
+                        <a href="/search?destination=<%= destination.id %>" title="<%= destination.name %>"><%= destination.name %> (<%= destination.travels.size %>)</a>
+                      </li>
+                  <% end %>
+                </ul>
+              </dd>
+              <dt>旅行系列</dt>
+              <dd>
+                <ul class="bullet_list">
+                  <% Interest.all.each do |interest| %>
+                    <li>
+                      <a href="/search?interest=<%= interest.id %>" title="<%= interest.title %>"><%= interest.title %> (<%= interest.travels.size %>)</a>
+                    </li>
+                  <% end %>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <a name="customcf3972" id="customcf3972"></a>
+        <a name="CP_JUMP_3972" id="CP_JUMP_3972"></a>
+        <div id="cs_control_3972" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1393_3972">
+            <div class="end_cap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="dMainFBContest"></div>
+  </div>
+  <div id="primary_content" class="align_edges">
+    <div id="cs_control_1329" class="">
+      <div class="CS_Element_Schedule" id="CS_Element_content">
+        <a name="customcf1644" id="customcf1644"></a>
+        <a name="CP_JUMP_1644" id="CP_JUMP_1644"></a>
+        <div id="cs_control_1644" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1393_1644">
+            <div id="special_offers">
+              <h1>特别优惠</h1>
+              <!-- OFFER -->
+              <% @specialoffers.each do |specialoffer| %>
+              <div class="special_offer self_clear nth-child-first">
+                <img src="<%= specialoffer.cover.url %>" alt="<%= specialoffer.title %>" width="100" height="100" class="hoverZoomLink">
+                <div>
+                  <h3>
+                    <%= specialoffer.title %>
+                  </h3>
+                  <p>
+                    <%= raw specialoffer.desc %>
+                  </p>
+                  <p>
+                    <a href="javascript:void(0);" class="icon swirl_arrow" onclick="toggle_visibility(this);">查看详细优惠信息</a>
+                  </p>
+                  <span id="a296" style="display:none;">
+                    <p>Journeys include:</p>
+                    <% specialoffer.travels.each do |travel| %>
+                    <p>
+                      <a href="/travels/<%= travel.id %>">
+                        <%= travel.name %>
+                      </a>
+                    </p>
+                    <% end %>
+                    <p>
+                      <%= raw specialoffer.cont %>
+                    </p>
+                  </span>
+                </div>
+              </div>
+              <% end %>
+              <!-- OFFER -->
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :footer do %>
+<script>
+var toggle_visibility=function(a){
+  var elem = $(a).parent().next();
+  if(elem.css("display")== 'none')
+    elem.show();
+  else
+  {
+    elem.hide();        
+  }
+}
+</script>
+<% end %>

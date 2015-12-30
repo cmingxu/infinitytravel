@@ -1,0 +1,55 @@
+<div id="cs_control_3131" class="">
+      <div class="CS_Element_Schedule" id="CS_Element_contentleft">
+        <a name="customcf3135" id="customcf3135"></a>
+        <a name="CP_JUMP_3135" id="CP_JUMP_3135"></a>
+        <div id="cs_control_3135" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1393_3135">
+            <h3>用户中心</h3>
+            <dl class="section clear_list_style">
+              <dt>用户信息</dt>
+              <dd>
+                <ul class="bullet_list">
+                  <li id="navigation_active">
+                    <%= current_user.email %>
+                  </li>
+                  <li>
+                    <a href="/setting">修改密码</a>
+                  </li>
+                </ul>
+              </dd>
+              <dt>其他管理</dt>
+              <dd>
+                <ul class="bullet_list">
+                  <li>
+                    <a href="/users/<%= current_user.id %>/dianpins">用户点评</a>
+                  </li>
+                  <li>
+                    <a href="/users/<%= current_user.id %>/bookings">我的订单</a>
+                  </li>
+                  <li>
+                    <a href="/users/<%= current_user.id %>/questions">我的提问</a>
+                  </li>
+                </ul>
+              </dd>
+              <dt>您可能感兴趣的</dt>
+              <dd>
+                <ul class="bullet_list">
+                  <% Interest.all.each do |interest| %>
+                    <li>
+                      <a href="/search?interest=<%= interest.id %>" title="<%= interest.title %>"><%= interest.title %> (<%= interest.travels.size %>)</a>
+                    </li>
+                  <% end %>
+                </ul>
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <a name="customcf3972" id="customcf3972"></a>
+        <a name="CP_JUMP_3972" id="CP_JUMP_3972"></a>
+        <div id="cs_control_3972" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1393_3972">
+            <div class="end_cap"></div>
+          </div>
+        </div>
+      </div>
+    </div>

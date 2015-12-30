@@ -1,0 +1,33 @@
+<div class="row">
+<h3>后台管理 > Specialoffer列表 <div class="pull-right"><%= link_to '创建新Specialoffers', new_admin_specialoffer_path %></div></h3>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Desc</th>
+    <th>Cont</th>
+    <th>操作</th>
+  </tr>
+
+<% @specialoffers.each do |specialoffer| %>
+  <tr>
+    <td>
+      <%= specialoffer.id %>
+    </td>
+    <td>
+      <%= specialoffer.title %>
+      <img src="<%= specialoffer.cover.url %>" alt="">
+    </td>
+    <td><%= specialoffer.desc %></td>
+    <td><%= specialoffer.cont %></td>
+    <td>
+      <%= link_to '查看', [:admin, specialoffer] %> | 
+      <%= link_to '编辑', edit_admin_specialoffer_path(specialoffer) %> | 
+      <%= link_to '删除', [:admin, specialoffer], :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= paginate @specialoffers %>
+</div>

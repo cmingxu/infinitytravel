@@ -1,0 +1,29 @@
+<h1>Listing gbookingdays</h1>
+
+<table>
+  <tr>
+    <th>Destination</th>
+    <th>City</th>
+    <th>Hotel</th>
+    <th>Days</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @gbookingdays.each do |gbookingday| %>
+  <tr>
+    <td><%= gbookingday.destination_id %></td>
+    <td><%= gbookingday.city_id %></td>
+    <td><%= gbookingday.hotel_id %></td>
+    <td><%= gbookingday.days %></td>
+    <td><%= link_to 'Show', gbookingday %></td>
+    <td><%= link_to 'Edit', edit_gbookingday_path(gbookingday) %></td>
+    <td><%= link_to 'Destroy', gbookingday, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Gbookingday', new_gbookingday_path %>

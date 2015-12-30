@@ -1,0 +1,27 @@
+<div class="row">
+<h3>后台管理 > Shouye列表 <div class="pull-right"><%= link_to '创建新Shouyes', new_admin_shouye_path %></div></h3>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>...</th>
+    <th>最后更新</th>
+    <th>操作</th>
+  </tr>
+
+<% @shouyes.each do |shouye| %>
+  <tr>
+    <td>
+      <%= shouye.id %>
+    </td>
+    <td>这里控制首页的模块内容，请不要新增或删除，可以修改</td>
+    <td><%= shouye.created_at %></td>
+    <td>
+      <%= link_to '查看', [:admin, shouye] %> | 
+      <%= link_to '编辑', edit_admin_shouye_path(shouye) %> | 
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= paginate @shouyes %>
+</div>

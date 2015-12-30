@@ -1,0 +1,33 @@
+<%= form_for(@gbookingday) do |f| %>
+  <% if @gbookingday.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gbookingday.errors.count, "error") %> prohibited this gbookingday from being saved:</h2>
+
+      <ul>
+      <% @gbookingday.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :destination_id %><br />
+    <%= f.text_field :destination_id %>
+  </div>
+  <div class="field">
+    <%= f.label :city_id %><br />
+    <%= f.text_field :city_id %>
+  </div>
+  <div class="field">
+    <%= f.label :hotel_id %><br />
+    <%= f.text_field :hotel_id %>
+  </div>
+  <div class="field">
+    <%= f.label :days %><br />
+    <%= f.text_field :days %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

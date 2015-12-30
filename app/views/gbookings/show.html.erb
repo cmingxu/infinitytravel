@@ -1,0 +1,57 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+  <li>
+    <a href="/">首页</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <li>
+    <a href="/search">旅行线路</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <li>您的需求已提交</li>
+</ul>
+<div class="self_clear">
+  <div id="secondary_content" class="hide_from_print">
+    <div id="cs_control_3131" class="">
+      <div class="CS_Element_Schedule" title="" id="CS_Element_contentleft">
+        <a name="custom12103" id="custom12103"></a>
+        <a name="CP_JUMP_12103" id="CP_JUMP_12103"></a>
+        <div id="cs_control_12103" class="cs_control CS_Element_Custom">
+          <div class="hl3">旅行导航</div>
+          <!-- OHSU Nav -->
+          <ul class="section cspot_nav">
+            <% Interest.all.each do |interest| %>
+            <li>
+              <a href="/search?interest=<%= interest.id %>" title="<%= interest.title %>"><%= interest.title %> (<%= interest.travels.size %>)</a>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <a name="customcf4702" id="customcf4702"></a>
+        <a name="CP_JUMP_4702" id="CP_JUMP_4702"></a>
+        <div id="cs_control_4702" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_9059_4702">
+            <div class="end_cap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="dMainFBContest"></div>
+  </div>
+  <div id="primary_content" class="align_edges">
+  <div id="cs_control_1329" class=""> <div class="CS_Element_Schedule" title="" id="CS_Element_content"> 
+  <a name="textblocknohdr8690" id="textblocknohdr8690"></a><a name="CP_JUMP_8690" id="CP_JUMP_8690"></a><div id="cs_control_8690" class="cs_control CS_Element_Textblock"> <div class="CS_Textblock_Text"><h1>您的需求已提交</h1></div> </div> <a name="customcf9078" id="customcf9078"></a><a name="CP_JUMP_9078" id="CP_JUMP_9078"></a><div id="cs_control_9078" class="cs_control CS_Element_CustomCF"> <div id="CS_CCF_9059_9078"> 
+
+  <p>非常感谢，您的需求已成功提交，我们将尽快与您联系。</p>
+  </div> </div> 
+  </div> </div> 
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

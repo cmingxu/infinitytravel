@@ -1,0 +1,218 @@
+<%= form_for([:admin, @shouye],:html => {:class => "form-horizontal", :multipart => true }) do |f| %>
+  <% if @shouye.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@shouye.errors.count, "error") %> prohibited this shouye from being saved:</h2>
+
+      <ul>
+      <% @shouye.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <label class="control-label">网站logo</label>
+    <div class="controls">
+    <img src="<%= @shouye.logo.url %>" alt=""> <br>
+    <%= f.file_field :logo %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">网站标题</label>
+    <div class="controls">
+    <%= f.text_field :title %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">联系模块</label>
+    <div class="controls">
+    <%= f.text_area :lianxi %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_1_标题</label>
+    <div class="controls">
+    <%= f.text_field :block_1_tit %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_1_内容</label>
+    <div class="controls">
+    <%= f.text_area :block_1_cont %>
+    </div>
+  </div>
+  <!-- <div class="control-group">
+    <label class="control-label">模块_2_图片_1</label>
+    <div class="controls">
+    <img src="<%= @shouye.block_2_pic_1.url %>" alt=""> <br>
+    <%= f.file_field :block_2_pic_1 %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_2_图片_2</label>
+    <div class="controls">
+    <img src="<%= @shouye.block_2_pic_2.url %>" alt=""> <br>
+    <%= f.file_field :block_2_pic_2 %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_2_标题</label>
+    <div class="controls">
+    <%= f.text_field :block_2_tit %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_2_链接</label>
+    <div class="controls">
+    <%= f.text_field :block_2_link %>
+    </div>
+  </div> -->
+  <div class="control-group">
+    <label class="control-label">模块_2_内容</label>
+    <div class="controls">
+    <%= f.text_area :block_2_cont %>
+    </div>
+  </div>
+  
+  <!-- <div class="control-group">
+    <label class="control-label">模块_3_标题</label>
+    <div class="controls">
+    <%= f.text_field :block_3_tit %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_3_图片</label>
+    <div class="controls">
+    <img src="<%= @shouye.block_3_pic.url %>" alt=""> <br>
+    <%= f.file_field :block_3_pic %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_3_链接</label>
+    <div class="controls">
+    <%= f.text_field :block_3_link %>
+    </div>
+  </div> -->
+  <div class="control-group">
+    <label class="control-label">模块_3_内容</label>
+    <div class="controls">
+    <%= f.text_area :block_3_cont %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_标题</label>
+    <div class="controls">
+    <%= f.text_field :block_4_tit %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_1_图片</label>
+    <div class="controls">
+    <img src="<%= @shouye.block_4_1_pic.url %>" alt=""> <br>
+    <%= f.file_field :block_4_1_pic %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_1_标题</label>
+    <div class="controls">
+    <%= f.text_field :block_4_1_tit %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_1_内容</label>
+    <div class="controls">
+    <%= f.text_area :block_4_1_cont %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_1_链接</label>
+    <div class="controls">
+    <%= f.text_field :block_4_1_link %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_2_图片</label>
+    <div class="controls">
+    <img src="<%= @shouye.block_4_2_pic.url %>" alt=""> <br>
+    <%= f.file_field :block_4_2_pic %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_2_标题</label>
+    <div class="controls">
+    <%= f.text_field :block_4_2_tit %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_2_内容</label>
+    <div class="controls">
+    <%= f.text_area :block_4_2_cont %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_2_链接</label>
+    <div class="controls">
+    <%= f.text_field :block_4_2_link %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_3_图片</label>
+    <div class="controls">
+    <img src="<%= @shouye.block_4_3_pic.url %>" alt=""> <br>
+    <%= f.file_field :block_4_3_pic %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_3_标题</label>
+    <div class="controls">
+    <%= f.text_field :block_4_3_tit %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_3_内容</label>
+    <div class="controls">
+    <%= f.text_area :block_4_3_cont %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_4_3_链接</label>
+    <div class="controls">
+    <%= f.text_field :block_4_3_link %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">模块_5_内容</label>
+    <div class="controls">
+    <%= f.text_area :block_5_cont %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">联系电话</label>
+    <div class="controls">
+    <%= f.text_field :phone %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :footer do %>
+    <script type="text/javascript" src="/plugins/u/editor_config.js"></script>
+    <script type="text/javascript" src="/plugins/u/editor_all.min.js"></script>
+    <link rel="stylesheet" href="/plugins/u/themes/default/css/ueditor.css" />   
+    <script type="text/javascript">
+      var page_cont = new UE.ui.Editor();
+      new UE.ui.Editor().render('shouye_lianxi');
+      new UE.ui.Editor().render('shouye_block_1_cont');
+      new UE.ui.Editor().render('shouye_block_2_cont');
+      new UE.ui.Editor().render('shouye_block_3_cont');
+      new UE.ui.Editor().render('shouye_block_4_1_cont');
+      new UE.ui.Editor().render('shouye_block_4_2_cont');
+      new UE.ui.Editor().render('shouye_block_4_3_cont');
+      new UE.ui.Editor().render('shouye_block_5_cont');
+    </script>
+<% end %>

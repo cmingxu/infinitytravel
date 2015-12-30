@@ -1,0 +1,55 @@
+<%= form_for([:admin, @destination],:html => {:class => "form-horizontal" }) do |f| %>
+  <% if @destination.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@destination.errors.count, "error") %> prohibited this destination from being saved:</h2>
+
+      <ul>
+      <% @destination.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="control-group">
+    <label class="control-label">name</label>
+    <div class="controls">
+    <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">desc_title</label>
+    <div class="controls">
+    <%= f.text_field :desc_title %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">上级地区</label>
+    <div class="controls">
+    <%= f.select :parent_id, Destination.order('id').collect {|c| [ c.name, c.id ] }, { :include_blank => true }%>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">desc</label>
+    <div class="controls">
+    <%= f.text_area :desc %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>
+
+
+<% content_for :footer do %>
+    <script type="text/javascript" src="/plugins/u/editor_config.js"></script>
+    <script type="text/javascript" src="/plugins/u/editor_all.min.js"></script>
+    <link rel="stylesheet" href="/plugins/u/themes/default/css/ueditor.css" />   
+    <script type="text/javascript">
+      var desc = new UE.ui.Editor();
+      new UE.ui.Editor().render('destination_desc');
+    </script>
+<% end %>

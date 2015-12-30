@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title><%= Shouye.last.title %></title>
+	<meta name="Description" id="Description" content="高端旅游  非洲 旅行 奢华 澳洲 肯尼亚 坦桑尼亚 动物大迁徙" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="Keywords" id="Keywords" content="高端旅游  非洲 旅行 奢华 澳洲 肯尼亚 坦桑尼亚 动物大迁徙" />
+	<meta name="Generator" id="Generator" content="erhuamao Content Server Build 6.2.1.16" />
+  <meta property="wb:webmaster" content="0b0c2f7a9b67ecf0" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/default_1.1.4.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/uni-form-generic.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/trip_1.0.4.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/stylesheets/erhuamao.css" media="screen" />
+	<link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+	<%= yield :header %>
+	<!-- add some extra style for travel -->
+	<%= csrf_meta_tag %>
+</head>
+<body lang="en" class="two_column_layout">
+	<div id="erhuamao">
+		<div class="hide_from_print">
+			<!-- BRANDING-CONTENT -->
+			<div id="branding-content">
+				<div id="contact">
+					<span class="phone"><%= Shouye.last.phone %></span>
+					<ul class="clear_list_style self_clear">
+						<li>服务热线</li>
+						<li>
+							<a href="/welcome/compare" id="compare_trips_btn" title="Compare Trips">
+								线路比较 -
+								<span id="saved_trip_count">0</span>
+							</a>
+						</li>
+							<% if user_signed_in? %>
+              <li class='user_nav'>
+                <a href="/users/<%= current_user.id %>"><%= current_user.identity %> <span class="caret"></span></a>
+              </li>
+	              <% if current_user.admin? %>
+	                <li><a href="/admin">后台管理</a></li>
+	              <% end %>
+              <li class="">
+              <%= link_to "退出",  signout_path, :method => :delete %>
+              </li>
+              <% else %>
+                <li class="">
+                <a href="/signup">注册</a>
+                </li>
+                <li class="">
+                <a href="/login">登录</a>
+                </li>
+                <li class="">
+                <a href="/weibo_login"><%= image_tag "loginbtn_04.png" %></a>
+                </li>
+              <% end %>
+					</ul>
+					<form id="keword-search-form" class="light-form" action="/search" method="">
+						<input name="keyword" id="" type="text" size="25" value="" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+						<input type="submit" value=" 搜 索 " />
+					</form>
+				</div>
+				<a class="logo" href="/" title="帝国假日">
+					<img src="<%= Shouye.last.logo.url %>" width="250" height="90" alt="帝国假日" />
+				</a>
+			</div>
+			<!-- PRIMARY-NAVIGATION -->
+			<table id="primary_navigation">
+				<tbody>
+					<tr>
+						<td nowrap="nowrap">
+							<a href="/search" title="">搜索</a>
+						</td>
+						<td nowrap="nowrap">
+							<a href="/destinations">旅游目的地</a>
+							<div class="block menu">
+								<ul>
+									<% Destination.all.each do |destination| %>
+										<% if destination.is_root?  %>
+										<li>
+											<a href="/destinations/<%= destination.id %>"><%= destination.name %></a>
+										</li>
+										<% end %>
+									<% end %>
+								</ul>
+							</div>
+						</td>
+						<td nowrap="nowrap">
+							<a href="/interests" title="">旅行系列</a>
+							<div class="block menu">
+								<ul>
+									<% Interest.all.each do |interest| %>
+										<% if interest.is_root?  %>
+										<li>
+											<a href="/interests/<%= interest.id %>"><%= interest.title %></a>
+										</li>
+										<% end %>
+									<% end %>
+								</ul>
+							</div>
+						</td>
+						<td nowrap="nowrap">
+							<a href="/events">新闻</a>
+							<div class="block menu">
+								<ul>
+									<li>
+										<a href="/presses">最新动态</a>
+									</li>
+									<li>
+			              <a href="/presses">新闻发布</a>
+			            </li>
+			            <li>
+			              <a href="/pages/3">荣誉和奖项</a>
+			            </li>
+			            <li>
+			              <a href="/photocontests">客户旅行照片赏</a>
+			            </li>
+								</ul>
+							</div>
+						</td>
+						<td nowrap="nowrap">
+							<a href="/specialoffers/">特别优惠</a>
+						</td>
+						<td nowrap="nowrap">
+							<a href="/customizebookings/new">线路订制</a>
+						</td>
+						<td nowrap="nowrap">
+							<a href="/pages/16">会员俱乐部</a>
+							<div class="block menu">
+								<ul>
+									<% Page.where(:page_type => 1).each do |page| %>
+						                <li>
+						                  <a href="/pages/<%= page.id %>"><%= page.name %></a>
+						                </li>
+						            <% end %>
+								</ul>
+							</div>
+						</td>
+						<td nowrap="nowrap">
+							<a href="/pages" title="">关于我们</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!-- BRAND-MARKETING -->
+			<div id="brand_marketing">
+				<div id="cs_control_1580" class="cs_control slide_show_banner" style="width:960px;height:300px;">
+					<!-- Chooes-Banner -->
+					<% if @ishome %>
+            <% Banner.where(:imgname => "home").each do |banner| %>
+						<a href="<%= banner.link %>"><img src="<%= banner.cover.url %>" border="0" class="slide_show_img" width="960" height="300"/></a>
+						<% end %>
+					<% else %>
+						<% @banner = @sbanner || Banner.find_by_imgname(controller.controller_name ) %>
+						<% if @banner %>
+						<a href="<%= @banner.link %>"><img src="<%= @banner.cover.url %>" border="0" class="slide_show_img" width="960" height="300"/></a>
+						<% else %>
+							<img src="/images/default_banner.jpg" border="0" class="slide_show_img" width="960" height="300"/>
+						<% end %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+		<%= yield %>
+
+		<div class="hide_from_print">
+			<!-- SECONDARY NAVIGATION -->
+			<table id="secondary_navigation">
+				<tbody>
+					<tr>
+						<td nowrap="nowrap">
+							<a href="#" title="">联络我们</a>
+						</td>
+						<td nowrap="nowrap">
+							<a href="#" title="Travel Logs" target="_blank">隐私政策</a>
+						</td>
+						<td nowrap="nowrap">
+							<a href="#" title="" target="_blank">服务条款</a>
+						</td>
+						<td nowrap="nowrap"></td>
+						<td nowrap="nowrap"></td>
+						<td nowrap="nowrap"></td>
+						<td nowrap="nowrap"></td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- SITE INFORMATION -->
+			<div id="social_media" class="self_clear hidden">
+				<div id="price-assurance-footer">
+					<p class="base_font_size clear_margins">
+						<a href="/legal/price_assurance.cfm">
+							<img src="/images/price_assurance_small.gif" class="float_left" width="82" height="27" />
+						</a>
+						If the price goes down after you book, we will
+						<br />
+						refund the difference &mdash; guaranteed.
+					</p>
+				</div>
+				<ul class="clear_list_style clear_margins">
+					<li>
+						<a href="#" target="_blank" title="Facebook" onClick="pageTracker._trackEvent('Content', 'Social Media', jQuery(this).attr('title'));">
+							<img src="/images/facebook.gif" width="20" height="20" />
+						</a>
+					</li>
+					<li>
+						<a href="#" target="_blank" title="You Tube" onClick="pageTracker._trackEvent('Content', 'Social Media', jQuery(this).attr('title'));">
+							<img src="/images/you_tube.gif" width="20" height="20" />
+						</a>
+					</li>
+					<li>
+						<a href="#" target="_blank" title="Pinterest" onClick="pageTracker._trackEvent('Content', 'Social Media', jQuery(this).attr('title'));">
+							<img src="/images/pinterest.gif" width="20" height="20" />
+						</a>
+					</li>
+					<li>
+						<a href="#" target="_blank" title="Twitter" onClick="pageTracker._trackEvent('Content', 'Social Media',jQuery(this).attr('title'));">
+							<img src="/images/twitter.gif" width="20" height="20" />
+						</a>
+					</li>
+				</ul>
+				<p class="base_font_size float_left twitter_feed">
+					<span class="twitter_blue">
+						<a href="#" target="_blank">Latest from @AKTravel_USA:</a>
+					</span>
+					Vanessa Williams shares why Egypt draws her back again and again.   http://t.co/GPwfRjdFN4 @elite_traveler @vwofficial 9 hours ago
+				</p>
+			</div>
+			<hr />
+			<!-- SEO LINKS -->
+			<div id="seo_links">
+				
+			<% Destination.all.each do |destination| %>
+				<% if destination.is_root?  %>
+				<ul class="clear_list_style">
+					<li>
+						<a href="/destinations/<%= destination.id %>"><%= destination.name %></a>
+					</li>
+					<% destination.descendants.each do |c_destination| %>
+						<li>
+							|
+						<a href="/destinations/<%= c_destination.id %>" title="<%= c_destination.name %> Safari"><%= c_destination.name %></a>
+						</li>
+					<% end %>
+				</ul>
+				<% end %>
+			<% end %>
+			</div>
+			<p class="base_font_size">
+				&copy;2012-2013 帝国旅行中国有限公司. 版权所有. &nbsp;&nbsp;京ICP备1302600
+			</p>
+		</div>
+		<a class='akOverlay' href='/assets/cf/apps/lifestyle-club/overlay-links.cfm'>&nbsp;</a>
+		<div id="sf_fl_content"></div>
+		<!-- End SearchForce tracking code -->
+	</div>
+	<div style="display:block; clear:left; padding:0px; font-family:Verdana,Arial; font-size:10px; color:gray;"></div>
+
+	<script type="text/javascript" src="/javascripts/jquery1.7.2.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.cookie.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.rails.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.slides.min.js"></script>
+	<script type="text/javascript" src="/javascripts/erhuamao.js"></script>	
+		<!-- INITIALIZE APPLICATION -->
+	<script type="text/javascript">
+	// $("#primary_navigation>tbody>tr>td").hover(function(){
+	// 	// $(this).child("a").addClass("show_menu");
+	// 	// $(this).child("div.block.menu").addClass("show_menu");
+	// },function(){});
+	$("#dates_prices dl.expando dt").click(function(){
+		$(this).next().toggleClass("show");
+	})
+
+  function changeTravelCount() {
+    $("#record_count_control").load("/travel_count?" + $("form#keword-search-form").serialize());
+  };
+	</script>
+	<%= yield :footer %>
+</body>
+</html>

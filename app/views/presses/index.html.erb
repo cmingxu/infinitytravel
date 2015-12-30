@@ -1,0 +1,116 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+  <li>
+    <a href="/">首页</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <li>
+    <a href="/events">最新动态</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <li>新闻发布</li>
+</ul>
+<div class="self_clear">
+  <div id="secondary_content" class="hide_from_print">
+    <div id="cs_control_3131" class="">
+      <div class="CS_Element_Schedule" title="" id="CS_Element_contentleft">
+        <a name="custom12103" id="custom12103"></a>
+        <a name="CP_JUMP_12103" id="CP_JUMP_12103"></a>
+        <div id="cs_control_12103" class="cs_control CS_Element_Custom">
+          <div class="hl3">新闻和动态导航</div>
+          <!-- OHSU Nav -->
+          <ul class="section cspot_nav">
+            <li class="icon bullet_arrow">
+              <a href="/events">最新动态</a>
+            </li>
+            <li class="navigation_active icon bullet_arrow">
+              <a href="/presses">新闻发布</a>
+            </li>
+            <li class="icon bullet_arrow">
+              <a href="/pages/3">荣誉和奖项</a>
+            </li>
+            <li class="icon bullet_arrow">
+              <a href="/photocontests">客户旅行照片赏</a>
+            </li>
+          </ul>
+        </div>
+        <a name="customcf4702" id="customcf4702"></a>
+        <a name="CP_JUMP_4702" id="CP_JUMP_4702"></a>
+        <div id="cs_control_4702" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1575_4702">
+            <div class="end_cap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="dMainFBContest"></div>
+  </div>
+  <div id="primary_content" class="align_edges">
+    <div id="cs_control_1329" class="">
+      <div class="CS_Element_Schedule" title="" id="CS_Element_content">
+        <a name="customcf8184" id="customcf8184"></a>
+        <a name="CP_JUMP_8184" id="CP_JUMP_8184"></a>
+        <div id="cs_control_8184" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1575_8184">
+            <h1>新闻发布</h1>
+            <dl id="press_releases" class="line_rule cap_ends">
+              <% @presses.each do |press| %>
+              <dt>
+                <a href="/presses/<%= press.id %>">
+                  <%= press.title %>
+                </a>
+              </dt>
+              <dd>
+                <p>
+                  <%= raw truncate(press.cont, :length => 300, :omission => '...') %>
+                  <a class="icon article" href="/presses/<%= press.id %>">详细内容</a>
+                </p>
+              </dd>
+              <% end %>
+            </dl>
+            <div class="paging self_clear">
+              <%= paginate @presses %>
+              <span>分页:</span> 显示 <%= @presses.offset_value + 1 %> - <%= @presses.offset_value + @presses.length %> 总共 <%= @presses.total_count %>
+            </div>
+            <!-- Media Contact -->
+            <div id="media">
+              <div class="photo_contact round_corners color_e4e5e6">
+                <div class="ctl"></div>
+                <div class="ctr"></div>
+                <div class="cbr"></div>
+                <div class="cbl"></div>
+                <h3>提交您的旅行照片</h3>
+                <p>
+                  <a href="/login" target="_blank">点击这里</a>
+                  把您的精彩旅行照片提交给我们，我们将挑选出精彩的照片在网站中展示.
+                </p>
+                <p class="clear_margins">
+                  <a class="icon swirl_arrow" href="/photocontests" target="_blank">查看照片</a>
+                </p>
+              </div>
+              <div class="press_contact round_corners color_f2f2f2">
+                <div class="ctl"></div>
+                <div class="ctr"></div>
+                <div class="cbr"></div>
+                <div class="cbl"></div>
+                <h3>媒体联系</h3>
+                <p>
+                  联系人
+                  <br>
+                  800 800 800  ext. 001
+                  <br>
+                  <a href="mailto:justin@infinitytravel.com.cn" target="_blank">justin@infinitytravel.com.cn</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="cs_control_17875" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1575_17875">
+            <!-- META DATA BEGIN -->
+            <!-- META DATA END -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

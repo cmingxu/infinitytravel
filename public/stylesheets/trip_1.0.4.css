@@ -1,0 +1,403 @@
+@charset "utf-8";
+
+
+
+/*@COMBINED STYLE RULES
+--------------------------------------*/
+#chat_reminder,
+#mini_map,
+#con-video{
+	/*Align element right*/
+	float:right;
+
+}
+.trip_navigation,
+#dates_and_prices th{
+	/*Set background-color to medium gray*/
+	background-color:#e4e5e6;
+
+}
+.trip_navigation td,
+#dates_and_prices td{
+	/*Remove default padding*/
+	padding:0;
+
+}
+.trip_navigation td *,
+#dates_and_prices label{
+	/*Make block-level so elements spans the entire width of parent container*/
+	display:block;
+
+}
+.trip_navigation a,
+#dates_and_prices label{
+	/*IE6; Triggers hasLayout; Registers event with entire element area*/
+	-height:1%;
+
+}
+.trip_navigation a:hover,
+.trip_navigation span{
+	/*Set background-color to light blue*/
+	background-color:#ccdae5;
+
+}
+/*@END--------------------------------*/
+
+
+
+
+
+
+
+
+
+
+/*@CHAT REMINDER
+--------------------------------------*/
+#chat_reminder{
+	/*Set a fixed width*/
+	width:121px;
+	/*Set a fixed height*/
+	height:45px;
+	/*Liveperson text image; Use for testing*/
+	/*background:url(/assets/images/liveperson/default/reponline.gif) no-repeat;*/
+	/*Show cursor like standard links*/
+	cursor:pointer;
+	
+}
+/*@END--------------------------------*/
+
+
+
+
+
+
+
+
+
+
+/*@TRIP NAVIGATION
+--------------------------------------*/
+.trip_navigation{
+	/*FF; Reset for table fix defined in @TYPE SELECTORS*/
+	margin:0;
+	/*FF; Reset for table fix defined in @TYPE SELECTORS*/
+	width:100%;
+	/*Override default font-size*/
+	font-size:12px;
+
+}
+.trip_navigation td *{
+	/*Use left and right padding to make gap equal between text nodes*/
+	padding:0 31px;
+	/*Use line-height to set the height and vertically center "span" and "a" elements*/
+	line-height:26px;
+	/*IE6,7; Adjust value to center*/
+	$line-height:27px;
+	/*Center text*/
+	text-align:center;
+
+}
+.trip_navigation a:hover{
+	/*Remove default underline*/
+	text-decoration:none;
+	
+}
+/*@END--------------------------------*/
+
+
+
+
+
+
+
+
+
+
+/*@TRIP OVERVIEW
+--------------------------------------*/
+#mini_map, #con-video {position:relative; margin-left:15px; width:205px; height:126px;}
+
+#con-video div {position:relative; background:#e4e5e6; padding:5px 8px; top:100px;}
+#con-video span {float:none; color:#0f5d9d;}
+	
+#mini_map {background:url(/images/small_map.gif) no-repeat;}
+#mini_map img {position:absolute;}
+
+
+/*@DATES AND PRICES
+--------------------------------------*/
+#dates_and_prices th{
+	/*Set border-bottom properties*/
+	border-bottom:1px solid #fff;
+
+}
+#dates_and_prices td{
+	/*Set border-top properties*/
+	border-top:1px solid #e4e5e6;
+
+}
+#dates_and_prices label{
+	/*Padding was removed from "td" elements and added back on "label" elements*/
+	padding:3px 4px;
+	/*IE6,7; Adjust padding values*/
+	$padding:2px 4px;
+	
+}
+#dates_and_prices tbody tr:hover{
+	/*Change background-color to light gray*/
+	background-color:#f4f4f4;
+
+}
+#dates_and_prices label input{
+	/*SA; Reset to default value*/
+	[;vertical-align:baseline;]
+	/*IE6,7; Reset*/
+	$vertical-align:middle;
+
+}
+
+
+
+
+
+
+/***********************************************/
+#dates_prices dt{
+	background-color:#e5e5e5;
+	border-bottom:1px solid #fff;
+	margin:0;
+	background-position:10px 9px;
+	
+}
+#dates_prices th{
+	text-align:left;
+	
+}
+#dates_prices dt table th{
+	/*width:240px;*/
+	padding:5px 13px 5px 10px;
+	
+}
+#dates_prices dt table th.highlight{padding-left:0;}
+#dates_prices dt table th.last_child{
+	text-align:right;
+	font-weight:normal;
+	font-style:italic;
+	
+}
+#dates_prices dd tr:hover{
+	background-color:#f4f4f4;
+
+}
+#dates_prices dd table th{
+	padding:5px 0 3px;
+	
+}
+#dates_prices dd table td{
+	padding:3px 0;
+	
+}
+/*COLUMN WIDTH*/
+#dates_prices dd table td.width20{
+	width:20px;
+	text-align:center;
+	
+}
+#dates_prices dd table td.width116{
+	width:116px;
+	
+}
+#dates_prices dd table td.width138{
+	width:138px;
+	
+}
+#dates_prices dd table td.width150{
+	width:150px;
+	
+}
+#dates_prices dd table td.width165{
+	width:165px;
+	
+}
+#dates_prices dd table thead tr th{
+	border-bottom:1px solid #e5e5e5;
+	
+}
+/*REQUEST BOOKING*/
+#dates_prices .request_booking{
+	/*Set internal spacing*/
+	padding:10px 0;
+	border-top:1px solid #e4e5e6;
+	
+}
+#dates_prices .request_booking span{
+	float:right;
+	
+}
+#dates_prices .request_booking div{
+	float:right;
+	margin-right:20px;
+	color:#F00;
+	display:none;
+}
+
+
+
+
+/*@END--------------------------------*/
+
+
+
+
+
+
+
+
+/*@FOOTNOTES
+--------------------------------------*/
+.footnotes{
+	margin:15px 0 10px;
+	padding:0 8px;
+}
+
+
+/*@END--------------------------------*/
+
+
+
+
+
+
+
+
+
+/*@TRIP NAVIGATION TOP
+--------------------------------------*/
+#trip_navigation_top{
+    /*float:left;*/
+    width:100%;
+    background:#fff;
+    font-size:93%;
+    line-height:normal;
+	margin:15px 0 0px;
+
+}
+#trip_navigation_top ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	
+}
+#trip_navigation_top li{
+	float:left;
+	background:url("/images/tableft.gif") no-repeat left top;
+    margin:0;
+    padding:0 0 0 5px;
+
+}
+#trip_navigation_top a{
+	float:left;
+	display:block;
+	background:url("/images/tabright.gif") no-repeat right top;
+			
+}
+/* 5 TABS */
+.padding_5_tabs a{
+	padding:5px 36px 4px 29px;
+			
+}
+/* 6 TABS */
+.padding_6_tabs a{
+	padding:5px 25px 4px 18px;
+			
+}
+#trip_navigation_top li:hover,
+#trip_navigation_top li:hover a{
+  	background-position:0% -150px;
+  	color:#444;
+	
+}
+#trip_navigation_top li:hover a{
+	text-decoration:none;
+  	background-position:100% -150px;
+	
+}
+
+#trip_navigation_top .current{
+	background-position:0% -150px;
+  	border-width:0;
+	
+}
+#trip_navigation_top .current a{
+	background-position:100% -150px;
+	color:#333;
+	
+}
+/*@END--------------------------------*/
+
+
+
+
+
+
+
+
+/*@TRIP NAVIGATION BOTTOM
+--------------------------------------*/
+#trip_navigation_bottom{
+	border-top:2px solid #e4e5e6;
+	margin-top:30px;
+	/*Remove default bullets*/
+	list-style-type:none;
+	padding:10px 0 0;
+
+}
+#trip_navigation_bottom li{
+	/*Align elements left*/
+	float:left;
+	/**/
+	margin-right:20px;
+	/*IE6; Emulate ":first-child" pseudo selector*/
+	-$clear:expression(
+		(!previousSibling)? className += " li_first_child" : 0,
+		style.clear = "none", 0
+	
+	);
+
+}
+#trip_navigation_bottom .li_first_child{
+	/*IE6; Align element right*/
+	-float:right;
+	/*IE6; Remove the right margin set on "li" elements*/
+	-margin-right:0;
+
+}
+#trip_navigation_bottom li:first-child{
+	/*Align element right*/
+	float:right;
+	/*Remove the right margin set on "li" elements*/
+	margin-right:0;
+
+}
+/*@END--------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

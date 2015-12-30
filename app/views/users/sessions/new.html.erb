@@ -1,0 +1,137 @@
+		<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+			<li>
+				<a href="/">首页</a>
+				&nbsp;&nbsp;/&nbsp;&nbsp;
+			</li>
+			<li>登录</li>
+		</ul>
+		<div class="self_clear">
+			<div id="secondary_content" class="hide_from_print">
+				<div id="cs_control_3131" class="">
+					<div class="CS_Element_Schedule" title="" id="CS_Element_contentleft">
+						<a name="custom12234" id="custom12234"></a>
+						<a name="CP_JUMP_12234" id="CP_JUMP_12234"></a>
+						<div id="cs_control_12234" class="cs_control CS_Element_Custom">
+							<div class="hl3">俱乐部导航</div>
+							<!-- OHSU Nav -->		
+							<ul class="section cspot_nav">
+									<li>
+										<a href="/pages/10">会员权益</a>
+									</li>
+									<li>
+										<a href="/pages/11">旅行邀请</a>
+									</li>
+									<li>
+										<a href="/pages/12">邀请向导</a>
+									</li>
+									<li>
+										<a href="/photocontests">会员旅行照片赏</a>
+									</li>
+									<li>
+										<a href="/signup">会员资格</a>
+									</li>
+									<li>
+										<a href="/pages/14">俱乐部历史</a>
+									</li>
+									<li>
+										<a href="/pages/15">用户协议及条款</a>
+									</li>
+									<li>
+										<a href="/signup">新会员注册</a>
+									</li>
+							</ul>
+						</div>
+						<div id="cs_control_14737" class="cs_control CS_Element_Custom">
+							<div class="hl3">旅行手册</div>
+							<div class="section">
+								<% brochure = Brochure.last %>
+								<div class="related_brochure self_clear">
+									<p>
+										<img src="<%= brochure.cover.url %>" width="93" height="120" alt="<%= brochure.name %>" title="<%= brochure.name %>"><%= brochure.name %></p>
+									<ul>
+										<li><a class="icon page_flip" href="<%= brochure.doc.url %>" title="View <%= brochure.name %>" rel="<%= brochure.name %>" target="_blank" >阅览</a></li>
+                  	<li><a class="icon download" href="<%= brochure.doc.url %>">下载</a></li>
+										</li>
+									</ul>
+								</div>
+								<p>
+									<a class="icon swirl_arrow" href="/brochures">查看所有旅行手册</a>
+								</p>
+							</div>
+						</div>
+						<a name="customcf8569" id="customcf8569"></a>
+						<a name="CP_JUMP_8569" id="CP_JUMP_8569"></a>
+						<div id="cs_control_8569" class="cs_control CS_Element_CustomCF">
+							<div id="CS_CCF_2421_8569">
+								<div class="end_cap"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="dMainFBContest"></div>
+			</div>
+			<div id="primary_content" class="align_edges">
+			<div id="cs_control_1329" class="">
+				<div class="CS_Element_Schedule" title="" id="CS_Element_content">
+					<div id="cs_control_9208" class="cs_control CS_Element_Textblock">
+						<div class="CS_Textblock_Text">
+							<h1>登录会员俱乐部</h1>
+						</div>
+					</div>
+					<div id="cs_control_5122" class="cs_control CS_Element_CustomCF">
+						<div id="CS_CCF_3360_5122">
+							<p>
+                <%= flash[:notice] %>
+							</p>
+              <p>
+                <%= flash[:alert] %> </p>
+
+							<div style="width:99%">
+								<form class="uniForm" accept-charset="UTF-8" action="/login" class="user_new" id="user_login" method="post">
+									<fieldset class="inlineLabels">
+										<h3>登录会员俱乐部</h3>
+										<div id="ctrlHolder_temporary_login" class="ctrlHolder borderTop">
+											<label for="temporary_login" class="required"> <em>*</em>
+												请输入您登录时的邮箱地址:
+											</label>
+											<input name="user[email]" id="temporary_login" value="" type="text" class="required integer textInput" tabindex="1"></div>
+										<div id="ctrlHolder_temporary_pwd" class="ctrlHolder">
+											<label for="temporary_pwd" class="required">
+												<em>*</em>
+												请输入您的密码:
+											</label>
+											<input name="user[password]" id="temporary_pwd" value="" type="password" class="required textInput" tabindex="2"></div>
+									</fieldset>
+									<div class="buttonHolder">
+										<input type="submit" name="submit_btn" id="submit_btn" value="登录" class="uniFormButton" onclick="" tabindex="3"></div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+
+
+<% content_for :footer do %>
+	<script type="text/javascript" src="/javascripts/happy.js"></script>
+	<script>
+	  $(document).ready(function () {
+	    $('#welcome_form').isHappy({
+	      fields: {
+	        // reference the field you're talking about, probably by `id`
+	        // but you could certainly do $('[name=name]') as well.
+	        '#temporary_login': {
+	          required: true,
+	          message: 'Please input a username.',
+	        },	        
+	        '#temporary_pwd': {
+	          required: true,
+	          message: 'Please input a Password.',
+	        }
+	      }
+	    });
+	  }); 
+	</script>
+<% end %>

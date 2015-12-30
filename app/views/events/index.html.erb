@@ -1,0 +1,121 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+  <li>
+    <a href="/">首页</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <li>新闻动态</li>
+</ul>
+<div class="self_clear">
+  <div id="secondary_content" class="hide_from_print">
+    <div id="cs_control_3131" class="">
+      <div class="CS_Element_Schedule" title="" id="CS_Element_contentleft">
+        <a name="custom12103" id="custom12103"></a>
+        <a name="CP_JUMP_12103" id="CP_JUMP_12103"></a>
+        <div id="cs_control_12103" class="cs_control CS_Element_Custom">
+          <div class="hl3">新闻和动态导航</div>
+          <!-- OHSU Nav -->
+          <ul class="section cspot_nav">
+            <li class="navigation_active icon bullet_arrow">
+              <a href="/events">最新动态</a>
+            </li>
+            <li class="icon bullet_arrow">
+              <a href="/presses">新闻发布</a>
+            </li>
+            <li class="icon bullet_arrow">
+              <a href="/pages/3">荣誉和奖项</a>
+            </li>
+            <li class="icon bullet_arrow">
+              <a href="/photocontests">客户旅行照片赏</a>
+            </li>
+          </ul>
+        </div>
+        <a name="customcf4702" id="customcf4702"></a>
+        <a name="CP_JUMP_4702" id="CP_JUMP_4702"></a>
+        <div id="cs_control_4702" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1389_4702">
+            <div class="end_cap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="dMainFBContest"></div>
+  </div>
+  <div id="primary_content" class="align_edges">
+    <div id="cs_control_1329" class="">
+      <div class="CS_Element_Schedule" title="" id="CS_Element_content">
+        <a name="customcf8174" id="customcf8174"></a>
+        <a name="CP_JUMP_8174" id="CP_JUMP_8174"></a>
+        <div id="cs_control_8174" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1389_8174">
+            <h1>最新动态</h1>
+            <% @events.each do |event| %>
+            <h2><%= event.title %></h2>
+            <p>
+              <%= raw event.cont %>
+            </p>
+            <p>
+              <br></p>
+            <% end %>
+
+            <h2>其它动态</h2>
+            <dl class="self_clear">
+              <!-- Other news event 1 -->
+              <% @presses.each do |press| %>
+              <dt style="padding-top:12px;" class="line_rule_solid">
+                <a class="toggle_btn" rel="news_event_1" href="/presses/<%= press.id %>">
+                  <%= press.title %>
+                </a>
+              </dt>
+              <dd class="self_clear">
+                <p>
+                  <%= raw truncate(press.cont, :length => 600, :omission => '...') %>
+                </p>
+                <p>
+                  <a class="icon article toggle_btn" rel="news_event_1" href="/presses/<%= press.id %>">详细内容</a>
+                </p>
+                <!-- Other news event 2 -->
+              </dd>
+              <% end %>
+            </dl>
+            <!-- Media Contact -->
+            <div id="media">
+              <div class="photo_contact round_corners color_e4e5e6">
+                <div class="ctl"></div>
+                <div class="ctr"></div>
+                <div class="cbr"></div>
+                <div class="cbl"></div>
+                <h3>提交您的旅行照片</h3>
+                <p>
+                  <a href="/login" target="_blank">点击这里</a>
+                  把您的精彩旅行照片提交给我们，我们将挑选出精彩的照片在网站中展示.
+                </p>
+                <p class="clear_margins">
+                  <a class="icon swirl_arrow" href="/photocontests" target="_blank">查看照片</a>
+                </p>
+              </div>
+              <div class="press_contact round_corners color_f2f2f2">
+                <div class="ctl"></div>
+                <div class="ctr"></div>
+                <div class="cbr"></div>
+                <div class="cbl"></div>
+                <h3>媒体联系</h3>
+                <p>
+                  联系人
+                  <br>
+                  <a href="mailto:justin@infinitytravel.com.cn" target="_blank">justin@infinitytravel.com.cn</a>
+                </p>
+              </div>
+            </div>
+            <!-- End -->
+          </div>
+        </div>
+      </div>
+      <div id="cs_control_17873" class="cs_control CS_Element_CustomCF">
+        <div id="CS_CCF_1389_17873">
+          <!-- META DATA BEGIN -->
+          <!-- META DATA END -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

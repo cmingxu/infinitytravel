@@ -1,0 +1,205 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+	<li>
+		<a href="/">首页</a>
+	</li>
+	<li>&nbsp;&nbsp;/&nbsp;&nbsp;搜索</li>
+</ul>
+<div class="self_clear">
+	<div id="secondary_content" class="hide_from_print">
+		<div class="hl3">旅行线路</div>
+		<dl class="section clear_list_style">
+			<dt>旅行目的地</dt>
+			<dd>
+				<ul class="section cspot_nav">
+                        <% @destinations.each do |destination| %>
+                            <% if destination.is_root?  %>
+                                <li class="icon <%= destination.has_children? ?  'expando_hide' : 'bullet_arrow' %>">
+                                    <a href="/destinations/<%= destination.id %>/"><%= destination.name %></a>
+                                </li>
+                            <% end %>
+                        <% end %>
+                    </ul>
+			</dd>
+			<!-- TRAVEL INTERESTS -->
+			<dt>旅行兴趣点</dt>
+			<dd>
+				<ul class="attribute_list clear_list_style">
+					<% @interests.each do |interest| %>
+						<li>
+							<a href="/search?interest=<%= interest.id %>" title="<%= interest.title %>"><%= interest.title %> (<%= interest.travels.size %>)</a>
+						</li>
+					<% end %>
+				</ul>
+			</dd>
+			<!-- 
+			<dt>Departure Date</dt>
+			<dd>
+				<ul class="attribute_list clear_list_style">
+					<% @departure_dates_years.each do |departure_date_year| %>
+					<li>
+						<a href="/search" title="Search for <%= departure_date_year %> trips"><%= departure_date_year %></a>
+					</li>
+						<% Datesprice.by_year(departure_date_year).map{|d| d.start_date.strftime("%Y.%m")}.uniq.sort.each do |departure_date_month| %>
+							<li>
+								<a href="/search" title="Search for <%= departure_date_month %> trips"><%= departure_date_month %></a>
+							</li>
+						<% end %>
+					<% end %>
+				</ul>
+			</dd>
+			DEPARTURE DATES -->
+			<!-- PRICE RANGE -->
+			<dt>价格区间</dt>
+			<dd>
+				<ul class="attribute_list bullet_list">
+					<li>
+						<a href="/search?price_start=0&price_end=10000" title="Search for Less than 5,000 trips">小于 10,000</a>
+					</li>
+					<li>
+						<a href="/search?price_start=10000&price_end=250000" title="Search for 10,000 - 25,000 trips">10,000 - 25,000</a>
+					</li>
+					<li>
+						<a href="/search?price_start=25000&price_end=35000" title="Search for 25,000 - 35,000 trips">25,000 - 35,000</a>
+					</li>
+					<li>
+						<a href="/search?price_start=35000&price_end=50000" title="Search for 35,000 - 50,000">35,000 - 50,000</a>
+					</li>
+					<li>
+						<a href="/search?price_start=50000&price_end=10000000" title="Search for 50,000 &amp; Above trips">50,000 &amp; 以上</a>
+					</li>
+				</ul>
+			</dd>
+		</dl>
+		<div class="end_cap"></div>
+		<div id="dMainFBContest"></div>
+	</div>
+	<div id="primary_content" class="align_edges">
+		<h1>搜索</h1>
+		<form id="keyword-search" class="light-form" style="margin:14px 0;" action="/search" method="">
+			<input name="keyword" id="kwf_embed" type="text" size="25" value="" class="ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+			<input type="submit" value="搜索" src="/images/search_button.gif"></form>
+		<!-- PRIVATE TRAVEL BOX -->
+		<div id="customize_trip">
+			<span class="customize_trip_button">
+				<a href="/gbookings/new">点此提交需求</a>
+			</span>
+			<h3 class="clear_margins">“I Dream”（心之梦）私人旅行高端订制线路</h3>
+			<p class="clear_margins">
+				<br>
+        帝国旅行销售的所有线路都可以为小型团队、家庭、企业用户等提供灵活多样的出行方案，您可致电4000-917-321 联络我们，或在线提交您的旅行需求，我们将竭诚为您服务.
+			</p>
+		</div>
+		<!-- SEARCH RESULTS -->
+		<!-- SEARCH RESULTS -->
+		<ul id="search-results" class="self_clear clear_list_style">
+			<% @travels.each_with_index do |travel,index| %>
+			<li class="self_clear">
+				<a href="/travels/<%= travel.id %>" title="<%= travel.name %>">
+					<img src="<%= travel.cover.url %>" alt="<%= travel.name %>" title="<%= travel.name %>"></a>
+				<h3>
+					<a href="/travels/<%= travel.id %>" title="<%= travel.name %>"><%= travel.name %></a>
+				</h3>
+				<span class="search-details">
+					最低价格 
+                      ￥<%= travel.priced_from %>
+				</span>
+				<span style='line-height: 15px'>
+          <img src="images/<%= travel.interest_icon %>.jpg" alt="" height="10" width="10"  style="width:15px;height:15px;margin-right: 7px;" />
+					<a class="" href="javascript:void(0);" onclick="getSeriesOverlay(this)" title="<%= travel.interests.first.title %>"><%= travel.interests.first.title %></a>
+				</span>
+				<ul class="self_clear clear_list_style clear_margins">
+					<li class="search-description">
+						<span class="float_right">
+							<input style="height:12px; width:12px; margin-right:6px;" class="select_trip float_left" type="checkbox" value="<%= travel.id %>" <%= "checked" if @compare_array.include? travel.id.to_s  %> />
+							<span>加入比较</span>
+							
+						</span>
+						<%= travel.days_count %> 天 |
+                    
+                    最多 <%= travel.max_group_size %> 人名额
+					</li>
+					<li>
+						<p>
+							<%= raw travel.overview_desc %>
+						</p>
+					</li>
+					<li class="quicklinks">
+						<span>
+							<a href="/travels/<%= travel.id %>/#tab2" title="View the itinerary for <%= travel.name %>">详细行程</a>
+							|
+							<a href="/travels/<%= travel.id %>/#tab3" title="View the dates &amp; prices for Taj Mahal &amp; the Treasures of India">团期及价格</a>
+						</span>
+					</li>
+				</ul>
+				<div class="text_modal">
+					<a class="close"></a>
+					<div class="overlay-details">
+						<div class="overlay-padding">
+							<h3 class="clear_margins"><%= travel.interests.first.title %></h3>
+							<p style="margin-bottom: 0px;"><%= travel.interests.first.cont %></p>
+						</div>
+					</div>
+				</div>
+			</li>
+				<% if  index == 2 %>
+					<li class="self_clear connections-leadin copy-block">
+						<div>
+						<img src="/images/xinzhidiguo.gif">
+
+						<h3 class="clear_margins">Early Bird 早客惠享</h3>
+						<span class="customize_trip_button base_font_size"><a href="/specialoffers/">查看更多优惠</a></span>
+						<p class="clear_margins" style="margin-top:3px !important;">帝国旅行建议您提前做好旅行计划并尽早报名，提前报名的客户可根据早客惠享计划享受各种优惠礼遇。</p>
+						</div>
+					</li>
+				<% end %>
+			<% end %>
+		</ul>
+		<div class="paging self_clear">
+      <%= paginate @travels %>
+      <span>分页:</span> 第 <%= @travels.offset_value + 1 %> - <%= @travels.offset_value + @travels.length %> 条，一共 <%= @travels.total_count %> 条
+    </div>
+	</div>
+</div>
+
+<% content_for :footer do %>
+<script>
+$("#search-results li.search-description span.float_right input.select_trip").change(function(){
+	var compare=$.cookie("trip_compare").split(","); //先将cookie 转换为数组
+	if($(this).is(":checked")){ //判断添加或删除
+		$(this).parent().find("span").html("<a href='/welcome/compare'>加入比较</a>");
+		for(i=0;i<compare.length;i++){ //枚举,去重
+			if(compare[i]==$(this).val()){
+				return false;
+			}
+		}
+		compare.push($(this).val());
+	}else{
+		for(i=0;i<compare.length;i++){
+			if(compare[i]==$(this).val()){
+				compare.splice(i,1); //删除所有匹配项
+			}
+		}
+		$(this).parent().find("span").html("加入比较");
+	}
+	if(compare.join(",")[0]==","){
+		$.cookie("trip_compare",compare.join(",").slice(1), { expires: 7, path: '/' }); // 去除第一个","
+	}else{
+		$.cookie("trip_compare",compare.join(","), { expires: 7, path: '/' }); // 转换为string
+	}
+	set_compare(); // 更改compare数目
+});
+var getSeriesOverlay=function(a){
+	$(a).parent().parent().find(".text_modal").show();
+	$('<div id="popout_modal_mask"></div>').appendTo("body");
+}
+$(".text_modal .close").click(function(){
+	$(".text_modal").hide();
+	$('#popout_modal_mask').remove();
+});
+$("#popout_modal_mask").live("click",function(){
+	$(".text_modal").hide();
+	$(".popout_modal").hide();
+	$(this).remove();
+})
+</script>
+<% end %>		

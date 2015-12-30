@@ -1,0 +1,40 @@
+<div class="row">
+<h3>后台管理 > Datesprice列表 <div class="pull-right"><%= link_to '创建新Datesprices', new_admin_datesprice_path %></div></h3>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>Travel</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Prices</th>
+    <th>Single supplement</th>
+    <th>Internal airfare</th>
+    <th>Availability status</th>
+    <th>Available people count</th>
+    <th>操作</th>
+  </tr>
+
+<% @datesprices.each do |datesprice| %>
+  <tr>
+    <td>
+      <%= datesprice.id %>
+    </td>
+    <td><%= datesprice.travel_id %></td>
+    <td><%= datesprice.start_date %></td>
+    <td><%= datesprice.end_date %></td>
+    <td><%= datesprice.prices %></td>
+    <td><%= datesprice.single_supplement %></td>
+    <td><%= datesprice.internal_airfare %></td>
+    <td><%= datesprice.availability_status %></td>
+    <td><%= datesprice.available_people_count %></td>
+    <td>
+      <%= link_to '查看', [:admin, datesprice] %> | 
+      <%= link_to '编辑', edit_admin_datesprice_path(datesprice) %> | 
+      <%= link_to '删除', [:admin, datesprice], :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= paginate @datesprices %>
+</div>

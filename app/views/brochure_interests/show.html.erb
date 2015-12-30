@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Brochure:</b>
+  <%= @brochure_interest.brochure_id %>
+</p>
+
+<p>
+  <b>Interest:</b>
+  <%= @brochure_interest.interest_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_brochure_interest_path(@brochure_interest) %> |
+<%= link_to 'Back', brochure_interests_path %>

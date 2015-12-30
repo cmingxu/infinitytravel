@@ -1,0 +1,13 @@
+<h1>Listing travels</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+
+<% @travels.each do |travel| %>
+  <tr>
+    <td><%= link_to travel.name, travel %></td>
+  </tr>
+<% end %>
+</table>

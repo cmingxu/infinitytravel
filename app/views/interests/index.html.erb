@@ -1,0 +1,117 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+  <li>
+    <a href="/">首页</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <li>旅行系列</li>
+</ul>
+<div class="self_clear">
+  <div id="secondary_content" class="hide_from_print">
+    <div id="cs_control_3131" class="">
+      <div class="CS_Element_Schedule" title="" id="CS_Element_contentleft">
+        <a name="custom12103" id="custom12103"></a>
+        <a name="CP_JUMP_12103" id="CP_JUMP_12103"></a>
+        <div id="cs_control_12103" class="cs_control CS_Element_Custom">
+          <div class="hl3">旅行系列导航</div>
+          <!-- OHSU Nav -->
+          <ul class="section cspot_nav">
+            <li class="navigation_active icon bullet_arrow">
+              <a href="/interests">Interests</a>
+              </li>
+              <% @interests.each do |interest| %>
+                <% if interest.is_root?  %>
+                <li class="icon <%= interest.has_children? ?  'expando_show' : 'bullet_arrow' %>">
+              <a href="/interests/<%= interest.id %>/"><%= interest.title %></a>
+              <% if interest.has_children?  %>
+                <ul>
+                <% interest.children.each do |interest_2| %>
+                  <li class="icon <%= interest_2.has_children? ?  'expando_show' : 'bullet_arrow' %>">
+                <a href="/interests/<%= interest_2.id %>/"><%= interest_2.title %></a>
+                <% if interest_2.has_children?  %>
+                  <ul>
+                  <% interest_2.children.each do |interest_3| %>
+                    <li class="icon <%= interest_3.has_children? ?  'expando_show' : 'bullet_arrow' %>">
+                  <a href="/interests/<%= interest_3.id %>/"><%= interest_3.title %></a>
+                  <% if interest_3.has_children?  %>
+                    <ul>
+                    <% interest_3.children.each do |interest_4| %>
+                      <li class="icon bullet_arrow">
+                    <a href="/interests/<%= interest_4.id %>/"><%= interest_4.title %></a>
+                    </li>
+                  <% end %>
+                  </ul>
+                <% end %>
+                  </li>
+                <% end %>
+                </ul>
+              <% end %>
+                </li>
+              <% end %>
+              </ul>
+            <% end %>
+              </li>
+            <% end %>
+            <% end %>
+            </ul>
+          </div>
+          <div id="cs_control_17146" class="cs_control CS_Element_CustomCF">
+            <div id="CS_CCF_16512_17146">
+              <div class="hl3">相关旅行手册</div>
+              <div class="section">
+                <div class="related_brochure self_clear" style="border:none;">
+                  <p>
+                  <img src="http://www.xxx.com/assets_global/media/images/brochure_covers/travel-brochure-2013-fan.jpg" width="80" height="78" alt="asia, india &amp; the pacific 2012 brochure" title="Asia, India &amp; the Pacific 2012 brochure"> <strong>需要更多旅行手册？</strong>
+                  </p>
+                  <ul>
+                    <li>
+                    <a class="icon swirl_arrow" href="/brochures/">全部旅行手册</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a name="customcf4702" id="customcf4702"></a>
+          <a name="CP_JUMP_4702" id="CP_JUMP_4702"></a>
+          <div id="cs_control_4702" class="cs_control CS_Element_CustomCF">
+            <div id="CS_CCF_16512_4702">
+              <div class="end_cap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="dMainFBContest"></div>
+    </div>
+    <div id="primary_content" class="align_edges">
+      <div id="cs_control_1329" class="">
+        <div class="CS_Element_Schedule" title="" id="CS_Element_content">
+          <div id="cs_control_16514" class="cs_control CS_Element_Textblock">
+            <div class="CS_Textblock_Text">
+              <h1>旅行系列</h1>
+            </div>
+          </div>
+          <div id="cs_control_16513" class="cs_control CS_Element_CustomCF">
+            <div id="CS_CCF_16512_16513">
+              <p class="hide">
+              Show you the world just the way you long to experience it. Our hallmark blend of comfort, authenticity and adventure illuminates every aspect of your journey – whether you choose to venture on an African safari worthy of Hemingway, trek remote terrain to reach the South Pole on foot or contemplate civilizations past in the shadows of the great pyramids alongside your family.
+              </p>
+              <ul class="clear_list_style self-clear-child">
+                <% @interests.each do |interest| %>
+                  <li>
+                <h3><%= interest.title %></h3>
+                <p>
+                <img class="float_left" width="115" src="<%= interest.cover.url %>">
+                <%= interest.cont %>
+                </p>
+                <p>
+                <a class="icon swirl_arrow" href="/interests/<%= interest.id %>">查看详细</a>
+                </p>
+                </li>
+              <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

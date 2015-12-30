@@ -1,0 +1,61 @@
+<%= form_for([:admin, @travel, @itinerary],:html => {:class => "form-horizontal" }) do |f| %>
+  <% if @itinerary.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@itinerary.errors.count, "error") %> prohibited this itinerary from being saved:</h2>
+
+      <ul>
+      <% @itinerary.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <label class="control-label">name</label>
+    <div class="controls">
+    <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">desc</label>
+    <div class="controls">
+    <%= f.text_area :desc %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">sort</label>
+    <div class="controls">
+    <%= f.text_field :sort %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">hotel</label>
+    <div class="controls">
+    <%= f.select :hotel_id, Hotel.order('id').collect {|c| [ c.name, c.id ] }, { :include_blank => true }%>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">meals</label>
+    <div class="controls">
+    <%= f.text_field :meals %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">start_day_num</label>
+    <div class="controls">
+    <%= f.text_field :start_day_num %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">end_day_num</label>
+    <div class="controls">
+    <%= f.text_field :end_day_num %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

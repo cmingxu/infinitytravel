@@ -1,0 +1,56 @@
+<%= form_for([:admin, @travel, @datesprice],:html => {:class => "form-horizontal" }) do |f| %>
+
+  <div class="control-group">
+    <label class="control-label">相关旅游线路</label>
+    <div class="controls">
+        <%= @travel.name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">start_date</label>
+    <div class="controls">
+    <%= f.date_select :start_date %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">end_date</label>
+    <div class="controls">
+    <%= f.date_select :end_date %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">prices</label>
+    <div class="controls">
+    <%= f.text_field :prices %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">single_supplement</label>
+    <div class="controls">
+    <%= f.text_field :single_supplement %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">internal_airfare</label>
+    <div class="controls">
+    <%= f.text_field :internal_airfare %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">availability_status</label>
+    <div class="controls">
+    <%= f.text_field :availability_status %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">available_people_count</label>
+    <div class="controls">
+    <%= f.text_field :available_people_count %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

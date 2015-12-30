@@ -1,0 +1,146 @@
+<div class="row">
+<h3>后台管理 > Travel列表 <div class="pull-right"><%= link_to '创建新Travels', new_admin_travel_path %></div></h3>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>POSITION</th>
+    <th>Name</th>
+    <th>日程</th>
+    <th>团期</th>
+    <th>所属地区</th>
+    <th>所属兴趣点</th>
+    <th>优惠信息</th>
+    <th>Pdf小册子</th>
+    <th>画廊</th>
+    <th>文章</th>
+    <th>操作</th>
+  </tr>
+
+<% @travels.each do |travel| %>
+  <tr>
+    <td>
+      <%= travel.id %>
+    </td>
+
+    <td>
+      <%= travel.position %>
+    </td>
+    <td>
+      <img src="<%= travel.cover.url %>" width="100"> <br>
+      <%= travel.name %></td>
+    <td>
+      <h5><a href="/admin/travels/<%= travel.id %>/itineraries/new">添加日程</a></h5>
+      <table>
+        <tbody>
+          <% travel.itineraries.each do |itinerary| %>
+          <tr>
+            <td><%= itinerary.sort %></td>
+            <td><a href="/admin/travels/<%= travel.id %>/itineraries/<%= itinerary.id %>"><%= itinerary.name %></a></td>
+            <td><a href="/admin/travels/<%= travel.id %>/itineraries/<%= itinerary.id %>/edit">编辑</a> /
+             
+              <%= link_to "删除", admin_travel_itinerary_path(travel, itinerary), :method => :delete %>
+              </td>
+            <td></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </td>
+    <td>
+      <h5><a href="/admin/travels/<%= travel.id %>/datesprices/new">添加团期</a></h5>
+      <table>
+        <tbody>
+          <% travel.datesprices.each do |datesprice| %>
+          <tr>
+            <td><a href="/admin/travels/<%= travel.id %>/datesprices/<%= datesprice.id %>"><%= datesprice.start_date %></a></td>
+            <td><a href="/admin/travels/<%= travel.id %>/datesprices/<%= datesprice.id %>/edit">编辑</a> / 
+              <%= link_to "删除", admin_travel_datesprice_path(travel, datesprice), :method => :delete %>
+            </td>
+            <td></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </td>
+    <td>
+      <h5><a href="/admin/travels/<%= travel.id %>/new_destination_travel">绑定相关地区</a></h5>
+      <table>
+        <tbody>
+          <% travel.destinations.each do |destination| %>
+          <tr>
+            <td><a href="/admin/destinations/<%= destination.id %>"><%= destination.name %></a></td>
+            <td><a href="/admin/travels/<%= travel.id %>/destroy_destination_travel/<%= destination.id %>">删除</a></td>
+            <td></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </td>
+    <td>
+      <h5><a href="/admin/travels/<%= travel.id %>/new_interest_travel">绑定相关兴趣点</a></h5>
+      <table>
+        <tbody>
+          <% travel.interests.each do |interest| %>
+          <tr>
+            <td><a href="/admin/interests/<%= interest.id %>"><%= interest.title %></a></td>
+            <td><a href="/admin/travels/<%= travel.id %>/destroy_interest_travel/<%= interest.id %>">删除</a></td>
+            <td></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </td>
+    <td>
+      <h5><a href="/admin/travels/<%= travel.id %>/new_specialoffer_travel">绑定相关优惠信息</a></h5>
+      <table>
+        <tbody>
+          <% travel.specialoffers.each do |specialoffer| %>
+          <tr>
+            <td><a href="/admin/specialoffers/<%= specialoffer.id %>"><%= specialoffer.title %></a></td>
+            <td><a href="/admin/travels/<%= travel.id %>/destroy_specialoffer_travel/<%= specialoffer.id %>">删除</a></td>
+            <td></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </td>
+    <td>
+      <h5><a href="/admin/travels/<%= travel.id %>/new_brochure_travel">绑定相关Pdf</a></h5>
+      <table>
+        <tbody>
+          <% travel.brochures.each do |brochure| %>
+          <tr>
+            <td><a href="/admin/brochures/<%= brochure.id %>"><%= brochure.name %></a></td>
+            <td><a href="/admin/travels/<%= travel.id %>/destroy_brochure_travel/<%= brochure.id %>">删除</a></td>
+            <td></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </td>
+    <td><%= travel.gallery.photos.size %> / <a href="/admin/galleries/<%= travel.gallery.id %>">管理图片</a></td>
+
+    <td>
+      <h5><a href="/admin/travels/<%= travel.id %>/travel_pages">绑定文章</a></h5>
+      <table>
+        <tbody>
+          <% travel.travel_pages.each do |page| %>
+          <tr>
+            <td><a href="/admin/travel_pages/<%= page.id %>"><%= page.name %></a></td>
+            <td></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </td>
+    <td>
+      <%= link_to '查看', [:admin, travel] %> | 
+      <%= link_to '编辑', edit_admin_travel_path(travel) %> | 
+      <%= link_to '删除', [:admin, travel], :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= paginate @travels %>
+</div>

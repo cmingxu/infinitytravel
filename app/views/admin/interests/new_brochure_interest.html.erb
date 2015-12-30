@@ -1,0 +1,32 @@
+<div class="row">
+<h3>后台管理 > 绑定相关PDF <div class="pull-right"><%= link_to '返回列表', admin_interests_path %></div></h3>
+<hr>
+
+<h5>已绑定PDF</h5>
+<% @interest.brochures.each do |brochure| %>
+	<%= brochure.name %> <br>
+<% end %>
+
+<h5>绑定新PDF</h5>
+<%= form_tag(create_brochure_interest_admin_interest_path(@interest)) do |f| %>
+  <div class="control-group">
+    <label class="control-label">PDF</label>
+    <div class="controls">
+    	<select name="brochure_id">
+				<% Brochure.find(:all, :order => 'id').each do |brochure| %>
+					<option value="<%= brochure.id %>" selected="selected"><%= brochure.name %></option>  
+				<% end %>
+			</select>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= submit_tag %>
+    </div>
+  </div>
+<% end %>
+
+
+</div>
+
+

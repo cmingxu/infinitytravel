@@ -1,0 +1,32 @@
+<div class="row">
+<h3>后台管理 > 绑定相关优惠信息 <div class="pull-right"><%= link_to '返回列表', admin_travels_path %></div></h3>
+<hr>
+
+<h5>已绑定优惠信息</h5>
+<% @travel.specialoffers.each do |specialoffer| %>
+	<%= specialoffer.title %> <br>
+<% end %>
+
+<h5>绑定新优惠信息</h5>
+<%= form_tag(create_specialoffer_travel_admin_travel_path(@travel)) do |f| %>
+  <div class="control-group">
+    <label class="control-label">优惠信息</label>
+    <div class="controls">
+    	<select name="specialoffer_id">
+				<% Specialoffer.order('id').each do |specialoffer| %>
+					<option value="<%= specialoffer.id %>" selected="selected"><%= specialoffer.title %></option>  
+				<% end %>
+			</select>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= submit_tag %>
+    </div>
+  </div>
+<% end %>
+
+
+</div>
+
+

@@ -1,0 +1,145 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+  <li>
+    <a href="/">首页</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li> 
+  <li><a href="/users/<%= current_user.id %>"></a>用户中心&nbsp;&nbsp;/&nbsp;&nbsp;我的订单</li>
+</ul>
+<div class="self_clear">
+  <div id="secondary_content" class="hide_from_print">
+    <%= render 'users/user_nav' %>
+  </div>
+  <div id="primary_content" class="align_edges">
+    <div id="cs_control_1329" class="">
+      <div class="CS_Element_Schedule" id="CS_Element_content">
+        <a name="customcf1644" id="customcf1644"></a>
+        <a name="CP_JUMP_1644" id="CP_JUMP_1644"></a>
+        <div id="cs_control_1644" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1393_1644">
+            <div id="special_offers">
+              <h3>用户中心 / 我的订单</h3>
+              <p>
+        <% if !@bookings.empty? %>
+				 <table>
+				 	<tbody class="format_table">
+				 		<tr>
+				 			<th>姓名</th>
+				 			<th>邮箱</th>
+				 			<th>电话</th>
+				 			<th>相关旅游产品</th>
+				 			<th>人数</th>
+				 			<th>开团日期</th>
+				 			<th>代理商</th>
+				 			<th>代理代码</th>
+              <th>留言</th>
+              <th>订单时间</th>
+              <th>操作</th>
+				 		</tr>
+				 		<% @bookings.each do |booking|%>
+				 		<tr>
+				 			<td><%= booking.first_name %></td>
+				 			<td><%= booking.email %></td>
+				 			<td><%= booking.phone %></td>
+				 			<td><%= booking.travel.name %></td>
+				 			<td><%= booking.people_count %></td>
+				 			<td><%= booking.datesprice.id %></td>
+				 			<td><%= booking.agent_name %></td>
+				 			<td><%= booking.agent_code %></td>
+              <td><%= booking.comment %></td>
+              <th><%= booking.created_at %></th>
+              <th></th>
+				 		</tr>
+				 		<% end %>
+				 	</tbody>
+				 </table>
+				 <% else -%>
+         <table>
+          <tbody class="format_table">
+           <tr>
+              <th>姓名</th>
+              <th>邮箱</th>
+              <th>电话</th>
+              <th>相关旅游产品</th>
+              <th>人数</th>
+              <th>开团日期</th>
+              <th>所属地区</th>
+              <th>代理商</th>
+              <th>代理代码</th>
+              <th>留言</th>
+              <th>订单时间</th>
+              <th>操作</th>
+            </tr>
+            <tr>
+              <td colspan="12">暂时没有订单!</td>
+            </tr>
+            </tbody>
+         </table>
+				 <% end -%>
+              </p>
+              <p>
+                <h3>用户中心 / 我的订制订单</h3>
+                <% if !@gbookings.empty? %>
+         <table>
+          <tbody class="format_table">
+            <tr>
+              <th>姓名</th>
+              <th>邮箱</th>
+              <th>电话</th>
+              <th>订制的路线</th>
+              <th>人数</th>
+              <th>代理商</th>
+              <th>代理代码</th>
+              <th>留言</th>
+              <th>订单时间</th>
+              <th>操作</th>
+            </tr>
+            <% @gbookings.each do |gbooking|%>
+            <tr>
+              <td><%= gbooking.first_name %></td>
+              <td><%= gbooking.email %></td>
+              <td><%= gbooking.phone %></td>
+              <td>
+                <% gbooking.customizebookings.each do |customizebooking| %>
+                  <%=  customizebooking.number %>. 地区: <%= customizebooking.destination.name %> / 城市: <%= customizebooking.city.name %> / 酒店: <%= customizebooking.hotel.name %> / 天数: <%= customizebooking.city.name %> <br>
+                <% end %>
+              </td>
+              <td><%= gbooking.adult_count %></td>
+              <td><%= gbooking.agent_name %></td>
+              <td><%= gbooking.agent_code %></td>
+              <td><%= gbooking.event_comment %></td>
+              <th><%= gbooking.created_at %></th>
+              <th></th>
+            </tr>
+            <% end %>
+          </tbody>
+         </table>
+         <% else -%>
+         <table>
+          <tbody class="format_table">
+           <tr>
+              <th>姓名</th>
+              <th>邮箱</th>
+              <th>电话</th>
+              <th>人数</th>
+              <th>开团日期</th>
+              <th>代理商</th>
+              <th>代理代码</th>
+              <th>留言</th>
+              <th>订单时间</th>
+              <th>操作</th>
+            </tr>
+            <tr>
+              <td colspan="12">暂时没有订单!</td>
+            </tr>
+            </tbody>
+         </table>
+         <% end -%>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

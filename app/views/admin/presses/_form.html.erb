@@ -1,0 +1,41 @@
+<%= form_for([:admin, @press],:html => {:class => "form-horizontal" }) do |f| %>
+  <% if @press.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@press.errors.count, "error") %> prohibited this press from being saved:</h2>
+
+      <ul>
+      <% @press.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <label class="control-label">title</label>
+    <div class="controls">
+    <%= f.text_field :title %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">cont</label>
+    <div class="controls">
+    <%= f.text_area :cont %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>
+
+<% content_for :footer do %>
+    <script type="text/javascript" src="/plugins/u/editor_config.js"></script>
+    <script type="text/javascript" src="/plugins/u/editor_all.min.js"></script>
+    <link rel="stylesheet" href="/plugins/u/themes/default/css/ueditor.css" />   
+    <script type="text/javascript">
+      var press_cont = new UE.ui.Editor();
+      new UE.ui.Editor().render('press_cont');
+    </script>
+<% end %>

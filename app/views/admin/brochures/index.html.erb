@@ -1,0 +1,35 @@
+<div class="row">
+<h3>后台管理 > Brochure列表 <div class="pull-right"><%= link_to '创建新Brochures', new_admin_brochure_path %></div></h3>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Desc</th>
+    <th>Doc</th>
+    <th>Comment</th>
+    <th>操作</th>
+  </tr>
+
+<% @brochures.each do |brochure| %>
+  <tr>
+    <td>
+      <%= brochure.id %>
+    </td>
+    <td><%= brochure.name %></td>
+    <td><%= brochure.desc %></td>
+    <td></td>
+    <td>
+     <img src="<%= brochure.cover.url %>" alt="">  <br>
+      <%= brochure.doc %></td>
+    <td><%= brochure.comment %></td>
+    <td>
+      <%= link_to '查看', [:admin, brochure] %> | 
+      <%= link_to '编辑', edit_admin_brochure_path(brochure) %> | 
+      <%= link_to '删除', [:admin, brochure], :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= paginate @brochures %>
+</div>

@@ -1,0 +1,60 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+  <li>
+    <a href="/">首页</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <li>用户中心&nbsp;&nbsp;/&nbsp;&nbsp;设置</li>
+</ul>
+<div class="self_clear">
+  <div id="secondary_content" class="hide_from_print">
+    <%= render 'users/user_nav' %>
+  </div>
+  <div id="primary_content" class="align_edges">
+    <div id="cs_control_1329" class="">
+      <div class="CS_Element_Schedule" id="CS_Element_content">
+        <a name="customcf1644" id="customcf1644"></a>
+        <a name="CP_JUMP_1644" id="CP_JUMP_1644"></a>
+        <div id="cs_control_1644" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1393_1644">
+            <div id="special_offers">
+              <h3>用户中心 / 设置</h3>
+              <p>
+		             <form class="bs-docs-example form-horizontal" accept-charset="UTF-8" action="/update_password" id="edit_user_2" method="post">
+		                <div style="margin:0;padding:0;display:inline">
+		                    <input name="utf8" type="hidden" value="&#x2713;" />
+		                    <input name="_method" type="hidden" value="put" />
+		                    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+		                </div>
+		                <div class="form-group">
+		                    <label class="control-label col-lg-2" for="user_current_password">旧密码</label>
+		                    <div class="col-lg-5">
+		                        <input class="form-control" type="password" name="user[current_password]" id="user_current_password" placeholder="Old Password">
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label class="control-label col-lg-2" for="user_password">新密码</label>
+		                    <div class="col-lg-5">
+		                        <input class="form-control" type="password" name="user[password]" id="user_password" placeholder="New Password">
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label class="control-label col-lg-2" for="user_password_confirmation">再次输入新密码</label>
+		                    <div class="col-lg-5">
+		                        <input class="form-control" type="password" name="user[password_confirmation]" id="user_password_confirmation" placeholder="New Password Again">
+		                    </div>
+		                </div>
+		                <div class="form-group">
+		                    <label for="" class="control-label col-lg-2"></label>
+		                    <div class="col-lg-5">
+		                        <button type="submit" class="btn btn-primary">修改</button>
+		                    </div>
+		                </div>
+		            </form>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

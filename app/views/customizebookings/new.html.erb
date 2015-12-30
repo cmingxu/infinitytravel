@@ -1,0 +1,637 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+	<li>
+		<a href="/">首页</a>
+	</li>
+	<li>
+		&nbsp;&nbsp;/&nbsp;&nbsp;
+		<a href="/customizebookings/new">订制旅行线路</a>
+	</li>
+</ul>
+
+
+<div class="self_clear">
+
+	<div class="slide_show_block">
+		<div class="inline_gallery self_clear">
+			<div id="destination_slides">
+			  <img src="/uploads/photo/pic/14/bb408e88eb4da717ae73789d5bd27772.jpg" alt="hotels" >
+			  <img src="/uploads/photo/pic/15/dd916cb2d2d5a89430ac022142168676.jpg" alt="" >
+			  <img src="/uploads/photo/pic/16/624a78b554167a659454a5df67038de3.jpg" alt="" >
+			  <img src="/uploads/photo/pic/17/97f6139c14733f07ef3df554ece8faf6.jpg" alt="" >
+			  <img src="/uploads/photo/pic/18/7da1d7e32a12ea55424b785b027a53ed.jpg" alt="" >
+			  <img src="/uploads/photo/pic/19/af804dc66561a44b21faabb506d64e38.jpg" alt="" >
+			  <img src="/uploads/photo/pic/20/a21b2cb5b502a31e8b49d9e073d7d308.jpg" alt="" >
+			</div>
+			<div id="popout_modal">
+			<div class="close_modal" onclick="modal_close();">X</div>
+			<strong class="title">Slide Show Example</strong>
+			<div id="destination_slides_modal">
+				<img src="/uploads/photo/pic/14/bb408e88eb4da717ae73789d5bd27772.jpg" alt="hotels" >
+				<img src="/uploads/photo/pic/15/dd916cb2d2d5a89430ac022142168676.jpg" alt="" >
+				<img src="/uploads/photo/pic/16/624a78b554167a659454a5df67038de3.jpg" alt="" >
+				<img src="/uploads/photo/pic/17/97f6139c14733f07ef3df554ece8faf6.jpg" alt="" >
+				<img src="/uploads/photo/pic/18/7da1d7e32a12ea55424b785b027a53ed.jpg" alt="" >
+				<img src="/uploads/photo/pic/19/af804dc66561a44b21faabb506d64e38.jpg" alt="" >
+				<img src="/uploads/photo/pic/20/a21b2cb5b502a31e8b49d9e073d7d308.jpg" alt="" >
+			</div>
+			<p class="slide_img_title"></p>
+			</div>
+			<p>
+				<a class="icon open_window" href="javascript:void(0);" onclick="modal_slides();">查看全尺寸大图</a>
+			</p>
+		</div>
+	</div>
+
+			<div id="primary_content" class="align_edges">
+				<iframe style="position:absolute; left:-9999px;" id="print-frame" src="/images/transparent.gif"></iframe>
+				<!-- PRIMARY HEADING -->
+				<div class="self_clear">
+					<h1>订制您的旅行线路</h1>
+					<h4 class="clear_margins luxury" style="float: left">
+						请在下面添加您的意向
+					</h4>
+					<input type="button" style="float: right" onclick="new_custom()" value="添加新行程">
+				</div>
+				<!-- TRIP NAVIGATION -->
+				<div id="customize" class="tab_item">
+					<div>
+						<form action="/customizebookings" id="faq_form" method="post" name="faq_form" class="uniForm">
+							<input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+							<fieldset class="inlineLabels">
+								<div class="customize">
+									<ol class="customize_list">
+										<li style="margin-top: 10px;height:25px;">
+											<select name="customizebookings[][destination_id]" id="destination_s">
+												<option value="">选择地区</option>
+												<% @destinations.each do |destination| %>
+												<option value="<%= destination.id %>"><%= destination.name %></option>
+												<% end %>
+											</select>
+											<select name="customizebookings[][city_id]" id="city_s">
+												<option value="">选择城市</option>
+											</select>
+											<select name="customizebookings[][hotel_id]" id="hotel_s">
+												<option value="6">选择酒店</option>
+											</select>
+											<select name="customizebookings[][days]" id="days">
+												<option value="">预计停留时间</option>
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+												<option value="9">9</option>
+												<option value="10">10</option>
+											</select>
+										</li>
+									</ol>
+								</div>
+								</fieldset>
+								<fieldset class="inlineLabels">
+									<h3>个人信息</h3>
+									<div id="ctrlHolder_title" class="ctrlHolder borderTop">
+										<p class="errorFieldHide" id="title_err">Select your title</p>
+										<label for="title" class="required"> <em>*</em>
+											性别
+										</label>
+										<select name="gbooking[mrs_title]" id="title" class="required" tabindex="1" style="">
+											<option value="0">请选择您的性别</option>
+											<option value="153">男士</option>
+											<option value="154">女士</option>
+										</select>
+									</div>
+									<div id="ctrlHolder_firstName" class="ctrlHolder">
+										<p class="errorFieldHide" id="firstName_err">Enter your first name</p>
+										<label for="firstName" class="required">
+											<em>*</em>
+											姓名
+										</label>
+										<input name="gbooking[first_name]" id="firstName" value="" size="30" type="text" class="required" tabindex="2"></div>
+								</fieldset>
+								<fieldset class="inlineLabels">
+									<h3>联络信息</h3>
+									<div id="ctrlHolder_contact_preference" class="ctrlHolder borderTop">
+										<p class="errorFieldHide" id="contact_preference_err"></p>
+										<p class="label ">最佳联络方式</p>
+										<label for="contact_preference-1" class="inlineLabel">
+											<input name="gbooking[preferred_contact_method]" id="contact_preference-1" type="radio" value="Email" checked="checked" class="" tabindex="5">Email</label>
+										<label for="contact_preference-2" class="inlineLabel">
+											<input name="gbooking[preferred_contact_method]" id="contact_preference-2" type="radio" value="Daytime Phone" class="" tabindex="5">电话</label>
+									</div>
+									<div id="ctrlHolder_email" class="ctrlHolder">
+										<p class="errorFieldHide" id="email_err">Enter a valid email address</p>
+										<label for="email" class="required">
+											<em>*</em>
+											邮箱
+										</label>
+										<input name="gbooking[email]" id="email" value="" size="30" type="text" class="required email" tabindex="6"></div>
+									<div id="ctrlHolder_address1" class="ctrlHolder borderTop">
+										<p class="errorFieldHide" id="address1_err">Enter your street address</p>
+										<label for="address1" class="required">
+											<em>*</em>
+											住址
+										</label>
+										<input name="gbooking[address]" id="address1" value="" size="30" type="text" class="noemail required" tabindex="7"></div>
+									<div id="ctrlHolder_city" class="ctrlHolder">
+										<p class="errorFieldHide" id="city_err">Enter your city</p>
+										<label for="city" class="required">
+											<em>*</em>
+											所在城市
+										</label>
+										<input name="gbooking[city]" id="city" value="" size="30" type="text" class="required" tabindex="9"></div>
+									<div id="ctrlHolder_postal_code" class="ctrlHolder">
+										<p class="errorFieldHide" id="postal_code_err">Enter your postal code</p>
+										<label for="postal_code" class="required">
+											<em>*</em>
+											邮编
+										</label>
+										<input name="gbooking[postal_code]" id="postal_code" value="" size="30" type="text" class="required" tabindex="11"></div>
+									<div id="ctrlHolder_country" class="ctrlHolder">
+										<p class="errorFieldHide" id="country_err"></p>
+										<label for="country">国家</label>
+										<select name="gbooking[country]" id="country" tabindex="12" style="">
+											<option value="USA" selected="selected">United States</option>
+											<option value="AFG">Afghanistan</option>
+											<option value="ALB">Albania</option>
+											<option value="DZA">Algeria</option>
+											<option value="ASM">American Samoa</option>
+											<option value="AND">Andorra</option>
+											<option value="AGO">Angola</option>
+											<option value="AIA">Anguilla</option>
+											<option value="ATA">Antarctica</option>
+											<option value="ATG">Antigua and Barbuda</option>
+											<option value="AAA">Arctic</option>
+											<option value="ARG">Argentina</option>
+											<option value="ARM">Armenia</option>
+											<option value="ABW">Aruba</option>
+											<option value="AUS">Australia</option>
+											<option value="AUT">Austria</option>
+											<option value="AZE">Azerbaijan</option>
+											<option value="BHS">Bahamas</option>
+											<option value="BHR">Bahrain</option>
+											<option value="BGD">Bangladesh</option>
+											<option value="BRB">Barbados</option>
+											<option value="BLR">Belarus</option>
+											<option value="BEL">Belgium</option>
+											<option value="BLZ">Belize</option>
+											<option value="BEN">Benin</option>
+											<option value="BMU">Bermuda</option>
+											<option value="BTN">Bhutan</option>
+											<option value="BOL">Bolivia</option>
+											<option value="BIH">Bosnia and Herzegovina</option>
+											<option value="BWA">Botswana</option>
+											<option value="BVT">Bouvet Island</option>
+											<option value="BRA">Brazil</option>
+											<option value="IOT">British Indian Ocean Territory</option>
+											<option value="BRN">Brunei Darussalam</option>
+											<option value="BGR">Bulgaria</option>
+											<option value="BFA">Burkina Faso</option>
+											<option value="BDI">Burundi</option>
+											<option value="KHM">Cambodia</option>
+											<option value="CMR">Cameroon</option>
+											<option value="CAN">Canada</option>
+											<option value="CPV">Cape Verde</option>
+											<option value="CYM">Cayman Islands</option>
+											<option value="CAF">Central African Republic</option>
+											<option value="TCD">Chad</option>
+											<option value="CHL">Chile</option>
+											<option value="CHN" selected="selected">中国</option>
+											<option value="CXR">Christmas Island</option>
+											<option value="CCK">Cocos (Keeling) Islands</option>
+											<option value="COL">Colombia</option>
+											<option value="COM">Comoros</option>
+											<option value="COG">Congo</option>
+											<option value="COD">Congo, the Democratic Republic of the</option>
+											<option value="COK">Cook Islands</option>
+											<option value="CRI">Costa Rica</option>
+											<option value="CIV">Cote D'Ivoire</option>
+											<option value="HRV">Croatia</option>
+											<option value="CUB">Cuba</option>
+											<option value="CYP">Cyprus</option>
+											<option value="CZE">Czech Republic</option>
+											<option value="DNK">Denmark</option>
+											<option value="DJI">Djibouti</option>
+											<option value="DMA">Dominica</option>
+											<option value="DOM">Dominican Republic</option>
+											<option value="ECU">Ecuador &amp; Galápagos</option>
+											<option value="EGY">Egypt</option>
+											<option value="SLV">El Salvador</option>
+											<option value="GNQ">Equatorial Guinea</option>
+											<option value="ERI">Eritrea</option>
+											<option value="EST">Estonia</option>
+											<option value="ETH">Ethiopia</option>
+											<option value="FLK">Falkland Islands (Malvinas)</option>
+											<option value="FRO">Faroe Islands</option>
+											<option value="FJI">Fiji</option>
+											<option value="FIN">Finland</option>
+											<option value="FRA">France</option>
+											<option value="GUF">French Guiana</option>
+											<option value="PYF">French Polynesia</option>
+											<option value="ATF">French Southern Territories</option>
+											<option value="GAB">Gabon</option>
+											<option value="GMB">Gambia</option>
+											<option value="GEO">Georgia</option>
+											<option value="DEU">Germany</option>
+											<option value="GHA">Ghana</option>
+											<option value="GIB">Gibraltar</option>
+											<option value="GRC">Greece</option>
+											<option value="GRL">Greenland</option>
+											<option value="GRD">Grenada</option>
+											<option value="GLP">Guadeloupe</option>
+											<option value="GUM">Guam</option>
+											<option value="GTM">Guatemala</option>
+											<option value="GIN">Guinea</option>
+											<option value="GNB">Guinea-Bissau</option>
+											<option value="GUY">Guyana</option>
+											<option value="HTI">Haiti</option>
+											<option value="HMD">Heard Island and McDonald Islands</option>
+											<option value="VAT">Holy See (Vatican City State)</option>
+											<option value="HND">Honduras</option>
+											<option value="HKG">Hong Kong</option>
+											<option value="HUN">Hungary</option>
+											<option value="ISL">Iceland</option>
+											<option value="IND">India</option>
+											<option value="IDN">Indonesia</option>
+											<option value="IRN">Iran</option>
+											<option value="IRQ">Iraq</option>
+											<option value="IRL">Ireland</option>
+											<option value="ISR">Israel</option>
+											<option value="ITA">Italy</option>
+											<option value="JAM">Jamaica</option>
+											<option value="JPN">Japan</option>
+											<option value="JOR">Jordan</option>
+											<option value="KAZ">Kazakhstan</option>
+											<option value="KEN">Kenya</option>
+											<option value="KIR">Kiribati</option>
+											<option value="KWT">Kuwait</option>
+											<option value="KGZ">Kyrgyzstan</option>
+											<option value="LAO">Laos</option>
+											<option value="LVA">Latvia</option>
+											<option value="LBN">Lebanon</option>
+											<option value="LSO">Lesotho</option>
+											<option value="LBR">Liberia</option>
+											<option value="LBY">Libya</option>
+											<option value="LIE">Liechtenstein</option>
+											<option value="LTU">Lithuania</option>
+											<option value="LUX">Luxembourg</option>
+											<option value="MAC">Macau</option>
+											<option value="MKD">Macedonia</option>
+											<option value="MDG">Madagascar</option>
+											<option value="MWI">Malawi</option>
+											<option value="MYS">Malaysia</option>
+											<option value="MDV">Maldives</option>
+											<option value="MLI">Mali</option>
+											<option value="MLT">Malta</option>
+											<option value="MHL">Marshall Islands</option>
+											<option value="MTQ">Martinique</option>
+											<option value="MRT">Mauritania</option>
+											<option value="MUS">Mauritius</option>
+											<option value="MYT">Mayotte</option>
+											<option value="MEX">Mexico</option>
+											<option value="FSM">Micronesia, Federated States of</option>
+											<option value="MDA">Moldova</option>
+											<option value="MCO">Monaco</option>
+											<option value="MNG">Mongolia</option>
+											<option value="MSR">Montserrat</option>
+											<option value="MAR">Morocco</option>
+											<option value="MOZ">Mozambique</option>
+											<option value="MMR">Myanmar (Burma)</option>
+											<option value="NAM">Namibia</option>
+											<option value="NRU">Nauru</option>
+											<option value="NPL">Nepal</option>
+											<option value="NLD">Netherlands</option>
+											<option value="ANT">Netherlands Antilles</option>
+											<option value="NCL">New Caledonia</option>
+											<option value="NZL">New Zealand</option>
+											<option value="NIC">Nicaragua</option>
+											<option value="NER">Niger</option>
+											<option value="NGA">Nigeria</option>
+											<option value="NIU">Niue</option>
+											<option value="NFK">Norfolk Island</option>
+											<option value="PRK">North Korea</option>
+											<option value="MNP">Northern Mariana Islands</option>
+											<option value="NOR">Norway</option>
+											<option value="OMN">Oman</option>
+											<option value="PAK">Pakistan</option>
+											<option value="PLW">Palau</option>
+											<option value="PAN">Panama</option>
+											<option value="PNG">Papua New Guinea</option>
+											<option value="PRY">Paraguay</option>
+											<option value="PER">Peru</option>
+											<option value="PHL">Philippines</option>
+											<option value="PCN">Pitcairn Islands</option>
+											<option value="POL">Poland</option>
+											<option value="PRT">Portugal</option>
+											<option value="QAT">Qatar</option>
+											<option value="REU">Reunion</option>
+											<option value="ROM">Romania</option>
+											<option value="RUS">Russia</option>
+											<option value="RWA">Rwanda</option>
+											<option value="SHN">Saint Helena</option>
+											<option value="KNA">Saint Kitts and Nevis</option>
+											<option value="LCA">Saint Lucia</option>
+											<option value="SPM">Saint Pierre and Miquelon</option>
+											<option value="VCT">Saint Vincent and the Grenadines</option>
+											<option value="WSM">Samoa</option>
+											<option value="SMR">San Marino</option>
+											<option value="STP">Sao Tome and Principe</option>
+											<option value="SAU">Saudi Arabia</option>
+											<option value="SEN">Senegal</option>
+											<option value="SYC">Seychelles</option>
+											<option value="SLE">Sierra Leone</option>
+											<option value="SGP">Singapore</option>
+											<option value="SVK">Slovakia</option>
+											<option value="SVN">Slovenia</option>
+											<option value="SLB">Solomon Islands</option>
+											<option value="SOM">Somalia</option>
+											<option value="ZAF">South Africa</option>
+											<option value="SGS">South Georgia and the South Sandwich Islands</option>
+											<option value="KOR">South Korea</option>
+											<option value="ESP">Spain</option>
+											<option value="LKA">Sri Lanka</option>
+											<option value="SDN">Sudan</option>
+											<option value="SUR">Suriname</option>
+											<option value="SJM">Svalbard and Jan Mayen</option>
+											<option value="SWZ">Swaziland</option>
+											<option value="SWE">Sweden</option>
+											<option value="CHE">Switzerland</option>
+											<option value="SYR">Syria</option>
+											<option value="TWN">Taiwan</option>
+											<option value="TJK">Tajikistan</option>
+											<option value="TZA">Tanzania</option>
+											<option value="THA">Thailand</option>
+											<option value="TGO">Togo</option>
+											<option value="TKL">Tokelau</option>
+											<option value="TON">Tonga</option>
+											<option value="TTO">Trinidad and Tobago</option>
+											<option value="TUN">Tunisia</option>
+											<option value="TUR">Turkey</option>
+											<option value="TKM">Turkmenistan</option>
+											<option value="TCA">Turks and Caicos Islands</option>
+											<option value="TUV">Tuvalu</option>
+											<option value="UGA">Uganda</option>
+											<option value="UKR">Ukraine</option>
+											<option value="ARE">United Arab Emirates</option>
+											<option value="GBR">United Kingdom</option>
+											<option value="UMI">United States Minor Outlying Islands</option>
+											<option value="URY">Uruguay</option>
+											<option value="UZB">Uzbekistan</option>
+											<option value="VUT">Vanuatu</option>
+											<option value="VEN">Venezuela</option>
+											<option value="VNM">Vietnam</option>
+											<option value="VGB">Virgin Islands, British</option>
+											<option value="VIR">Virgin Islands, U.S.</option>
+											<option value="WLF">Wallis and Futuna</option>
+											<option value="ESH">Western Sahara</option>
+											<option value="YEM">Yemen</option>
+											<option value="ZMB">Zambia</option>
+											<option value="ZWE">Zimbabwe</option>
+										</select>
+									</div>
+									<link rel="stylesheet" href="/assets_global/css/qas/proweb.css">
+									<div id="ctrlHolder_workphone" class="ctrlHolder">
+										<p class="errorFieldHide" id="workphone_err"></p>
+										<label for="workphone" class="">联络电话</label>
+										<input name="gbooking[phone]" id="workphone" value="" size="30" type="text" class="" tabindex="13"></div>
+								</fieldset>
+								<fieldset class="inlineLabels">
+									<h3>您的代理商信息</h3>
+									<div id="ctrlHolder_agentName" class="ctrlHolder borderTop">
+										<p class="errorFieldHide" id="agentName_err"></p>
+										<label for="agentName" class="">代理商名称</label>
+										<input name="gbooking[agent_name]" id="agentName" value="" size="30" type="text" class="" tabindex="16"></div>
+									<div id="ctrlHolder_agentEmail" class="ctrlHolder">
+										<p class="errorFieldHide" id="agentEmail_err"></p>
+										<label for="agentEmail" class="">代理商代码</label>
+										<input name="gbooking[agent_code]" id="agentEmail" value="" size="30" type="text" class="" tabindex="17"></div>
+								</fieldset>
+								<fieldset class="inlineLabels">
+									<h3>您的需求</h3>
+									<input name="program_known" id="program_known" value="0" type="hidden">
+									<div id="ctrlHolder_regions" class="ctrlHolder borderTop">
+										<p class="errorFieldHide" id="regions_err">请选择目的地</p>
+										<label for="regions" class="required">
+											<em>*</em>
+											请选择目的地
+										</label>
+										<select name="gbooking[destination_id]" id="regions" class="required" tabindex="20" style="">
+											<option value="">请选择目的地</option>
+											<% Destination.all.each do |destination| %>
+												<option value="<%= destination.id %>"><%= destination.name %></option>
+											<% end %>
+										</select>
+									</div>
+									<div id="ctrlHolder_travelDate" class="ctrlHolder">
+										<p class="errorFieldHide" id="travelDate_err">Enter your preferred departure date</p>
+										<label for="travelDate" class="required">
+											<em>*</em>
+											首选的出行日期
+										</label>
+										<input name="gbooking[departure_date]" id="travelDate" value="" type="text" class="required usdate textInput" style="display:none;" onchange="$updateSelectDate('travelDate','travelDate_year','travelDate_month','travelDate_day'); $updateDaysInMonth('travelDate_year','travelDate_month','travelDate_day');" autocomplete="off">
+										<p class="textOnly">
+											<select name="travelDate_year" id="travelDate_year" onchange="$updateDaysInMonth('travelDate_year','travelDate_month','travelDate_day'); $updateTextDate('travelDate','travelDate_year','travelDate_month','travelDate_day');" tabindex="23" style="">
+												<option value="0">年</option>
+												<option value="2016">2016</option>
+												<option value="2015">2015</option>
+												<option value="2014">2014</option>
+												<option value="2013">2013</option>
+											</select>
+											<select name="travelDate_month" id="travelDate_month" onchange="$updateDaysInMonth('travelDate_year','travelDate_month','travelDate_day'); $updateTextDate('travelDate','travelDate_year','travelDate_month','travelDate_day');" tabindex="21" style="">
+												<option value="0">月</option>
+												<option value="01">01</option>
+												<option value="02">02</option>
+												<option value="03">03</option>
+												<option value="04">04</option>
+												<option value="05">05</option>
+												<option value="06">06</option>
+												<option value="07">07</option>
+												<option value="08">08</option>
+												<option value="09">09</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+											</select>
+											<select name="travelDate_day" id="travelDate_day" onchange="$updateDaysInMonth('travelDate_year','travelDate_month','travelDate_day'); $updateTextDate('travelDate','travelDate_year','travelDate_month','travelDate_day');" tabindex="22" style="">
+												<option value="0">日</option>
+												<option value="01">1</option>
+												<option value="02">2</option>
+												<option value="03">3</option>
+												<option value="04">4</option>
+												<option value="05">5</option>
+												<option value="06">6</option>
+												<option value="07">7</option>
+												<option value="08">8</option>
+												<option value="09">9</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+												<option value="13">13</option>
+												<option value="14">14</option>
+												<option value="15">15</option>
+												<option value="16">16</option>
+												<option value="17">17</option>
+												<option value="18">18</option>
+												<option value="19">19</option>
+												<option value="20">20</option>
+												<option value="21">21</option>
+												<option value="22">22</option>
+												<option value="23">23</option>
+												<option value="24">24</option>
+												<option value="25">25</option>
+												<option value="26">26</option>
+												<option value="27">27</option>
+												<option value="28">28</option>
+												<option value="29">29</option>
+												<option value="30">30</option>
+												<option value="31">31</option>
+											</select>
+										</p>
+									</div>
+									<div id="ctrlHolder_lengthOfTrip" class="ctrlHolder">
+										<label for="lengthOfTrip" class="required">
+											<em>*</em>
+											旅行天数
+										</label>
+										<input name="gbooking[trip_day_length]" id="lengthOfTrip" value="" maxlength="3" type="text" class="required integer textInput" tabindex="24">
+										<p class="formHint">至少6天</p>
+									</div>
+									<div id="ctrlHolder_adultPassengers" class="ctrlHolder">
+										<label for="adultPassengers" class="required">
+											<em>*</em>
+											人数
+										</label>
+										<input name="gbooking[adult_count]" id="adultPassengers" value="" maxlength="3" type="text" class="required integer textInput" tabindex="25"></div>
+									<div id="ctrlHolder_addInfo" class="ctrlHolder">
+										<label for="addInfo" class="required">
+											<em>*</em>
+											请描述您的旅行需求
+										</label>
+										<textarea name="gbooking[city_comment]" id="addInfo" rows="10" cols="60" class="required textInput" tabindex="28"></textarea>
+									</div>
+								</fieldset>
+							<div class="buttonHolder">
+								<input type="submit" name="submit_btn" id="submit_btn" value="提交需求" class="uniFormButton" onclick="" tabindex="10"></div>
+						</form>
+					</div>
+				</div>				
+				<!-- TRIP NAVIGATION BOTTOM -->
+			</div>
+		</div>
+
+
+<% content_for :footer do %>
+<%= javascript_include_tag "jquery.slides.min.js" %>
+<script>
+var modal_slides_init=function(){
+	$('#destination_slides').slidesjs({
+	width: 386,
+	height: 258,
+	navigation: false,
+	pagination: {
+	  effect: "fade"
+	},
+	effect: {
+	  fade: {
+	    speed: 800
+	  }
+	},
+	callback:{
+	  loaded: function(number) {
+	      $('p.slide_img_title').text($("#destination_slides img.slidesjs-slide").eq(number-1).attr("alt"));
+	    },
+	  complete: function(number) {
+	      $('p.slide_img_title').text($("#destination_slides img.slidesjs-slide").eq(number-1).attr("alt"));
+	  }
+	}
+	});
+	$('#destination_slides_modal').slidesjs({
+	  width: 514,
+	  height: 344,
+	  navigation: false,
+	  pagination: {
+	    effect: "fade"
+	  },
+	  effect: {
+	    fade: {
+	      speed: 800
+	    }
+	  },
+	  callback:{
+	    loaded: function(number) {
+	          $('#popout_modal p.slide_img_title').text($("#destination_slides_modal img.slidesjs-slide").eq(number-1).attr("alt"));
+	        },
+	    complete: function(number) {
+	          $('#popout_modal p.slide_img_title').text($("#destination_slides_modal img.slidesjs-slide").eq(number-1).attr("alt"));
+	    }
+	  }
+	})
+}
+modal_slides_init();
+var modal_slides=function(){
+  $("#popout_modal").show();
+  $('<div id="popout_modal_mask"></div>').appendTo("body");
+}
+var modal_close=function(){
+  $("#popout_modal").hide();
+  $('#popout_modal_mask').remove();
+}
+var new_custom=function(){
+	$("ol.customize_list").append('<li style="margin-top:10px;height:25px;"><select name="customizebookings[][destination_id]" id="destination_s"><option value="">选择地区</option><% @destinations.each do |destination| %><option value="<%= destination.id %>"><%= destination.name %></option><% end %></li>');
+}
+var remove_li=function(a){
+	$(a).parent().remove();
+};
+function slideInit(data){
+	$("#destination_slides").remove();
+	$parent1.prepend("<div id='destination_slides'><div>").find("#destination_slides").html($(data).filter("#destination_slides").html())
+	$("#destination_slides_modal").remove();
+	$parent2.append("<div id='destination_slides_modal'><div>").find("#destination_slides_modal").html($(data).filter("#destination_slides").html())
+	$(".slide_img_title").remove();
+	$parent2.append("<p class='slide_img_title'>")
+}
+$parent1=$("#destination_slides").parent();
+$parent2=$("#destination_slides_modal").parent();
+
+function ifend(a,b,data){
+	var $a=$(a);
+	if(a!="days"){
+		if($a.parent().find("#"+b).size()>0){
+			$a.parent().find("#"+b).replaceWith($(data).filter("select"));
+		}else{
+			$a.after($(data).filter("select"));
+		}
+	}else{
+	}
+}
+function ajaxSelect(url,element,b){
+	$zhou=$(element);
+	if($zhou.val()){
+		$.ajax({
+			url: url,
+			type: 'get',
+			data: {},
+			cache: false,
+			dataType:"html",
+			success: function (data) {
+				ifend(element,b,data);
+				slideInit(data);
+			}
+		}).done(function(){modal_slides_init();});
+	}else{
+		return false;
+	}
+}
+$("#destination_s").live("change",function(){
+	ajaxSelect("/welcome/customize_select_destination?id="+($(this).val()),this,"city_s");
+});
+$("#city_s").live("change",function(){
+	ajaxSelect("/welcome/customize_select_city?id="+($(this).val()),this,"hotel_s");
+});
+$("#hotel_s").live("change",function(){
+	ajaxSelect("/welcome/customize_select_hotel?id="+($(this).val()),this,"days");
+});
+</script>
+<% end %>

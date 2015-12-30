@@ -1,0 +1,128 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+	<li>
+    <a href="/">首页</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <li>
+  	<a href="/interests">旅行系列</a>
+		&nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <% if @interest.parent %>
+    <% if @interest.parent.parent %>
+      <% if @interest.parent.parent.parent %>
+        <li>
+        <a href="/interests/<%= @interest.parent.parent.parent.id %>"><%= @interest.parent.parent.parent.title %></a>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        </li>
+      <% end %>
+      <li>
+      <a href="/interests/<%= @interest.parent.parent.id %>"><%= @interest.parent.parent.title %></a>
+      &nbsp;&nbsp;/&nbsp;&nbsp;
+      </li>
+    <% end %>
+    <li>
+    <a href="/interests/<%= @interest.parent.id %>"><%= @interest.parent.title %></a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+    </li>
+  <% end %>
+	<li><%= @interest.title %></li>
+</ul>
+<div class="self_clear">
+	<div id="secondary_content" class="hide_from_print">
+		<div id="cs_control_3131" class="">
+			<div class="CS_Element_Schedule" title="" id="CS_Element_contentleft">
+				
+				<% if @interest.brochures.size > 0 %>
+				<div id="cs_control_16254" class="cs_control CS_Element_CustomCF"> <div id="CS_CCF_16182_16254"> 
+					<div class="hl3">相关旅行手册</div>
+				<% @interest.brochures.each do |brochure| %>
+				<div class="section">
+				  <div class="related_brochure self_clear">
+				    <p><img src="<%= brochure.cover.url %>" width="93" height="120" alt="<%= brochure.name %>" title="<%= brochure.name %>"><%= brochure.name %></p>
+				    <ul>
+				      <li><a class="icon page_flip" href="<%= brochure.doc.url %>" title="View <%= brochure.name %>" rel="<%= brochure.name %>" target="_blank" >阅览</a></li>
+				      <li><a class="icon download" href="<%= brochure.doc.url %>">下载</a></li>
+				    </ul>
+				  </div>
+					<p><a class="icon swirl_arrow" href="/brochures/">查看所有旅行手册</a></p>
+				</div> 
+				<% end %>
+				</div> </div>
+				<% end %>
+
+				<div id="cs_control_13694" class="cs_control CS_Element_Custom">
+					<div class="hl3">旅行系列导航</div>
+					<!-- OHSU Nav -->
+					<ul class="section cspot_nav">
+						<% @interests.each do |interest| %>
+                <% if interest.is_root?  %>
+                    <li class="icon <%= interest.has_children? ?  'expando_show' : 'bullet_arrow' %>">
+                        <a href="/interests/<%= interest.id %>/"><%= interest.title %></a>
+                        <% if interest.has_children?  %>
+                            <ul>
+                            <% interest.children.each do |interest_2| %>
+                                <li class="icon <%= interest_2.has_children? ?  'expando_show' : 'bullet_arrow' %>">
+                                    <a href="/interests/<%= interest_2.id %>/"><%= interest_2.title %></a>
+                                    <% if interest_2.has_children?  %>
+                                        <ul>
+                                            <% interest_2.children.each do |interest_3| %>
+                                                <li class="icon <%= interest_3.has_children? ?  'expando_show' : 'bullet_arrow' %>">
+                                                    <a href="/interests/<%= interest_3.id %>/"><%= interest_3.title %></a>
+                                                    <% if interest_3.has_children?  %>
+                                                        <ul>
+                                                            <% interest_3.children.each do |interest_4| %>
+                                                                <li class="icon bullet_arrow">
+                                                                    <a href="/interests/<%= interest_4.id %>/"><%= interest_4.title %></a>
+                                                                </li>
+                                                            <% end %>
+                                                        </ul>
+                                                    <% end %>
+                                                </li>
+                                            <% end %>
+                                        </ul>
+                                    <% end %>
+                                </li>
+                            <% end %>
+                            </ul>
+                        <% end %>
+                    </li>
+                <% end %>
+            <% end %>
+					</ul>
+				</div>
+				<a name="customcf14073" id="customcf14073"></a>
+				<a name="CP_JUMP_14073" id="CP_JUMP_14073"></a>
+				<div id="cs_control_14073" class="cs_control CS_Element_CustomCF">
+					<div id="CS_CCF_16384_14073">
+						<div class="end_cap"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="dMainFBContest"></div>
+	</div>
+	<div id="primary_content" class="align_edges">
+		<h1><%= @interest.title %></h1>
+		
+		<div id="cs_control_1329" class="">
+			<div class="CS_Element_Schedule" title="" id="CS_Element_content">
+				<div id="cs_control_16523" class="cs_control CS_Element_Custom">
+					<h4 class="rounded_btn">
+						<a class="icon search" title="<%= @interest.title %>" href="/search?interest=<%= @interest.id %>">查看全部 <%= @interest.title %> 旅行线路</a>
+					</h4>
+				</div>
+				<div id="cs_control_16407" class="cs_control CS_Element_Textblock">
+					<p>
+						<%= @interest.cont %>
+					</p>
+				</div>
+			</div>
+			<div id="cs_control_17683" class="cs_control CS_Element_CustomCF">
+				<div id="CS_CCF_16384_17683">
+					<!-- META DATA BEGIN -->
+					<!-- META DATA END -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

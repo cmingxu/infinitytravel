@@ -1,0 +1,248 @@
+    <ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+      <li>
+        <a href="/">首页</a>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+      </li>
+      <li>注册</li>
+    </ul>
+    <div class="self_clear">
+      <div id="secondary_content" class="hide_from_print">
+        <div id="cs_control_3131" class="">
+          <div class="CS_Element_Schedule" title="" id="CS_Element_contentleft">
+            <a name="custom12234" id="custom12234"></a>
+            <a name="CP_JUMP_12234" id="CP_JUMP_12234"></a>
+            <div id="cs_control_12234" class="cs_control CS_Element_Custom">
+              <div class="hl3">俱乐部导航</div>
+              <!-- OHSU Nav -->   
+              <ul class="section cspot_nav">
+                <li>
+                    <a href="/pages/10">会员权益</a>
+                  </li>
+                  <li>
+                    <a href="/pages/11">旅行邀请</a>
+                  </li>
+                  <li>
+                    <a href="/pages/12">邀请向导</a>
+                  </li>
+                  <li>
+                    <a href="/photocontests">会员旅行照片赏</a>
+                  </li>
+                  <li>
+                    <a href="/signup">会员资格</a>
+                  </li>
+                  <li>
+                    <a href="/pages/14">俱乐部历史</a>
+                  </li>
+                  <li>
+                    <a href="/pages/15">用户协议及条款</a>
+                  </li>
+                  <li>
+                    <a href="/signup">新会员注册</a>
+                  </li>
+              </ul>
+            </div>
+            <div id="cs_control_14737" class="cs_control CS_Element_Custom">
+              <div class="hl3">旅行手册</div>
+              <div class="section">
+                <% brochure = Brochure.last %>
+                <div class="related_brochure self_clear">
+                  <p>
+                    <img src="<%= brochure.cover.url %>" width="93" height="120" alt="<%= brochure.name %>" title="<%= brochure.name %>"><%= brochure.name %></p>
+                  <ul>
+                    <li><a class="icon page_flip" href="<%= brochure.doc.url %>" title="View <%= brochure.name %>" rel="<%= brochure.name %>" target="_blank" >阅览</a></li>
+                    <li><a class="icon download" href="<%= brochure.doc.url %>">下载</a></li>
+                    </li>
+                  </ul>
+                </div>
+                <p>
+                  <a class="icon swirl_arrow" href="/brochures">查看所有旅行手册</a>
+                </p>
+              </div>
+            </div>
+            <a name="customcf8569" id="customcf8569"></a>
+            <a name="CP_JUMP_8569" id="CP_JUMP_8569"></a>
+            <div id="cs_control_8569" class="cs_control CS_Element_CustomCF">
+              <div id="CS_CCF_2421_8569">
+                <div class="end_cap"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="dMainFBContest"></div>
+      </div>
+      <div id="primary_content" class="align_edges">
+        <div id="cs_control_1329" class="">
+          <div class="CS_Element_Schedule" title="" id="CS_Element_content">
+            <a name="customcf2689" id="customcf2689"></a>
+            <a name="CP_JUMP_2689" id="CP_JUMP_2689"></a>
+            <div id="cs_control_2689" class="cs_control CS_Element_CustomCF">
+              <div id="CS_CCF_2421_2689">
+                <h1>注册成为我们的俱乐部会员</h1>
+                <p>
+                  享受我们的特别优惠，随时获取我们最新的旅行资讯和服务.
+                </p>
+                <p>
+                  <a href="/pages/15" class="icon swirl_arrow">查看用户协议及条款</a>
+                </p>
+                <div style="width:99%">
+                  <div class="self-clear">
+                    <p style="float:right; margin:0;">Step 1 of 3</p>
+                  </div>
+
+
+                  <form accept-charset="UTF-8" action="/signup" class="uniForm" id="user_new" method="post">
+                    <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>" />
+                    <fieldset class="inlineLabels">
+                      <h3>登录信息</h3>
+                      <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          邮箱：
+                        </label>
+                        <input name="user[email]" id="email" value="" size="30" maxlength="250" type="text" class="required email" ></div>
+
+                        <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          登录用户名：
+                        </label>
+                        <input name="user[login]" id="login" value="" size="30" maxlength="250" type="text" class="required email" ></div>
+                        
+                        <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          密码：
+                        </label>
+                        <input id="user_password" name="user[password]" size="30" type="password" class="required email"></div>
+                        
+                        <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          确认密码：
+                        </label>
+                        <input name="user[password_confirmation]" id="password_confirmation" value="" size="30" maxlength="250" type="password" class="required email" ></div>
+                        
+                    </fieldset>
+
+                    <fieldset class="inlineLabels">
+                      <h3>会员信息</h3>
+                      <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          真实姓名：
+                        </label>
+                        <input name="user[name]" id="name" value="" size="30" maxlength="250" type="text" class="required email" ></div>
+                        
+                        <div id="ctrlHolder_title" class="ctrlHolder">
+                        <p class="errorFieldHide" id="title_err">You must select a title</p>
+                        <label for="title" class="required">
+                          <em>*</em>
+                          性别
+                        </label>
+                        <select name="title" id="title" class="required" tabindex="5" style="">
+                          <option value="先生">先生</option>
+                          <option value="女士">女士</option>
+                        </select>
+                        </div>
+
+                        <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          地址：
+                        </label>
+                        <input name="user[address]" id="address" value="" size="50" maxlength="250" type="text" class="required email" ></div>
+
+                        <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          城市：
+                        </label>
+                        <input name="user[city]" id="city" value="" size="10" maxlength="250" type="text" class="required email" ></div>
+
+                        <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          省份：
+                        </label>
+                        <input name="user[region]" id="region" value="" size="10" maxlength="250" type="text" class="required email" ></div>
+                        
+                        <div id="ctrlHolder_country" class="ctrlHolder">
+                        <p class="errorFieldHide" id="country_err"></p>
+                        <label for="country">国家</label>
+                        <select name="user[country]" id="country" tabindex="14" style="">                          
+                          <option value="CHN" selected="selected">中国</option>
+                        </select>
+                        </div>
+
+                        <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          邮编：
+                        </label>
+                        <input name="user[postal_code]" id="postal_code" value="" size="30" maxlength="250" type="text" class="required email" ></div>
+
+                        <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          固定电话：
+                        </label>
+                        <input name="user[home_phone]" id="home_phone" value="" size="30" maxlength="250" type="text" class="required email" ></div>
+
+                        <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          手机：
+                        </label>
+                        <input name="user[cellphone]" id="cellphone" value="" size="30" maxlength="250" type="text" class="required email" ></div>
+                    </fieldset>
+
+                    <fieldset class="inlineLabels">
+                      <h3>代理信息</h3>
+                      <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          代理公司：
+                        </label>
+                        <input name="user[travel_agent]" id="travel_agent" value="" size="30" maxlength="250" type="text" class="required email" ></div>
+
+                        <div id="ctrlHolder_email" class="ctrlHolder borderTop">
+                        <label for="email" class="required">
+                          <em>*</em>
+                          代理号：
+                        </label>
+                        <input name="user[travel_agent_code]" id="travel_agent_code" value="" size="30" maxlength="250" type="text" class="required email" ></div>
+
+                    </fieldset>
+                    <div class="buttonHolder">
+                      <input type="submit" name="submit_btn" id="submit_btn" value="立即注册" class="uniFormButton" onclick="" tabindex="23"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<% content_for :footer do %>
+
+  <script type="text/javascript" src="/javascripts/happy.js"></script>
+  <script type="text/javascript" src="/javascripts/happy.methods.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#user_new').isHappy({
+        fields: {
+          // reference the field you're talking about, probably by `id`
+          // but you could certainly do $('[name=name]') as well.
+          '#email': {
+            required: true,
+            message: 'Please input RIGHT Email address.',
+            test: happy.email // this can be *any* function that returns true or false
+          }
+        }
+      });
+    }); 
+  </script>
+
+<% end %>

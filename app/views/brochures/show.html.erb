@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @brochure.name %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @brochure.desc %>
+</p>
+
+<p>
+  <b>Cover:</b>
+  <%= @brochure.cover %>
+</p>
+
+<p>
+  <b>File:</b>
+  <%= @brochure.file %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%= @brochure.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_brochure_path(@brochure) %> |
+<%= link_to 'Back', brochures_path %>

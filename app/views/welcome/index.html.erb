@@ -1,0 +1,195 @@
+<link rel="stylesheet" type="text/css" href="/stylesheets/home.css" media="screen"/>
+<div class="self_clear">
+	<div id="secondary_content" class="hide_from_print">
+		<div class="trackcat-Homepage-Promo">
+			<div class="search-box round_corners color_f2f2f2">
+				<div id="spinner_control">
+					<div style="" class="spinner-content">
+						<p class="spinner-msg">正在载入....</p>
+						<div class="spinner-img"></div>
+					</div>
+				</div>
+				<!-- ROUNDED CORNERS -->
+				<div class="ctl"></div>
+				<div class="ctr"></div>
+				<div class="cbr"></div>
+				<div class="cbl"></div>
+				<!-- SEARCH FILTERS -->
+				<h2 class="blue-hue">寻找完美假日</h2>
+				<form id="keword-search-form" class="light-form" action="/search" method="">
+				<select id="travel_destination_control" name="destination" onchange="changeTravelCount()">
+					<option value="0">按旅游目的地</option>
+					<% @destinations.each do |destination| %>
+					<option value="<%= destination.id %>"><%= destination.name %></option>
+					<% end %>
+				</select>
+				<p id="travel_destination_control_filter"></p>
+				<select id="travel_interest_control" name="interest" onchange="changeTravelCount()">
+					<option value="">按旅游兴趣</option>
+					<% @interests.each do |interest| %>
+					<option value="<%= interest.id %>"><%= interest.title %></option>
+					<% end %>
+				</select>
+				<p id="travel_interest_control_filter"></p>
+
+				<select id="departure_date_control" name="date" onchange="changeTravelCount()">
+					<option value="0_0">按出行日期</option>
+
+					<% @months.each do |month| %>
+					<option value="2013_3"><%= month[0] %></option>
+					<% end %>
+
+				</select>
+				<p id="departure_date_control_filter"></p>
+				<select id="price_range_control" name="price_start" onchange="changeTravelCount()">
+					<option value="0_0">按价格区间</option>
+					<option value="0_10000">少于 ￥10,000</option>
+					<option value="10000_25000">￥10,000 - ￥25,000</option>
+					<option value="25000_35000">￥25,000 - ￥35,000</option>
+					<option value="35000_50000">￥35,000 - ￥50000</option>
+					<option value="50000_10000000000000000">￥50,000 - 以上</option>
+				</select>
+				<p id="price_range_control_filter"></p>
+
+				<!-- :: -->
+										
+				<div class="view_results self_clear">
+					<input type="submit" id="search_button_control" value="查看结果">
+					<span id="record_count_control" class="trip_count"> <strong>0</strong>
+					</span>
+					旅游线路
+				</div>
+				</form>	
+			</div>
+
+			<!-- CTA -->
+			<div class="cta round_corners color_f2f2f2" style="margin-top:15px;">
+				<!-- ROUNDED CORNERS -->
+				<div class="ctl"></div>
+				<div class="ctr"></div>
+				<div class="cbr"></div>
+				<div class="cbl"></div>
+				<!-- SEARCH FILTERS -->
+				<div class="self_clear">
+					<center>
+						<%= raw Shouye.last.try(:lianxi) %>
+						<hr>
+						<p class="clear_margins">
+							为得到更好的服务.
+							<br>请注册成为我们的俱乐部会员.</p>
+						<form style="padding-top:5px;" method="post" action="/signup">
+							<input type="submit" class="enews_input_button" id="" value="注册"></form>
+					</center>
+				</div>
+			</div>
+
+			<!-- END CTA -->
+
+			<!-- CTA -->
+			<div class="cta round_corners color_f2f2f2" style="margin-top:15px;">
+				<!-- ROUNDED CORNERS -->
+				<div class="ctl"></div>
+				<div class="ctr"></div>
+				<div class="cbr"></div>
+				<div class="cbl"></div>
+				<div class="self_clear">
+					<%= raw Shouye.last.try(:block_5_cont) %>
+				</div>
+			</div>
+
+			<!-- END CTA -->
+
+		</div>
+		<div id="dMainFBContest"></div>
+	</div>
+	<div id="primary_content" class="align_edges">
+		<div class="trackcat-Homepage-Promo">
+			<div id="description">
+				<h1>
+					<%= Shouye.last.try(:block_1_tit) %>
+				</h1>
+				<p>
+					<%= raw Shouye.last.try(:block_1_cont) %>
+				</p>
+			</div>
+			<!-- RIGHT COLUMN PROMO -->
+			<div id="right-column-content">
+				<h2 style="margin-top:0;"><%= Shouye.last.try(:block_4_tit) %></h2>
+				<div id="promo-b" class="trackact-Slot-B self_clear">
+					<a href="<%= Shouye.last.try(:block_4_1_link) %>">
+						<img src="<%= Shouye.last.try(:block_4_1_pic) %>" width="250" height="100"></a>
+					<h3 class="clear_margins"><%= Shouye.last.try(:block_4_1_tit) %></h3>
+					<p>
+						<%= raw Shouye.last.try(:block_4_1_cont) %>
+					</p>
+					<p class="clear_margins">
+						<a class="icon swirl_arrow" href="<%= Shouye.last.try(:block_4_1_link) %>">详细</a>
+					</p>
+				</div>
+				<hr>
+				<div id="promo-c" class="trackact-Slot-C self_clear">
+					<a href="<%= Shouye.last.try(:block_4_2_link) %>" >
+						<img src="<%= Shouye.last.try(:block_4_2_pic) %>" width="250" height="100"></a>
+					<h3 class="clear_margins"><%= Shouye.last.try(:block_4_2_tit) %></h3>
+					<p>
+						<%= raw Shouye.last.try(:block_4_2_cont) %>
+					</p>
+					<p class="clear_margins">
+						<a href="<%= Shouye.last.try(:block_4_2_link) %>" class="icon swirl_arrow">详细</a>
+					</p>
+				</div>
+				<hr>
+				<div id="promo-d" class="trackact-Slot-C self_clear">
+					<a href="<%= Shouye.last.block_4_3_link %>" title="Isla Simca" target="_blank">
+						<img src="<%= Shouye.last.block_4_3_pic %>" width="250" height="100"></a>
+					<h3 class="clear_margins">
+						<%= Shouye.last.block_4_3_tit %>
+					</h3>
+					<p>
+						<%= raw Shouye.last.block_4_3_cont %>
+					</p>
+					<p class="clear_margins">
+						<a href="<%= Shouye.last.block_4_3_link %>" target="_blank" class="icon swirl_arrow">详细</a>
+					</p>
+				</div>
+			</div>
+			<!-- PRIMARY COLUMN -->
+			<div id="primary-column">
+				<div id="connections" class="trackact-Slot-A">
+					<div id="intro" class="borderbox self_clear">
+						<!-- <a href="<%= Shouye.last.block_2_link %>">
+						<img class="clear_margins" src="<%= Shouye.last.block_2_pic_1 %>">
+						</a>
+						<div class="main-msg" style="border:none; margin-bottom:0;">
+							<a href="<%= Shouye.last.block_3_link %>">
+								<img style="float:right; margin-left:15px;" src="<%= Shouye.last.block_2_pic_2 %>"></a>
+							<h3 class="clear_margins"><%= Shouye.last.block_2_tit %></h3>
+							<p style="margin:11px 0;"> -->
+								<%= raw Shouye.last.block_2_cont %>
+							<!-- </p>
+							<a class="yellow-btn" href="<%= Shouye.last.block_2_link %>">
+								<span class="icon swirl_arrow">详细</span>
+							</a>
+						</div> -->
+					</div>
+				</div>
+				<div id="brochures" class="borderbox trackact-Slot-E">
+					<!-- <h2><%= Shouye.last.block_3_tit %></h2>
+					<p> -->
+						<%= raw Shouye.last.block_3_cont %>
+					<!-- </p>
+					<center>
+						<a title="Request a brochure today" href="<%= Shouye.last.block_3_link %>">
+							<img src="<%= Shouye.last.block_3_pic %>"></a>
+					</center>
+					<p>
+						<a class="icon swirl_arrow" title="Request a brochure today" href="<%= Shouye.last.block_3_link %>">点击查看更多</a>
+					</p> -->
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+

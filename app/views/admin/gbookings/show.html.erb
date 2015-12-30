@@ -1,0 +1,96 @@
+<div class="row">
+<h3>后台管理 > 查看 <div class="pull-right"><%= link_to '编辑', edit_admin_gbooking_path(@gbooking) %> |
+<%= link_to '返回列表', admin_gbookings_path %></div></h3>
+<hr>
+<p id="notice"><%= notice %></p>
+<table class="table table-striped table-bordered"> 
+	<tr>
+		<td style="width:200px;text-align:right;">ID:</td>
+		<td><%= @gbooking.id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">
+
+称呼:</td>
+		<td><%= @gbooking.mrs_title %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">First name:</td>
+		<td><%= @gbooking.first_name %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Last name:</td>
+		<td><%= @gbooking.last_name %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">
+
+优先联系方式:</td>
+		<td><%= @gbooking.preferred_contact_method %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Email:</td>
+		<td><%= @gbooking.email %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Phone:</td>
+		<td><%= @gbooking.phone %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Country:</td>
+		<td><%= @gbooking.country %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Region:</td>
+		<td><%= @gbooking.region %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Postal code:</td>
+		<td><%= @gbooking.postal_code %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Is subscribe:</td>
+		<td><%= @gbooking.is_subscribe %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">User:</td>
+		<td><%= @gbooking.user_id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Agent name:</td>
+		<td><%= @gbooking.agent_name %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Agent code:</td>
+		<td><%= @gbooking.agent_code %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Destination:</td>
+		<td><%= @gbooking.destination_id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Departure date:</td>
+		<td><%= @gbooking.departure_date %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Trip day length:</td>
+		<td><%= @gbooking.trip_day_length %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Adult count:</td>
+		<td><%= @gbooking.adult_count %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Child count:</td>
+		<td><%= @gbooking.child_count %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Event comment:</td>
+		<td><%= @gbooking.event_comment %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">City comment:</td>
+		<td><%= @gbooking.city_comment %></td>
+	</tr>
+	</table>
+</div>

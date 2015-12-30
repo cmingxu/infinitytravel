@@ -1,0 +1,43 @@
+<%= form_for([:admin, @gbookingday],:html => {:class => "form-horizontal" }) do |f| %>
+  <% if @gbookingday.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gbookingday.errors.count, "error") %> prohibited this gbookingday from being saved:</h2>
+
+      <ul>
+      <% @gbookingday.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <label class="control-label">destination_id</label>
+    <div class="controls">
+    <%= f.text_field :destination_id %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">city_id</label>
+    <div class="controls">
+    <%= f.text_field :city_id %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">hotel_id</label>
+    <div class="controls">
+    <%= f.text_field :hotel_id %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">days</label>
+    <div class="controls">
+    <%= f.text_field :days %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

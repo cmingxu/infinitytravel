@@ -1,0 +1,28 @@
+<div class="row">
+<h3>后台管理 > 查看 <div class="pull-right"><%= link_to '编辑', edit_admin_photocontest_path(@photocontest) %> |
+<%= link_to '返回列表', admin_photocontests_path %></div></h3>
+<hr>
+<p id="notice"><%= notice %></p>
+<table class="table table-striped table-bordered"> 
+	<tr>
+		<td style="width:200px;text-align:right;">ID:</td>
+		<td><%= @photocontest.id %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Username:</td>
+		<td><%= @photocontest.username %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Name:</td>
+		<td><%= @photocontest.name %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Desc:</td>
+		<td><%= @photocontest.desc %></td>
+	</tr>
+		<tr>
+		<td style="width:200px;text-align:right;">Photo:</td>
+		<td><%= @photocontest.photo %></td>
+	</tr>
+	</table>
+</div>

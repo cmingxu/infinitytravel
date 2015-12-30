@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @itinerary.name %>
+</p>
+
+<p>
+  <b>Travel:</b>
+  <%= @itinerary.travel_id %>
+</p>
+
+<p>
+  <b>Sort:</b>
+  <%= @itinerary.sort %>
+</p>
+
+<p>
+  <b>Hotel:</b>
+  <%= @itinerary.hotel_id %>
+</p>
+
+<p>
+  <b>Meals:</b>
+  <%= @itinerary.meals %>
+</p>
+
+<p>
+  <b>Start day num:</b>
+  <%= @itinerary.start_day_num %>
+</p>
+
+<p>
+  <b>End day num:</b>
+  <%= @itinerary.end_day_num %>
+</p>
+
+
+<%= link_to 'Edit', edit_itinerary_path(@itinerary) %> |
+<%= link_to 'Back', itineraries_path %>

@@ -1,0 +1,269 @@
+@charset "utf-8";
+html, body{
+	height:100%;
+}
+html, textarea{
+	overflow-y:scroll;
+}
+body, textarea{
+	font:12px/1.455em Arial, Helvetica, Sans-serif, Verdana !important;
+}
+h1, h2, h3, h4, h5, h6,
+.hl2, .hl3, .hl4, .hl5, .hl6{
+	line-height:1.1em;
+	margin:18px 0 14px;
+	color:#5d6064;
+}
+h4, h5, h6, p, dl, ul, ol, legend,
+.hl4, .hl5, .hl6{
+	font-size:12px;
+}
+.hl2, .hl3, .hl4, .hl5, .hl6{
+	font-weight:700 !important;
+}
+p, dl, ul, ol{
+	line-height:1.5em;
+	margin:1.167em 0;
+}
+ul, ol{
+	padding-left:40px;
+}
+table, label, legend{
+	color:#333;
+}
+tr{
+	vertical-align:top;
+}
+p img, li img, dt img, dd img{
+	display:inline;
+}
+a, object, input, textarea, select{
+	outline:none;
+}
+img, hr{
+	border:none;
+}
+sub, sup{
+	position:relative;
+	font-size:.8em;
+	font-size:1em\9;
+	line-height:0;
+	vertical-align:baseline;
+}
+th, td{
+	padding:2px 4px;
+}
+textarea{
+	border:1px solid #e4e5e6;
+	-webkit-appearance:none; 
+	-moz-appearance:none;
+	-webkit-border-radius:0; 
+	border-radius:0;
+}
+input, select{
+	font:12px Arial, Helvetica, Sans-serif, Verdana;
+}
+input[type="text"],
+input[type="password"]{
+	border:1px solid #a7a9ac;
+	padding:2px;
+	[;padding:3px 2px;]
+	$padding:2px;
+	-webkit-appearance:none; 
+	-moz-appearance:none;
+	-webkit-border-radius:0; 
+	border-radius:0;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus{
+	background-color:#f4f4f4;
+}
+input[type="radio"],
+input[type="checkbox"]{
+	$margin:0 -3px 0 -4px;
+}
+input[type="submit"],
+input[type="reset"], 
+input[type="button"]{
+	$overflow:visible;
+	border:none;
+	background-color:#a7a9ac;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	text-transform:uppercase;
+	color:#fff;
+	cursor:default;
+	padding:5px 11px 4px;
+	padding:3px 11px 2px\9;
+	[;padding:5px 11px;]
+	$padding:3px 11px 2px;
+	-webkit-appearance:none; 
+	-moz-appearance:none;
+}
+/*FF Only
+@-moz-document url-prefix(){
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"]{
+		padding:3px 9px;	
+	}
+}*/
+input[type="submit"]:hover,
+input[type="reset"]:hover, 
+input[type="button"]:hover{
+	background-color:#888;
+}
+.light-form input {padding:2px 4px; border-color:#bdc0c4;}
+.light-form input[type="submit"] {padding:4px 7px; background:#e4e5e6; color:#555; font-size:10px; border:none;}
+.light-form input[type="submit"]:hover {padding:4px 7px; background:#dadddf;}
+button::-moz-focus-inner {padding:0; border:0}
+input::-moz-focus-inner {padding:0; border:0}
+/*@TYPE SELECTORS
+--------------------------------------*/
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	color:#85888d;
+}
+h1{
+	font-size:22px !important;
+	margin-top:0 !important;
+}
+h2, .hl2{
+	font-size:18px !important;
+}
+h2.secondary_title{
+	font-size:16px !important;
+}
+h3, .hl3{
+	font-size:14px !important;
+}
+dt{
+	margin:1.167em 0 0;
+	font-weight:700;
+}
+dd{
+}
+a{
+	text-decoration:none;
+	color:#0f5d9d;
+}
+a:hover{
+	text-decoration:underline;
+}
+img{
+	display:block;
+}
+hr{
+	$display:block;
+	$margin:-7px 0;
+	height:1px;
+	background-color:#e4e5e6;
+	$color:#e4e5e6;
+}
+hr.hr_margin{
+	margin:25px 0;
+}
+big{
+	font-size:1.2em;
+}
+small{
+	font-size:.8em;
+}
+sub{
+	top:.333em;
+}
+sup{
+	top:-.4em;
+}
+acronym{
+	border-bottom:1px dashed #333;
+	cursor:default;
+}
+table{
+	width:100%;
+	border-collapse:collapse;
+	empty-cells:show;
+	text-align:left;
+}
+caption{
+	padding:4px 4px;
+	[;margin-right:-1px;]
+}
+@-moz-document url-prefix(){
+	table{
+		margin:1px 0 0 1px;
+		width:99.88%;
+			
+	}
+	caption{
+		margin-left:-1px;
+	
+	}
+}
+td{
+	vertical-align:top;
+}
+fieldset{
+	position:relative;
+	border:1px solid #a7a9ac;
+	padding:25px;
+}
+legend{
+	background-color:#fff;
+	line-height:1em;
+	$margin-left:-7px;
+	position:absolute;
+	top:-7px;
+	$top:-5px;
+}
+input{
+	vertical-align:middle;
+	$clear:expression(
+		(type == "text" || type == "password")? onfocus = new Function("", "this.style.backgroundColor='#f4f4f4'") : 0,
+		(type == "text" || type == "password")? onblur = new Function("", "this.style.backgroundColor='#fff'") : 0,
+		style.clear = "none", 0
+		
+	);
+	-$clear:expression(
+		(type == "text" || type == "password")? style.border = "1px solid #a7a9ac" : 0,
+		(type == "text" || type == "password")? style.padding = "2px" : 0,
+		(type == "text" || type == "password")? onfocus = new Function("", "this.style.backgroundColor='#f4f4f4'") : 0,
+		(type == "text" || type == "password")? onblur = new Function("", "this.style.backgroundColor='#fff'") : 0,
+		(type == "radio" || type == "checkbox")? style.margin = "0 -3px 0 -4px" : 0,
+		(type == "submit" || type == "reset" || type == "button")? style.overflow = "visible" : 0,
+	   	(type == "submit" || type == "reset" || type == "button")? style.border = "none" : 0,
+	   	(type == "submit" || type == "reset" || type == "button")? style.padding = "3px 11px 2px" : 0,
+	   	(type == "submit" || type == "reset" || type == "button")? style.backgroundColor = "#a7a9ac" : 0,
+	   	(type == "submit" || type == "reset" || type == "button")? style.textTransform = "uppercase" : 0,
+	   	(type == "submit" || type == "reset" || type == "button")? style.color = "#fff" : 0,
+	   	(type == "submit" || type == "reset" || type == "button")? style.cursor = "default" : 0,
+	   	(type == "submit" || type == "reset" || type == "button")? onmouseover = new Function("", "this.style.backgroundColor = '#888';") : 0,
+	   	(type == "submit" || type == "reset" || type == "button")? onmouseout = new Function("", "this.style.backgroundColor = '#a9a7ac';") : 0,
+		style.clear = "none", 0
+		
+	);
+}
+select{
+	vertical-align:middle;
+	[;vertical-align:baseline;]
+	$vertical-align:middle;
+}
+textarea{
+	padding:2px;
+	$clear:expression(
+		onfocus = new Function("", "this.style.backgroundColor = '#f4f4f4';"),
+	   	onblur = new Function("", "this.style.backgroundColor = '#fff';"),
+	   	style.clear = "none", 0
+	);
+}
+button::-moz-focus-inner {padding:0; border:0}
+input::-moz-focus-inner {padding:0; border:0}
+
+
+
+

@@ -1,0 +1,141 @@
+<%= form_for([:admin, @travel],:html => {:class => "form-horizontal", :multipart => true }) do |f| %>
+  <% if @travel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@travel.errors.count, "error") %> prohibited this travel from being saved:</h2>
+
+      <ul>
+      <% @travel.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <label class="control-label">cover</label>
+    <div class="controls">
+    <p>
+      <img src="<%= @travel.cover.url %>">
+    </p>
+    <%= f.file_field :cover %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">desc_mappic</label>
+    <div class="controls">
+    <p>
+      <img src="<%= @travel.desc_mappic.url %>">
+    </p>
+    <%= f.file_field :desc_mappic %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">position</label>
+    <div class="controls">
+    <%= f.text_field :position %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">name</label>
+    <div class="controls">
+    <%= f.text_field :name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">sub_name</label>
+    <div class="controls">
+    <%= f.text_field :sub_name %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">priced_from</label>
+    <div class="controls">
+    <%= f.text_field :priced_from %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">days_count</label>
+    <div class="controls">
+    <%= f.text_field :days_count %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">departures</label>
+    <div class="controls">
+    <%= f.text_field :departures %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">max_group_size</label>
+    <div class="controls">
+    <%= f.text_field :max_group_size %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">overview_desc</label>
+    <div class="controls">
+    <%= f.text_area :overview_desc %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">overview_advantage</label>
+    <div class="controls">
+    <%= f.text_area :overview_advantage %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">景点介绍文字部分</label>
+    <div class="controls">
+    <%= f.text_area :jindian %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">notes</label>
+    <div class="controls">
+    <%= f.text_area :notes %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">扩展线路的ID</label>
+    <div class="controls">
+    <%= f.text_field :extensions_ids %>用英文逗号分隔旅游产品ID号
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">itinerary_pic</label>
+    <div class="controls">
+      <p>
+      <img src="<%= @travel.itinerary_pic.url %>">
+    </p>
+    <%= f.file_field :itinerary_pic %>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">itinerary_bigpic</label>
+    <div class="controls">
+      <p>
+      <img src="<%= @travel.itinerary_bigpic.url %>">
+    </p>
+    <%= f.file_field :itinerary_bigpic %>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>
+
+
+<% content_for :footer do %>
+    <script type="text/javascript" src="/plugins/u/editor_config.js"></script>
+    <script type="text/javascript" src="/plugins/u/editor_all.min.js"></script>
+    <link rel="stylesheet" href="/plugins/u/themes/default/css/ueditor.css" />   
+    <script type="text/javascript">
+      new UE.ui.Editor().render('travel_overview_desc');
+      new UE.ui.Editor().render('travel_overview_advantage');
+      new UE.ui.Editor().render('travel_notes');
+      new UE.ui.Editor().render('travel_jindian');
+    </script>
+<% end %>

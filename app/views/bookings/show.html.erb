@@ -1,0 +1,226 @@
+    <ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+      <li>
+        <a href="/">首页</a>
+      </li>
+      <li>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <a href="/search">旅行线路</a>
+      </li>
+      <li>
+        &nbsp;&nbsp;/&nbsp;&nbsp;
+        <a href="/travels/<%= @travel.id %>"><%= @travel.name %></a>
+      </li>
+    </ul>
+    <div class="self_clear">
+      <%= render :partial => "travels/travel_sidebar", :locals => { :travel => @travel } %>
+
+      <div id="primary_content" class="align_edges">
+        <iframe style="position:absolute; left:-9999px;" id="print-frame" src="/images/transparent.gif"></iframe>
+        <!-- PRIMARY HEADING -->
+        <h1><%= @travel.name %></h1>
+        <h4 class="clear_margins icon luxury amp" style="padding-top:2px;">
+          <%= @travel.interests.first.title %>
+        </h4>
+        <!-- LIVEPERSON -->
+        <!-- LINK LIST -->
+        <ul class="attribute_list">
+          <li>
+            <a class="icon download" href="<%= @travel.brochures.first.doc.url %>">下载旅行手册</a>
+          </li>
+          <li>
+            <a rel="nofollow" class="icon print" title="Print This Trip" href="#" onclick="javascript:window.print(); return false" target="_blank">打印该线路</a>
+          </li>
+        </ul>
+        <!-- TRIP NAVIGATION -->
+        <div id="trip_navigation_top" class="self_clear padding_6_tabs">
+          <ul>
+            <li>
+              <a href="/travels/<%= @travel.id %>/#tab1" title="Overview">线路介绍</a>
+            </li>
+            <li>
+              <a href="/travels/<%= @travel.id %>/#tab2" title="Itinerary">行程</a>
+            </li>
+            <li class="current">
+              <a href="/travels/<%= @travel.id %>/#tab3" title="Dates &amp; Prices">团期和价格</a>
+            </li>
+            <li>
+              <a href="/travels/<%= @travel.id %>/#tab4" title="Extensions">扩展线路</a>
+            </li>
+            <li>
+              <a href="/travels/<%= @travel.id %>/#tab5" title="Ask a Question">提问</a>
+            </li>
+            <li>
+              <a href="/travels/<%= @travel.id %>/#tab6" title="Ask a Question">用户点评</a>
+            </li>
+          </ul>
+        </div>
+
+        <div id="tab3" class="tab_item">
+
+          <h2>您的订单已成功提交</h2>
+          <table class="format_table">
+            <thead>
+              <tr>
+                <th>
+                  是否可预订:
+                  可预订
+                </th>
+                <th>单价</th>
+                <th>人数</th>
+                <th>合计</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> <strong>日期:</strong>
+                  <%= @datesprice.start_date.strftime("%d %b %Y") %> to <%= @datesprice.end_date.strftime("%d %b %Y") %>
+                </td>
+                <td>¥<%= @datesprice.prices %></td>
+                <td><%= @people_count %></td>
+                <td align="right">¥<%= @datesprice.prices*@people_count %></td>
+              </tr>
+              <!-- IS INTERNAL AIRFARE INCLUDED IN THIS TRIP -->
+              <tr>
+                <td> <strong>机票:</strong>
+                </td>
+                <td>¥<%= @datesprice.internal_airfare %></td>
+                <td><%= @people_count %></td>
+                <td align="right">¥<%= @datesprice.internal_airfare*@people_count %></td>
+              </tr>
+              <!-- IS A SUPPLEMENT INCLUDED IN THIS TRIP -->
+              <!-- ADD PRICE -->
+              <tr>
+                <td>
+                  <strong>金额 (人民币):</strong>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td align="right">
+                  <strong>¥<%= (@datesprice.prices+@datesprice.internal_airfare)*@people_count %></strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <ul class="clear_list_style"></ul>
+          <p>
+            请提供此段文本之翻译：Availability shown does not reflect real time status and is subject to change. In the case of Sold Out availability, recommends requesting a booking and adding your name to our waitlist. We will contact you if the departure becomes available.
+            Sub-Totals do not include international airfare, upgrades, taxes, seasonal surcharges and optional services not specified in the Inclusions section of the program description or Terms and Conditions.
+          </p>
+
+          <table class="format_table">
+              <tr>
+                <td>旅行线路:</td><td><%= @travel.name %></td>
+              </tr>
+              <tr>
+                <td>日期:</td><td><%= @datesprice.start_date.strftime("%d %b %Y") %> - <%= @datesprice.end_date.strftime("%d %b %Y") %></td>
+              </tr>
+              <tr>
+                <td>联系人:</td><td><%= @booking.mrs_title %> <%= @booking.first_name %> </td>
+              </tr>
+              <tr>
+                <td>地址:</td><td> <%= @booking.address %> <%= @booking.city %> <%= @booking.region %> <%= @booking.country %> / <%= @booking.postal_code %></td>
+              </tr>
+              <tr>
+                <td>邮箱:</td><td><%= @booking.email %></td>
+              </tr>
+              <tr>
+                <td>电话:</td><td><%= @booking.phone %></td>
+              </tr>
+              <tr>
+                <td>代理商名称:</td><td><%= @booking.agent_name %></td>
+              </tr>
+              <tr>
+                <td>代理商代码:</td><td><%= @booking.agent_code %></td>
+              </tr>
+              <tr>
+                <td>需求:</td><td><%= @booking.comment %></td>
+              </tr>
+          </table>
+        </div>
+        
+        <!-- TRIP NAVIGATION BOTTOM -->
+      </div>
+    </div>
+
+<% content_for :footer do %>
+
+<%= javascript_include_tag "jquery.slides.min.js" %>
+<script>
+// refresh window active tabs on hash
+var getTabActive=function(){
+    $("#trip_navigation_top li").removeClass("current");
+    $(".tab_item").addClass("hide");
+    $('#trip_navigation_top a[href='+window.location.hash+']').parent().addClass("current");
+    $(window.location.hash).removeClass("hide");
+}
+$("document").ready(function(){
+  if(window.location.hash&&$(window.location.hash).length>0){
+    getTabActive();
+  }
+})
+
+// listen change of window.location.hash, then active
+if (("onhashchange" in window) && !($.browser.msie)) {
+     window.onhashchange = function () {
+       if ($(window.location.hash).length>0) {
+        getTabActive();
+        return false;
+       };     
+     }
+}
+else {
+  $(window).bind('hashchange', function() {
+    if($(window.location.hash).length>1){
+      getTabActive();
+      return false;
+     }
+  });
+}
+
+var getSeriesOverlay=function(a){
+  $(".text_modal").show();
+  $('<div id="popout_modal_mask"></div>').appendTo("body");
+}
+$(".text_modal .close").click(function(){
+  $(".text_modal").hide();
+  $('#popout_modal_mask').remove();
+});
+$("#popout_modal_mask").live("click",function(){
+  $(".text_modal").hide();
+  $(".popout_modal").hide();
+  $(this).remove();
+})
+var modal_slides=function(a){
+  $(a).parent().parent().find(".popout_modal").show().find('#destination_slides_modal').slidesjs({
+  width: 514,
+  height: 344,
+  navigation: false,
+  pagination: {
+    effect: "fade"
+  },
+  effect: {
+    fade: {
+      speed: 800
+    }
+  },
+  callback:{
+    loaded: function(number) {
+          $('#popout_modal p.slide_img_title').text($("#destination_slides_modal img.slidesjs-slide").eq(number-1).attr("alt"));
+        },
+    complete: function(number) {
+          $('#popout_modal p.slide_img_title').text($("#destination_slides_modal img.slidesjs-slide").eq(number-1).attr("alt"));
+    }
+  }
+});
+  $('<div id="popout_modal_mask"></div>').appendTo("body");
+  return false;
+}
+var modal_close=function(){
+  $(".popout_modal").hide();
+  $('#popout_modal_mask').remove();
+  return false;
+}
+
+
+</script>
+<% end %>

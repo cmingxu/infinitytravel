@@ -1,0 +1,83 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+  <li>
+    <a href="/">首页</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <li>用户中心</li>
+</ul>
+<div class="self_clear">
+  <div id="secondary_content" class="hide_from_print">
+    <%= render 'users/user_nav' %>
+  </div>
+  <div id="primary_content" class="align_edges">
+    <div id="cs_control_1329" class="">
+      <div class="CS_Element_Schedule" id="CS_Element_content">
+        <a name="customcf1644" id="customcf1644"></a>
+        <a name="CP_JUMP_1644" id="CP_JUMP_1644"></a>
+        <div id="cs_control_1644" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_1393_1644">
+            <div id="special_offers">
+              <h1>用户中心</h1>
+              <!-- OFFER -->
+			  <h4>欢迎 ! <%= @user.login %></h4>
+              <!-- OFFER -->
+              <h3>我的订单</h3>
+              <p>
+        <% if !@bookings.empty? %>
+				 <table>
+				 	<tbody class="format_table">
+				 		<tr>
+				 			<th>姓名</th>
+				 			<th>邮箱</th>
+				 			<th>电话</th>
+				 			<th>国家</th>
+				 			<th>城市</th>
+				 			<th>地址</th>
+				 			<th>右边</th>
+				 			<th>人数</th>
+				 			<th>操作</th>
+				 		</tr>
+				 		<% @bookings.each do |booking|%>
+				 		<tr>
+				 			<td><%= booking.first_name %></td>
+				 			<td><%= booking.email %></td>
+				 			<td><%= booking.phone %></td>
+				 			<td><%= booking.country %></td>
+				 			<td><%= booking.city %></td>
+				 			<td><%= booking.address %></td>
+				 			<td><%= booking.postal_code %></td>
+				 			<td><%= booking.people_count %></td>
+				 			<td></td>
+				 		</tr>
+				 		<% end %>
+				 	</tbody>
+				 </table>
+				 <% else -%>
+         <table>
+          <tbody class="format_table">
+           <tr>
+              <th>姓名</th>
+              <th>邮箱</th>
+              <th>电话</th>
+              <th>国家</th>
+              <th>城市</th>
+              <th>地址</th>
+              <th>右边</th>
+              <th>人数</th>
+              <th>操作</th>
+            </tr>
+            <tr>
+              <td colspan="9">No Booking Messages!</td>
+            </tr>
+            </tbody>
+         </table>
+				 <% end -%>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

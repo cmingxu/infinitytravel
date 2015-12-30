@@ -1,0 +1,62 @@
+<ul id="breadcrumb_navigation" class="self_clear clear_list_style hide_from_print">
+  <li>
+    <a href="/">首页</a>
+    &nbsp;&nbsp;/&nbsp;&nbsp;
+  </li>
+  <li><%= @page.name %></li>
+</ul>
+<div class="self_clear">
+  <div id="secondary_content" class="hide_from_print">
+    <div id="cs_control_3131" class="">
+      <div class="CS_Element_Schedule" title="" id="CS_Element_contentleft">
+        <a name="custom12103" id="custom12103"></a>
+        <a name="CP_JUMP_12103" id="CP_JUMP_12103"></a>
+        <div id="cs_control_12103" class="cs_control CS_Element_Custom">
+          <div class="hl3">文章导航</div>
+
+          <ul class="section cspot_nav">
+            <% Page.where(:page_type => 0).each do |page| %>
+                <li class="icon bullet_arrow">
+                  <a href="/pages/<%= page.id %>"><%= page.name %></a>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+        <a name="customcf4702" id="customcf4702"></a>
+        <a name="CP_JUMP_4702" id="CP_JUMP_4702"></a>
+        <div id="cs_control_4702" class="cs_control CS_Element_CustomCF">
+          <div id="CS_CCF_10627_4702">
+            <div class="end_cap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="dMainFBContest"></div>
+  </div>
+  <div id="primary_content" class="align_edges">
+    <div id="right_column_content" class="hide_from_print">
+      <div id="cs_control_9506" class="">
+        <div class="CS_Element_Schedule" title="" id="CS_Element_contentsupplemental"></div>
+      </div>
+    </div>
+    <div id="cs_control_1329" class="">
+      <div class="CS_Element_Schedule" title="" id="CS_Element_content">
+        <a name="textblocknohdr1352" id="textblocknohdr1352"></a>
+        <a name="CP_JUMP_1352" id="CP_JUMP_1352"></a>
+        <div id="cs_control_1352" class="cs_control CS_Element_Textblock">
+          <div class="CS_Textblock_Text">
+            <h1><%= @page.title %></h1>
+            <%= raw(@page.cont) %>
+          </div>
+        </div>
+        <a name="tbsimplenohdr15918" id="tbsimplenohdr15918"></a>
+        <a name="CP_JUMP_15918" id="CP_JUMP_15918"></a>
+        <div id="cs_control_15918" class="cs_control CS_Element_Textblock">
+          <div class="CS_Textblock_Text">
+            <div class="self_clear" style="margin-bottom:25px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

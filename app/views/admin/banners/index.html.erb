@@ -1,0 +1,34 @@
+<div class="row">
+<h3>后台管理 > Banner列表 <div class="pull-right"><%= link_to '创建新Banners', new_admin_banner_path %></div></h3>
+<hr>
+<table class="table table-striped table-bordered"> 
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Imgname</th>
+    <th>Cover</th>
+    <th>链接地址</th>
+    <th>操作</th>
+  </tr>
+
+<% @banners.each do |banner| %>
+  <tr>
+    <td>
+      <%= banner.id %>
+    </td>
+    <td><%= banner.name %></td>
+    <td><%= banner.imgname %></td>
+    <td>
+      <img src="<%= banner.cover.url %>" style="width:300px;" alt="">
+    </td>
+    <td><%= banner.link %></td>
+    <td>
+      <%= link_to '查看', [:admin, banner] %> | 
+      <%= link_to '编辑', edit_admin_banner_path(banner) %> | 
+      <%= link_to '删除', [:admin, banner], :confirm => '确定要删除么?', :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= paginate @banners %>
+</div>
