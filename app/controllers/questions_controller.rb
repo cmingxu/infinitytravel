@@ -28,7 +28,7 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.xml
   def create
-    @question = Question.new(params[:question])
+    @question = Question.new(question_param)
     @question.travel = Travel.find(params[:question][:travel_id])
     @question.user = current_user if current_user
 
@@ -44,4 +44,7 @@ class QuestionsController < ApplicationController
   end
 
 
+  def question_param
+    params.require(:question).permit!
+  end
 end

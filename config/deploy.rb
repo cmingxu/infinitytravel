@@ -13,7 +13,7 @@ set :rvm_path, '/home/deploy/.rvm/bin/rvm'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log', 'public']
+set :shared_paths, ['config/database.yml', 'config/secrets.yml', 'log', 'public/uploads']
 
 # Optional settings:
 set :user, 'deploy'    # Username in the server to SSH to.
