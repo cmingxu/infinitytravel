@@ -42,7 +42,7 @@ gem 'carrierwave'
 gem 'ancestry' # 树形结构
 gem 'rest-client'
 
-gem 'mina'
+gem 'mina', '0.3.4'
 
 
 group :development, :test do

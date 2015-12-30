@@ -45,4 +45,6 @@ class Shouye < ActiveRecord::Base
 	mount_uploader :block_4_1_pic, CoverUploader
 	mount_uploader :block_4_2_pic, CoverUploader
 	mount_uploader :block_4_3_pic, CoverUploader
+
+
 end
