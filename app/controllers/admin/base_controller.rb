@@ -10,7 +10,6 @@ class Admin::BaseController < ApplicationController
     @gbookings = Gbooking.order("updated_at DESC").limit(5)
     @questions = Question.order("updated_at DESC").limit(5)
     @dianpins = Dianpin.order("updated_at DESC").limit(5)
-
   end
 
   def handle
@@ -46,6 +45,5 @@ class Admin::BaseController < ApplicationController
     @pages = Page.tagged_with("paris", :on => :tags)
     render :text => @page.tags
   end
-  
 end
 

@@ -17,8 +17,8 @@ class BookingsController < ApplicationController
   # GET /bookings/new.xml
   def new
     @booking = Booking.new
-    @datesprice = Datesprice.find(params[:datesprice_id])
-    @travel = @datesprice.travel
+    @datesprice = Datesprice.find_by_id(params[:datesprice_id])
+    @travel = @datesprice.try :travel
     @people_count = params[:people_count].to_i
 
     respond_to do |format|
@@ -31,7 +31,7 @@ class BookingsController < ApplicationController
   # POST /bookings
   # POST /bookings.xml
   def create
-    @booking = Booking.new(params[:booking])
+    @booking = Booking.new(booking_param)
     @booking.user = current_user if current_user
 
     respond_to do |format|
@@ -43,6 +43,10 @@ class BookingsController < ApplicationController
         format.xml  { render :xml => @booking.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def booking_param
+    params.require(:booking).permit!
   end
 
 end

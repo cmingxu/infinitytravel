@@ -32,11 +32,11 @@
 				 		</tr>
 				 		<% @dianpins.each do |dianpin|%>
 				 		<tr>
-				 			<td><%= dianpin.first_name %></td>
+				 			<td><%= dianpin.name %></td>
 				 			<td><%= dianpin.travel_code %></td>
 				 			<td><%= dianpin.travel.name %></td>
 				 			<td><%= dianpin.cont %></td>
-				 			<td><%= dianpin.created_at %></td>
+				 			<td><%= dianpin.created_at.to_s(:db) %></td>
 				 			<td></td>
 				 		</tr>
 				 		<% end %>

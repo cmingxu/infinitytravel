@@ -33,7 +33,7 @@
 						</li>
 							<% if user_signed_in? %>
               <li class='user_nav'>
-                <a href="/users/<%= current_user.id %>"><%= current_user.identity %> <span class="caret"></span></a>
+                <a href="/users/home"><%= current_user.identity %> <span class="caret"></span></a>
               </li>
 	              <% if current_user.admin? %>
 	                <li><a href="/admin">后台管理</a></li>
@@ -150,7 +150,7 @@
 						<a href="<%= banner.link %>"><img src="<%= banner.cover.url %>" border="0" class="slide_show_img" width="960" height="300"/></a>
 						<% end %>
 					<% else %>
-						<% @banner = @sbanner || Banner.find_by_imgname(controller.controller_name ) %>
+						<% @banner = @sbanner || Banner.find_by_imgname(controller.controller_name) %>
 						<% if @banner %>
 						<a href="<%= @banner.link %>"><img src="<%= @banner.cover.url %>" border="0" class="slide_show_img" width="960" height="300"/></a>
 						<% else %>

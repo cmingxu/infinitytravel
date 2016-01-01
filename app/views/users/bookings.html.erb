@@ -100,14 +100,14 @@
               <td><%= gbooking.phone %></td>
               <td>
                 <% gbooking.customizebookings.each do |customizebooking| %>
-                  <%=  customizebooking.number %>. 地区: <%= customizebooking.destination.name %> / 城市: <%= customizebooking.city.name %> / 酒店: <%= customizebooking.hotel.name %> / 天数: <%= customizebooking.city.name %> <br>
+                  <%=  customizebooking.number %>. 地区: <%= customizebooking.destination.try(:name) %> / 城市: <%= customizebooking.city.try(:name) %> / 酒店: <%= customizebooking.hotel.try(:name) %> / 天数: <%= customizebooking.city.try(:name) %> <br>
                 <% end %>
               </td>
               <td><%= gbooking.adult_count %></td>
               <td><%= gbooking.agent_name %></td>
               <td><%= gbooking.agent_code %></td>
               <td><%= gbooking.event_comment %></td>
-              <th><%= gbooking.created_at %></th>
+              <th><%= gbooking.created_at.to_s(:db) %></th>
               <th></th>
             </tr>
             <% end %>

@@ -3,7 +3,8 @@ Infinitytravel::Application.routes.draw do
   get "setting" => "users#setting"
   put "update_setting" => "users#setting"
   put "update_password" => "users#update_password"
-  resources :users do
+  resources :users, only: [:index] do
+    get :home, on: :collection
     member do
       get :dianpins
       get :bookings

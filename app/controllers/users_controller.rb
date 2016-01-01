@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-  def show # 作为自己的主页
-    @user = User.find_by_id(params[:id])
-    @bookings = @user.bookings.all
+  def home # 作为自己的主页
+    @user = current_user
+    @bookings = current_user.bookings.all
   end
 
   def setting

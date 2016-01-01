@@ -34,7 +34,7 @@
 				 			<td><%= question.first_name %></td>
 				 			<td><%= question.travel.name %></td>
 				 			<td><%= question.question %></td>
-				 			<td><%= question.created_at %></td>
+				 			<td><%= question.created_at.to_s(:db) %></td>
 				 			<td></td>
 				 		</tr>
 				 		<% end %>
