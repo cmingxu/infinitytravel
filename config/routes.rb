@@ -140,6 +140,7 @@ Infinitytravel::Application.routes.draw do
   get "admin/interests/:id/destroy_brochure_interest/:brochure_id" => "admin/interests#destroy_brochure_interest"
   get "admin/destinations/:id/destroy_brochure_destination/:brochure_id" => "admin/destinations#destroy_brochure_destination"
   get 'admin' => 'admin/base#index'
+  get 'welcome/get_gallery' => 'welcome#get_gallery'
   get 'admin/handle' => 'admin/base#handle'
   get 'search' => 'welcome#search'
   get 'travel_count' => 'welcome#travel_count'
